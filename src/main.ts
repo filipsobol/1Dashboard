@@ -1,12 +1,14 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+// Load core services
+import { setup as setupStore } from "./core/Store";
+import { setup as setupConfig } from "./core/Config";
+import { setup as setupRenderer } from "@/core/Renderer";
 
-Vue.config.productionTip = false
+// Load styles
+import "@/assets/styles/_core.scss";
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// Setup application
+(async () => {
+    const store = setupStore();
+    await setupConfig(store);
+    setupRenderer(store);
+})();
