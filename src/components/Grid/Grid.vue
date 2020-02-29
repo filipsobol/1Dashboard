@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "Db-Grid",
+    name: "Grid",
 
     props: {
         components: {

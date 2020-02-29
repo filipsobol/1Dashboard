@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: "Db-Error",
+    name: "Error",
 
     props: {
         message: {

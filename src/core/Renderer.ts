@@ -2,6 +2,7 @@ import Vue  from "vue";
 import Router from "vue-router";
 import CompositionApi from "@vue/composition-api";
 import MixinLoaded from "@/core/mixins/Loaded";
+import { Page } from "@/interfaces/core/Config";
 
 // Plugins
 Vue.use(Router);
@@ -47,19 +48,22 @@ function registerComponents(): void {
 }
 
 function setupRouter(store: any): Router {
-    const { app, template } = store.state.config;
+    const { app, pages } = store.state.config;
+
+    const routes = pages.map((page: Page ) => ({
+        path: page.url,
+        component: Vue.component(`db-${ page.component.type }`),
+    }));
+
+    if (!routes.find(({ path }: any) => path === "/")) {
+        routes.push({
+            path: "/",
+            redirect: app.defaultPageUrl || pages[0].url,
+        });
+    }
 
     return new Router({
-        mode: "hash", // TODO: Mode should be configurable
-        routes: [
-            {
-                path: "/",
-                redirect: app.defaultPageUrl || template.pages[0].url,
-            },
-            {
-                path: "*",
-                component: Vue.component("db-page"),
-            },
-        ],
+        mode: "history", // TODO: Mode should be configurable
+        routes,
     });
 }

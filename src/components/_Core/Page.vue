@@ -1,16 +1,16 @@
 <template>
-    <div class="container">
+    <div class="container mx-auto">
         <ol class="breadcrumb mt-5 mb-1">
             <li class="breadcrumb-item">
-                <a :href="app.url">{{ app.name }}</a>
+                <a :href="app.url">{{ app.title }}</a>
             </li>
 
             <li class="breadcrumb-item active">
-                {{ currentPage.title }}
+                {{ currentPage.name }}
             </li>
         </ol>
 
-        <h1 class="mb-5">
+        <h1 class="text-3xl">
             {{ currentPage.title }}
         </h1>
 
@@ -25,11 +25,7 @@
 import { mapState } from "vuex";
 
 export default {
-    name: "Db-Page",
-
-    data: () => ({
-        page: null,
-    }),
+    name: "Page",
 
     computed: {
         ...mapState("config", [

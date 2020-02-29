@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "Db-Text",
+    name: "Text",
 
     props: {
         text: {

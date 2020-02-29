@@ -3,7 +3,7 @@ export default {
 
     state: {
         app: null,
-        template: null,
+        pages: null,
     },
 
     mutations: {

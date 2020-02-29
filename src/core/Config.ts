@@ -3,20 +3,7 @@ import AppConfig from "@/../config/app";
 
 export async function setup(store: any) {
     updateDocumentHead();
-
-    store.commit("config/update", {
-        name: "app",
-        value: AppConfig,
-    });
-
-    const template = AppConfig.templateUrl
-        ? (await Axios.get(AppConfig.templateUrl)).data
-        : (await import(/* webpackChunkName: "template" */ "@/../config/template")).default;
-
-    store.commit("config/update", {
-        name: "template",
-        value: template,
-    });
+    await updateStore(store);
 }
 
 function updateDocumentHead(): void {
@@ -26,7 +13,6 @@ function updateDocumentHead(): void {
         keywords,
         faviconUrl,
         faviconType,
-        templateUrl,
     } = AppConfig;
     document.title = title;
 
@@ -45,10 +31,22 @@ function updateDocumentHead(): void {
     document
         .querySelector("link[rel=\"icon\"]")
         ?.setAttribute("type", faviconType);
+}
 
-    if (templateUrl) {
-        // fetch template from URL
-    } else {
-        // load template as a file
-    }
+async function updateStore(store: any) {
+    // Add application configuration
+    store.commit("config/update", {
+        name: "app",
+        value: AppConfig,
+    });
+
+    // Add pages configuration
+    const pages = AppConfig.pagesUrl
+        ? (await Axios.get(AppConfig.pagesUrl)).data
+        : (await import(/* webpackChunkName: "template" */ "@/../config/pages")).default;
+
+    store.commit("config/update", {
+        name: "pages",
+        value: pages,
+    });
 }

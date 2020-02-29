@@ -6,10 +6,23 @@ export interface App {
     defaultPageUrl?: string;
     faviconUrl: string;
     faviconType: string;
-    templateUrl?: string;
+    pagesUrl?: string;
     timezone: string;
     locale: string;
     fallbackLocale: string;
     localeUrl?: string;
     debug: boolean;
+}
+
+
+export interface Page {
+    url: string;
+    name: string;
+    title: string;
+    component: Component;
+}
+
+export interface Component {
+    type: string;
+    props: object;
 }

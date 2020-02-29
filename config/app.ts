@@ -1,4 +1,4 @@
-import { App } from "@/interfaces/config/App";
+import { App } from "@/interfaces/core/Config";
 
 const config: App = {
     /**
@@ -24,7 +24,7 @@ const config: App = {
     /**
      * URL of the page to be displayed when user visits "/".
      */
-    defaultPageUrl: "/users",
+    defaultPageUrl: undefined,
 
     /**
      * Optional URL for the favicon, useful when it's not hosted with the application.
@@ -39,7 +39,7 @@ const config: App = {
     /**
      * Optional URL for the template, useful when template is not hosted with this project or comes from API.
      */
-    templateUrl: undefined,
+    pagesUrl: undefined,
 
     /**
      * Timezone used to format dates. It can be overridden on user-level.

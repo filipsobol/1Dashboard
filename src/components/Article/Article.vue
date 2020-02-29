@@ -11,7 +11,7 @@
     import Vue from "vue";
 
     export default Vue.extend({
-        name: "Db-Article",
+        name: "Article",
         props: {
             title: {
                 type: String,

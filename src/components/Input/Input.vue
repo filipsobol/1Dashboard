@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "Db-Input",
+    name: "Input",
 
     props: {
         type: {

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "Db-Button",
+    name: "Button",
 
     props: {
         text: {

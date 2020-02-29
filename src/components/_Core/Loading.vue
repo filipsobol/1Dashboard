@@ -8,6 +8,6 @@
 
 <script>
 export default {
-    name: "Db-Loading",
+    name: "Loading",
 };
 </script>

@@ -34,7 +34,7 @@
 import componentExists from "@/core/mixins/ComponentExists";
 
 export default {
-    name: "Db-Tabs",
+    name: "Tabs",
 
     mixins: [
         componentExists,
