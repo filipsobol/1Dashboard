@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-gray-100 min-h-screen">
         <db-header />
 
         <div class="container mx-auto">
@@ -19,7 +19,7 @@
 
             <router-view
                 :key="$route.fullPath"
-                v-bind="{ ...currentPage.component.props }"/>
+                v-bind="{ ...componentProperties }" />
         </div>
     </div>
 </template>
@@ -43,6 +43,13 @@
 
             currentPage() {
                 return this.pages.find(({ url }) => url === this.$route.path);
+            },
+
+            componentProperties() {
+                return {
+                    ...this.currentPage.component.props,
+                    components: this.currentPage.component.components,
+                };
             },
         },
     };

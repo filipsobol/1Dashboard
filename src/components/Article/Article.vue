@@ -32,9 +32,3 @@
         }
     });
 </script>
-
-<style scoped lang="scss">
-    p {
-        color: blue;
-    }
-</style>
