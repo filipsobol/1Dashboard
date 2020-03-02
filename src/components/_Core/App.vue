@@ -3,9 +3,15 @@
         <db-header />
 
         <div class="container mx-auto">
-            <ol class="breadcrumb mt-5 mb-1">
+            <ol class="inline-flex mt-6 text-gray-600">
                 <li class="breadcrumb-item">
                     <a :href="app.url">{{ app.title }}</a>
+                </li>
+
+                <li class="px-2">
+                    <db-icon
+                        type="chevron-right"
+                        size="16"/>
                 </li>
 
                 <li class="breadcrumb-item active">
@@ -13,7 +19,7 @@
                 </li>
             </ol>
 
-            <h1 class="text-3xl">
+            <h1 class="text-4xl mt-2 mb-6 text-gray-700">
                 {{ currentPage.title }}
             </h1>
 

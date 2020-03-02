@@ -66,14 +66,14 @@
             },
 
             contentStyles(component: Component): Array<string> {
-                const tile = component?.tile;
+                const style = component?.tile?.style;
 
                 return [
-                    `p-${tile?.padding || 4}`
+                    `p-${style?.padding || 4}`
                 ];
             },
 
-            componentProperties(component: Component): any {
+            componentProperties(component: Component): object {
                 return {
                     ...component.props,
                     components: component.components,
