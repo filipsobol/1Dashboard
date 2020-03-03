@@ -11,8 +11,12 @@
     </svg>
 </template>
 
-<script>
-    export default {
+<script lang="ts">
+    import Vue from "vue";
+
+    export default Vue.extend({
+        name: "Icon",
+
         props: {
             type: {
                 type: String,
@@ -23,9 +27,9 @@
                 default: 2
             },
             size: {
-                type: Number,
+                type: [String, Number],
                 default: 24
             }
         }
-    }
+    });
 </script>

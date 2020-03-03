@@ -2,15 +2,17 @@
     <div>{{ text }}</div>
 </template>
 
-<script>
-export default {
-    name: "Text",
+<script lang="ts">
+    import Vue from "vue";
 
-    props: {
-        text: {
-            type: String,
-            required: true,
+    export default Vue.extend({
+        name: "Text",
+
+        props: {
+            text: {
+                type: String,
+                required: true,
+            },
         },
-    },
-};
+    });
 </script>

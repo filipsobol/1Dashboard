@@ -12,6 +12,7 @@
 
     export default Vue.extend({
         name: "Article",
+
         props: {
             title: {
                 type: String,

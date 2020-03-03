@@ -6,8 +6,10 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Loading",
-};
+<script lang="ts">
+    import Vue from "vue";
+
+    export default Vue.extend({
+        name: "Loading",
+    });
 </script>

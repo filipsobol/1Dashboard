@@ -4,18 +4,20 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "Error",
+<script lang="ts">
+    import Vue from "vue";
 
-    props: {
-        message: {
-            type: String,
-            required: false,
-            default: "Sorry, component could not be loaded.",
+    export default Vue.extend({
+        name: "Error",
+
+        props: {
+            message: {
+                type: String,
+                required: false,
+                default: "Sorry, component could not be loaded.",
+            },
         },
-    },
-};
+    });
 </script>
 
 <style lang="scss" scoped>

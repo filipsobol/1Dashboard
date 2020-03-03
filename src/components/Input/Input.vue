@@ -2,15 +2,17 @@
     <input :type="type">
 </template>
 
-<script>
-export default {
-    name: "Input",
+<script lang="ts">
+    import Vue from "vue";
 
-    props: {
-        type: {
-            type: String,
-            required: true,
+    export default Vue.extend({
+        name: "Input",
+
+        props: {
+            type: {
+                type: String,
+                required: true,
+            },
         },
-    },
-};
+    });
 </script>
