@@ -25,7 +25,6 @@ export interface Page {
 export interface Component {
     type: string;
     props?: object;
-    components?: Array<Component>;
     tile?: Tile;
 }
 

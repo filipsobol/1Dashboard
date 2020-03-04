@@ -17,19 +17,19 @@ function updateDocumentHead(): void {
     document.title = title;
 
     document
-        .querySelector("meta[name=\"description\"]")
+        .querySelector("meta[name='description']")
         ?.setAttribute("content", description);
 
     document
-        .querySelector("meta[name=\"keywords\"]")
+        .querySelector("meta[name='keywords']")
         ?.setAttribute("content", keywords);
 
     document
-        .querySelector("link[rel=\"icon\"]")
+        .querySelector("link[rel='icon']")
         ?.setAttribute("href", faviconUrl);
 
     document
-        .querySelector("link[rel=\"icon\"]")
+        .querySelector("link[rel='icon']")
         ?.setAttribute("type", faviconType);
 }
 

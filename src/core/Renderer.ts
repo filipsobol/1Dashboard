@@ -12,7 +12,7 @@ Vue.use(CompositionApi);
 Vue.mixin(MixinLoaded);
 
 /**
- * Registers all Vue components as global.
+ * Prepares all pieces required to display the application.
  */
 export function setup(store: any): void {
     registerComponents();
@@ -25,6 +25,9 @@ export function setup(store: any): void {
     });
 }
 
+/**
+ * Registers all Vue components as global.
+ */
 function registerComponents(): void {
     const paths: string[] = require
         .context("@/components/", true, /\.vue$/, "lazy")
@@ -47,14 +50,20 @@ function registerComponents(): void {
     });
 }
 
+/**
+ * Registers all routes defined in the template and redirect for "/" if it's not already defined.
+ */
 function setupRouter(store: any): Router {
     const { app, pages } = store.state.config;
 
-    const routes = pages.map((page: Page ) => ({
+    // Map all pages from the template into routes
+    const routes = pages.map((page: Page) => ({
         path: page.url,
-        component: Vue.component(`db-${ page.component.type }`),
+        component: Vue.component(`db-page`),
+        props: page,
     }));
 
+    // Add "/" if it's not registered already
     if (!routes.find(({ path }: any) => path === "/")) {
         routes.push({
             path: "/",
@@ -62,6 +71,14 @@ function setupRouter(store: any): Router {
         });
     }
 
+    // Add 404 page
+    routes.push({
+        path: "*",
+        component: Vue.component(`db-page`),
+        // props: 
+    });
+
+    // Create Vue Router
     return new Router({
         mode: "history", // TODO: Mode should be configurable
         routes,

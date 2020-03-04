@@ -35,163 +35,165 @@ const config: Array<Page> = [
         title: "Grid",
         component: {
             type: "grid",
-            components: [
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
-                    },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
-                            },
-                            lg: {
-                                width: 6,
-                            }
+            props: {
+                components: [
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
                         },
-                        title: "Optional tile title",
-                        description: "Optional tile description"
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
-                    },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             },
-                            lg: {
-                                width: 6,
-                            }
+                            title: "Optional tile title",
+                            description: "Optional tile description"
+                        }
+                    },
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
                         },
-                        title: "Optional tile title",
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol"
-                    },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             },
-                            lg: {
-                                width: 6,
-                            }
+                            title: "Optional tile title",
+                        }
+                    },
+                    {
+                        type: "article",
+                        props: {
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol"
                         },
-                        title: "This can also be used as article title",
-                        description: "29-02-2020"
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
-                    },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             },
-                            lg: {
-                                width: 6,
+                            title: "This can also be used as article title",
+                            description: "29-02-2020"
+                        }
+                    },
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
+                        },
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             }
                         }
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
                     },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
-                            },
-                            lg: {
-                                width: 6,
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
+                        },
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             }
                         }
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
                     },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
-                            },
-                            lg: {
-                                width: 6,
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
+                        },
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             }
                         }
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
                     },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
-                            },
-                            lg: {
-                                width: 6,
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
+                        },
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             }
                         }
-                    }
-                },
-                {
-                    type: "article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
                     },
-                    tile: {
-                        layout: {
-                            sm: {
-                                width: 12,
-                            },
-                            lg: {
-                                width: 6,
+                    {
+                        type: "article",
+                        props: {
+                            title: "This is users page",
+                            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
+                            author: "Filip Sobol",
+                            createdAt: "29-02-2020"
+                        },
+                        tile: {
+                            layout: {
+                                sm: {
+                                    width: 12,
+                                },
+                                lg: {
+                                    width: 6,
+                                }
                             }
                         }
-                    }
-                },
-            ]
+                    },
+                ]
+            }
         }
     },
 ];

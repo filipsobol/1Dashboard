@@ -8,6 +8,7 @@ export function setup(): any {
     return new Vuex.Store({
         strict: true,
         state: {},
+        getters: {},
         mutations: {},
         actions: {},
         modules: {

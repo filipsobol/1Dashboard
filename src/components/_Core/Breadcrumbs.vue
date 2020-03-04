@@ -13,7 +13,7 @@
         </li>
 
         <li class="breadcrumb-item active">
-            {{ currentPage.name }}
+            {{ pageName }}
         </li>
     </ol>
 </template>
@@ -25,15 +25,17 @@
     export default Vue.extend({
         name: "Breadcrumbs",
 
+        props: {
+            pageName: {
+                type: String,
+                required: true,
+            }
+        },
+
         computed: {
             ...mapState("config", [
                 "app",
-                "pages",
             ]),
-
-            currentPage() {
-                return this.pages.find(({ url }: any) => url === this.$route.path);
-            },
         }
     });
 </script>
