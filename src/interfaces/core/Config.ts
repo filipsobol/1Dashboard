@@ -6,7 +6,7 @@ export interface App {
     defaultPageUrl?: string;
     faviconUrl: string;
     faviconType: string;
-    pagesUrl?: string;
+    pages: Array<Page>;
     timezone: string;
     locale: string;
     fallbackLocale: string;

@@ -54,10 +54,10 @@ function registerComponents(): void {
  * Registers all routes defined in the template and redirect for "/" if it's not already defined.
  */
 function setupRouter(store: any): Router {
-    const { app, pages } = store.state.config;
+    const { app } = store.state;
 
     // Map all pages from the template into routes
-    const routes = pages.map((page: Page) => ({
+    const routes = app.pages.map((page: Page) => ({
         path: page.url,
         component: Vue.component(`db-page`),
         props: page,
@@ -67,7 +67,7 @@ function setupRouter(store: any): Router {
     if (!routes.find(({ path }: any) => path === "/")) {
         routes.push({
             path: "/",
-            redirect: app.defaultPageUrl || pages[0].url,
+            redirect: app.defaultPageUrl || app.pages[0].url,
         });
     }
 
@@ -75,7 +75,7 @@ function setupRouter(store: any): Router {
     routes.push({
         path: "*",
         component: Vue.component(`db-page`),
-        // props: 
+        // props:
     });
 
     // Create Vue Router

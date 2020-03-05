@@ -1,3 +1,4 @@
+import pages from "./pages";
 import { App } from "@/interfaces/core/Config";
 
 const config: App = {
@@ -39,7 +40,7 @@ const config: App = {
     /**
      * Optional URL for the template, useful when template is not hosted with this project or comes from API.
      */
-    pagesUrl: undefined,
+    pages,
 
     /**
      * Timezone used to format dates. It can be overridden on user-level.

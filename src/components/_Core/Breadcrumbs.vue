@@ -33,7 +33,7 @@
         },
 
         computed: {
-            ...mapState("config", [
+            ...mapState([
                 "app",
             ]),
         }
