@@ -75,7 +75,7 @@ function setupRouter(store: any): Router {
     routes.push({
         path: "*",
         component: Vue.component(`db-page`),
-        // props:
+        props: app.errorPages.notFound,
     });
 
     // Create Vue Router

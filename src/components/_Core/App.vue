@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100 min-h-screen">
+    <div class="bg-gray-100 min-h-screen flex flex-col">
         <DbHeader />
 
         <RouterView :key="$route.fullPath" />

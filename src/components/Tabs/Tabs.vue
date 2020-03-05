@@ -23,7 +23,7 @@
                 class="tab-pane">
 
                 <component
-                    :is="getComponentType(tab.component.type)"
+                    :is="tab.component.type"
                     v-bind="{ ...tab.component.data }" />
             </div>
         </div>
@@ -31,14 +31,8 @@
 </template>
 
 <script>
-import componentExists from "@/core/mixins/ComponentExists";
-
 export default {
     name: "Tabs",
-
-    mixins: [
-        componentExists,
-    ],
 
     props: {
         tabs: {
@@ -57,14 +51,6 @@ export default {
                 this.activeId = tabs[0].id;
             },
             immediate: true,
-        },
-    },
-
-    methods: {
-        getComponentType(name) {
-            return this.componentExists(name)
-                ? name
-                : "db-error";
         },
     },
 };

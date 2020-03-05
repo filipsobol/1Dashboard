@@ -1,4 +1,5 @@
 import pages from "./pages";
+import notFound from "./pages/notFound";
 import { App } from "@/interfaces/core/Config";
 
 const config: App = {
@@ -23,11 +24,6 @@ const config: App = {
     keywords: "",
 
     /**
-     * URL of the page to be displayed when user visits "/".
-     */
-    defaultPageUrl: undefined,
-
-    /**
      * Optional URL for the favicon, useful when it's not hosted with the application.
      */
     faviconUrl: "/favicon.ico",
@@ -36,11 +32,6 @@ const config: App = {
      * Optional type of favicon, defaults to "image/x-icon".
      */
     faviconType: "image/x-icon",
-
-    /**
-     * Optional URL for the template, useful when template is not hosted with this project or comes from API.
-     */
-    pages,
 
     /**
      * Timezone used to format dates. It can be overridden on user-level.
@@ -58,14 +49,31 @@ const config: App = {
     fallbackLocale: "en_US",
 
     /**
-     * Optional URL for the localization files.
-     */
-    localeUrl: undefined,
-
-    /**
      * With debug mode enabled, detailed error messages will be logged to the console.
      */
     debug: true,
+
+    /**
+     * Optional URL for the template, useful when template is not hosted with this project or comes from API.
+     */
+    pages,
+
+    /**
+     * Templates for error pages, just in case something goes wrong.
+     */
+    errorPages: {
+        notFound,
+    },
+
+    /**
+     * URL of the page to be displayed when user visits "/".
+     */
+    defaultPageUrl: undefined,
+
+    /**
+     * Optional URL for the localization files.
+     */
+    locales: undefined,
 };
 
 export default config;

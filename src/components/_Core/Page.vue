@@ -1,9 +1,12 @@
 <template>
-    <div class="container mx-auto">
+    <div class="container mx-auto mt-6 flex-grow">
         <DbBreadcrumbs
+            v-if="showBreadcrumbs"
             :pageName="name"/>
 
-        <h1 class="text-4xl mt-2 mb-6 text-gray-700">
+        <h1
+            v-if="title"
+            class="text-4xl mt-2 mb-6 text-gray-700">
             {{ title }}
         </h1>
 
@@ -15,7 +18,6 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import { Page } from '@/interfaces/core/Config';
 
     export default Vue.extend({
         name: "Page",
@@ -25,21 +27,33 @@
         },
 
         props: {
-            component: {
-                type: Object,
+            url: {
+                type: String,
                 required: true,
             },
+
             name: {
                 type: String,
                 required: true,
             },
+
             title: {
                 type: String,
+            },
+
+            component: {
+                type: Object,
                 required: true,
             },
-            url: {
-                type: String,
-                required: true,
+
+            props: {
+                type: Object,
+            },
+        },
+
+        computed: {
+            showBreadcrumbs(): boolean {
+                return !this.props?.hideBreadcrumbs ?? true;
             }
         }
     });

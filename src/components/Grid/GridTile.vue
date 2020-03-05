@@ -2,7 +2,7 @@
     <div :class="tileStyles">
         <!-- Tile header -->
         <div
-            v-if="component.tile.title"
+            v-if="component.tile && component.tile.title"
             class="border-b border-gray-200"
             :class="contentStyles">
             <h3 class="text-lg leading-6 font-medium text-gray-900">

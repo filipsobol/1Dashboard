@@ -3,23 +3,32 @@ export interface App {
     title: string;
     description: string;
     keywords: string;
-    defaultPageUrl?: string;
     faviconUrl: string;
     faviconType: string;
-    pages: Array<Page>;
     timezone: string;
     locale: string;
     fallbackLocale: string;
-    localeUrl?: string;
     debug: boolean;
+    pages: Array<Page>;
+    errorPages: ErrorPages;
+    defaultPageUrl?: string;
+    locales?: object; // TODO
 }
-
 
 export interface Page {
     url: string;
     name: string;
-    title: string;
+    title?: string;
     component: Component;
+    props?: PageProps;
+}
+
+export interface PageProps {
+    hideBreadcrumbs?: boolean;
+}
+
+export interface ErrorPages {
+    notFound: Page;
 }
 
 export interface Component {

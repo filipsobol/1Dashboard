@@ -1,9 +1,9 @@
 <template>
     <div>
-        <p v-if="title">Title: {{ title }}</p>
-        <p>Body: {{ body }}</p>
-        <p v-if="author">Author: {{ author }}</p>
-        <p v-if="createdAt">Date: {{ createdAt }}</p>
+        <p v-if="title">{{ title }}</p>
+        <p>{{ body }}</p>
+        <p v-if="author">{{ author }}</p>
+        <p v-if="createdAt">{{ createdAt }}</p>
     </div>
 </template>
 

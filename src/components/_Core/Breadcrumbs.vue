@@ -1,5 +1,5 @@
 <template>
-    <ol class="inline-flex mt-6 text-gray-600">
+    <ol class="inline-flex text-gray-600">
         <li class="breadcrumb-item">
             <RouterLink to="/">
                 {{ app.title }}
