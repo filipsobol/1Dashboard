@@ -14,7 +14,7 @@
         name: "Grid",
 
         components: {
-            DbGridTile: Vue.component("db-gridtile")
+            DbGridTile: Vue.component("db-grid-tile")
         },
 
         props: {

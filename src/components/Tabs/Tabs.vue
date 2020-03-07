@@ -23,35 +23,42 @@
                 class="tab-pane">
 
                 <component
-                    :is="tab.component.type"
+                    :is="getComponentName(tab.component.type)"
                     v-bind="{ ...tab.component.props }" />
             </div>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: "Tabs",
+<script lang="ts">
+    import Vue from "vue";
+    import { getComponentName } from "@/utils/getComponentName";
 
-    props: {
-        tabs: {
-            type: Array,
-            required: true,
-        },
-    },
+    export default Vue.extend({
+        name: "Tabs",
 
-    data: () => ({
-        activeId: "",
-    }),
-
-    watch: {
-        tabs: {
-            handler(tabs) {
-                this.activeId = tabs[0].id;
+        props: {
+            tabs: {
+                type: Array,
+                required: true,
             },
-            immediate: true,
         },
-    },
-};
+
+        data: () => ({
+            activeId: "",
+        }),
+
+        watch: {
+            tabs: {
+                handler(tabs) {
+                    this.activeId = tabs[0].id;
+                },
+                immediate: true,
+            },
+        },
+
+        methods: {
+            getComponentName
+        }
+    });
 </script>

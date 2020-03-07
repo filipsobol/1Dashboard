@@ -3,6 +3,7 @@ import Router from "vue-router";
 import CompositionApi from "@vue/composition-api";
 import MixinLoaded from "@/core/mixins/Loaded";
 import { Page } from "@/interfaces/core/Config";
+import { getComponentName } from "@/utils/getComponentName";
 
 // Plugins
 Vue.use(Router);
@@ -36,11 +37,7 @@ function registerComponents(): void {
         .map((path: string) => path.replace(".vue", ""));
 
     paths.forEach((path: string) => {
-        const componentName = path
-            .replace(/^.*[/]/, "")
-            .toLowerCase();
-
-        Vue.component(`db-${componentName}`, () => ({
+        Vue.component(getComponentName(path.replace(/^.*[/]/, "")), () => ({
             component: import(`@/components/${path}.vue`),
             loading: Vue.component("db-loading"),
             error: Vue.component("db-error"),

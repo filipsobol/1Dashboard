@@ -18,14 +18,15 @@
         <!-- Tile content -->
         <div :class="contentStyles">
             <component
-                :is="'db-' + component.type"
-                v-bind="{ ...componentProperties }" />
+                :is="componentName"
+                v-bind="{ ...component.props }" />
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from "vue";
+    import { getComponentName } from "@/utils/getComponentName";
 
     export default Vue.extend({
         name: "GridTile",
@@ -44,7 +45,7 @@
 
                 const classes = Object
                     .entries(tile?.layout || {})
-                    .map(([ resolution, { width, height, offsetStart, offsetEnd } ]: Array<any>) => [
+                    .map(([ resolution, { width, height, offsetStart, offsetEnd } ]: any) => [
                         `${resolution}:col-span-${width || 12}`,
                         `${resolution}:rows-span-${height || 1}`,
                         offsetStart && `${resolution}:col-start-${offsetStart}`,
@@ -69,11 +70,8 @@
                 ];
             },
 
-            componentProperties(): object {
-                return {
-                    ...this.component.props,
-                    components: this.component.components,
-                };
+            componentName(): string {
+                return getComponentName(this.component.type);
             },
         }
     });

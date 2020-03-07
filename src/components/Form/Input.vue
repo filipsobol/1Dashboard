@@ -8,19 +8,12 @@
                 class="addon">
                 <DbIcon
                     v-if="prependIcon"
-                    :type="prependIcon"
-                    size="20" />
+                    :type="prependIcon" />
 
                 <span v-if="prependText">{{ prependText }}</span>
             </div>
 
-            <input
-                :type="type"
-                :value="value"
-                :step="step"
-                :min="min"
-                :max="max"
-                :placeholder="placeholder" />
+            <slot />
 
             <div
                 v-if="hasTrailingLabel"
@@ -29,8 +22,7 @@
 
                 <DbIcon
                     v-if="appendIcon"
-                    :type="appendIcon"
-                    size="20" />
+                    :type="appendIcon" />
             </div>
         </div>
     </label>
@@ -47,33 +39,9 @@
         },
 
         props: {
-            type: {
-                type: String,
-                required: true,
-            },
             name: {
                 type: String,
                 required: true,
-            },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            value: {
-                type: [ String, Number ],
-                required: false,
-            },
-            step: {
-                type: Number,
-                required: false,
-            },
-            min: {
-                type: Number,
-                required: false,
-            },
-            max: {
-                type: Number,
-                required: false,
             },
             prependText: {
                 type: String,
@@ -162,9 +130,24 @@
         }
     }
 
-    input[type=number] {
-        appearance: text;
-        -webkit-appearance: text;
-        -moz-appearance: text;
+    svg {
+        width: 20px;
+        height: 20px;
+
+        @apply text-gray-600;
+
+        button:hover > & {
+            @apply text-gray-800;
+        }
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    input {
+        appearance: textfield;
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
     }
 </style>

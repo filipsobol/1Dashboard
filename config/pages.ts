@@ -191,9 +191,8 @@ const config: Array<Page> = [
             props: {
                 components: [
                     {
-                        type: "input",
+                        type: "textInput",
                         props: {
-                            type: "text",
                             name: "Input name",
                             placeholder: "Input placeholder",
                         },
@@ -203,9 +202,8 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "input",
+                        type: "textInput",
                         props: {
-                            type: "text",
                             name: "Website address",
                             placeholder: "Enter your website address",
                             prependText: "https://"
@@ -216,12 +214,12 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "input",
+                        type: "passwordInput",
                         props: {
-                            type: "password",
                             name: "Password",
                             placeholder: "Enter your password",
                             prependIcon: "lock",
+                            displayRevealButton: true,
                         },
                         tile: {
                             title: "Input with leading icon label",
@@ -229,9 +227,8 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "input",
+                        type: "textInput",
                         props: {
-                            type: "text",
                             name: "GitHub Profile",
                             placeholder: "Enter your GitHub profie name",
                             value: "filipsobol",
@@ -244,9 +241,8 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "input",
+                        type: "numberInput",
                         props: {
-                            type: "number",
                             name: "Transfer amount",
                             placeholder: "Enter transfer amount",
                             value: 4.20,
