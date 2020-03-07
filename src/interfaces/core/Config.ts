@@ -1,3 +1,5 @@
+import { Component, ComponentTypes } from "@/interfaces/core/Components";
+
 export interface App {
     url: string;
     title: string;
@@ -19,7 +21,7 @@ export interface Page {
     url: string;
     name: string;
     title?: string;
-    component: Component;
+    component: Component<keyof ComponentTypes>;
     props?: PageProps;
 }
 
@@ -29,38 +31,4 @@ export interface PageProps {
 
 export interface ErrorPages {
     notFound: Page;
-}
-
-export interface Component {
-    type: string;
-    props?: object;
-    tile?: Tile;
-}
-
-export interface Tile {
-    layout?: TileLayout;
-    style?: TileStyle;
-    title?: string;
-    description?: string;
-}
-
-export interface TileLayout {
-    sm?: TileElement;
-    md?: TileElement;
-    lg?: TileElement;
-    xl?: TileElement;
-}
-
-export interface TileElement {
-    width?: number;
-    height?: number;
-    offsetStart?: number;
-    offsetEnd?: number;
-}
-
-export interface TileStyle {
-    background?: string;
-    padding?: number;
-    shadow?: string;
-    rounded?: string;
 }

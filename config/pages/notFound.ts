@@ -20,7 +20,7 @@ const config: Page = {
                         style: {
                             background: "transparent",
                             shadow: "none",
-                            padding: "0",
+                            padding: 0,
                         }
                     }
                 },
@@ -33,7 +33,7 @@ const config: Page = {
                         style: {
                             background: "transparent",
                             shadow: "none",
-                            padding: "0",
+                            padding: 0,
                         }
                     }
                 }

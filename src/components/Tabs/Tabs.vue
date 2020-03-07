@@ -24,7 +24,7 @@
 
                 <component
                     :is="tab.component.type"
-                    v-bind="{ ...tab.component.data }" />
+                    v-bind="{ ...tab.component.props }" />
             </div>
         </div>
     </div>
