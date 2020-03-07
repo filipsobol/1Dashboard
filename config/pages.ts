@@ -251,7 +251,7 @@ const config: Array<Page> = [
                             placeholder: "Enter transfer amount",
                             value: 4.20,
                             step: 0.01,
-                            prependIcon: "dollar-sign",
+                            prependText: "$",
                             appendText: "Charged automatically at the beginning of every month",
                             appendIcon: "info"
                         },

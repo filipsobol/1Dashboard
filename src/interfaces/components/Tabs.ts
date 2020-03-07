@@ -10,5 +10,5 @@ export interface Tabs {
 export interface Tab {
     id: string;
     title: string;
-    component: Component<keyof ComponentTypes>;
+    components: Array<Component<ComponentTypes>>;
 }

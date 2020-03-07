@@ -5,12 +5,14 @@ import { Input } from "@/interfaces/components/Input";
 import { Tabs } from "@/interfaces/components/Tabs";
 import { Text } from "@/interfaces/components/Text";
 
-export interface Component<T extends ComponentType> {
+export interface Component<T extends ComponentTypes> {
     type: T;
-    props: ComponentTypes[T];
+    props: ComponentsProps[T];
 }
 
-export type ComponentTypes = {
+export type ComponentTypes = keyof ComponentsProps;
+
+type ComponentsProps = {
     "article": Article;
     "button": Button;
     "grid": Grid;
@@ -18,7 +20,3 @@ export type ComponentTypes = {
     "tabs": Tabs;
     "text": Text;
 };
-
-export type ComponentType = keyof ComponentTypes;
-
-type ComponentProps = ComponentTypes[keyof ComponentTypes];

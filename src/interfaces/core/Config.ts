@@ -21,7 +21,7 @@ export interface Page {
     url: string;
     name: string;
     title?: string;
-    component: Component<keyof ComponentTypes>;
+    component: Component<ComponentTypes>;
     props?: PageProps;
 }
 

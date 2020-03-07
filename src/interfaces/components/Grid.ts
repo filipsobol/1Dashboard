@@ -1,10 +1,10 @@
-import { Component, ComponentType } from "@/interfaces/core/Components";
+import { Component, ComponentTypes } from "@/interfaces/core/Components";
 
 export interface Grid {
-    components: Array<ComponentInGrid<ComponentType>>;
+    components: Array<ComponentInGrid<ComponentTypes>>;
 }
 
-export interface ComponentInGrid<T extends ComponentType> extends Component<T> {
+export interface ComponentInGrid<T extends ComponentTypes> extends Component<T> {
     tile?: {
         layout?: {
             sm?: TileElement;
