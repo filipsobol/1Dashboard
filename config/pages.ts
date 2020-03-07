@@ -256,6 +256,31 @@ const config: Array<Page> = [
                             description: "Inputs can also have trailing labels to show additional hints or information."
                         }
                     },
+                    {
+                        type: "selectInput",
+                        props: {
+                            name: "Currency",
+                            placeholder: "Select a currency",
+                            options: [
+                                {
+                                    value: "eur",
+                                    label: "Euro",
+                                },
+                                {
+                                    value: "usd",
+                                    label: "US Dollar",
+                                },
+                                {
+                                    value: "pln",
+                                    label: "Polish zloty",
+                                }
+                            ]
+                        },
+                        tile: {
+                            title: "Input with leading icon label and trailing text label",
+                            description: "Inputs can also have trailing labels to show additional hints or information."
+                        }
+                    },
                 ]
             }
         }

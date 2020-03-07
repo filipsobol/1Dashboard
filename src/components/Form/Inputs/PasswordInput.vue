@@ -40,8 +40,9 @@
                 required: true,
             },
             value: {
-                type: Number,
+                type: String,
                 required: false,
+                default: "",
             },
             displayRevealButton: {
                 type: Boolean,

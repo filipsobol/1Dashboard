@@ -12,9 +12,11 @@
             </h1>
         </div>
 
-        <component
-            :is="'db-' + component.type"
-            v-bind="{ ...component.props }" />
+        <div class="mb-8">
+            <component
+                :is="'db-' + component.type"
+                v-bind="{ ...component.props }" />
+        </div>
     </div>
 </template>
 

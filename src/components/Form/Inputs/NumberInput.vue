@@ -50,6 +50,7 @@
             value: {
                 type: Number,
                 required: false,
+                default: 0,
             },
             step: {
                 type: Number,

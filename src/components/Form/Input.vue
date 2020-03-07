@@ -78,12 +78,10 @@
 
     .wrapper {
         @apply block;
-        @apply cursor-text;
-    }
-
-    .label {
+        @apply relative;
         @apply font-medium;
         @apply text-gray-700;
+        @apply cursor-text;
         @apply select-none;
     }
 
@@ -119,7 +117,8 @@
         }
     }
 
-    input {
+    input,
+    select {
         @apply flex-grow;
         @apply block;
         @apply p-3;
