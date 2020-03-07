@@ -1,14 +1,16 @@
 <template>
-    <div class="container mx-auto mt-6 flex-grow">
-        <DbBreadcrumbs
-            v-if="showBreadcrumbs"
-            :pageName="name"/>
+    <div class="container mx-auto flex-grow">
+        <div class="mt-6 mb-8">
+            <DbBreadcrumbs
+                v-if="showBreadcrumbs"
+                :pageName="name"/>
 
-        <h1
-            v-if="title"
-            class="text-4xl mt-2 mb-6 text-gray-700">
-            {{ title }}
-        </h1>
+            <h1
+                v-if="title"
+                class="text-4xl mt-2 text-gray-700">
+                {{ title }}
+            </h1>
+        </div>
 
         <component
             :is="'db-' + component.type"

@@ -1,3 +1,3 @@
 export interface Text {
-    text: string;
+    type: string;
 }

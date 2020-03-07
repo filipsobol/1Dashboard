@@ -19,6 +19,6 @@ export type ComponentTypes = {
     "text": Text;
 };
 
-type ComponentType = keyof ComponentTypes;
+export type ComponentType = keyof ComponentTypes;
 
 type ComponentProps = ComponentTypes[keyof ComponentTypes];
