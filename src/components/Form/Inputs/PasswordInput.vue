@@ -8,7 +8,9 @@
         <input
             :type="inputType"
             :value="value"
-            :placeholder="placeholder" />
+            :placeholder="placeholder"
+            :required="required"
+            :readonly="readonly" />
 
         <button
             v-if="displayRevealButton"
@@ -37,6 +39,16 @@
             placeholder: {
                 type: String,
                 required: true,
+            },
+            required: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                required: false,
+                default: false
             },
             value: {
                 type: String,

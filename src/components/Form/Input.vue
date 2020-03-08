@@ -1,8 +1,8 @@
 <template>
-    <label class="wrapper">
-        <div class="label">{{ name }}</div>
+    <div class="wrapper">
+        <div class="name">{{ name }}</div>
 
-        <div class="input">
+        <label class="input">
             <div
                 v-if="hasLeadingLabel"
                 class="addon">
@@ -25,8 +25,8 @@
                     v-if="appendIcon"
                     :class="'icon-' + appendIcon" />
             </div>
-        </div>
-    </label>
+        </label>
+    </div>
 </template>
 
 <script lang="ts">
@@ -78,7 +78,6 @@
         @apply relative;
         @apply font-medium;
         @apply text-gray-700;
-        @apply cursor-text;
         @apply select-none;
     }
 
@@ -116,7 +115,8 @@
     }
 
     input,
-    select {
+    textarea,
+    select, {
         @apply flex-grow;
         @apply block;
         @apply p-3;
@@ -124,6 +124,17 @@
 
         &:focus {
             outline: none;
+        }
+    }
+
+    input[readonly],
+    textarea[readonly],
+    select[disabled] {
+        @apply bg-gray-300;
+        @apply text-gray-600;
+
+        &::placeholder {
+            @apply text-gray-600;
         }
     }
 

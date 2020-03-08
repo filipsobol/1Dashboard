@@ -198,7 +198,7 @@ const config: Array<Page> = [
                         },
                         tile: {
                             title: "Text input with minimal configuration",
-                            description: "This is a plain text input without any labels or default values."
+                            description: "This is a plain text input without any labels or default values.",
                         }
                     },
                     {
@@ -219,7 +219,7 @@ const config: Array<Page> = [
                                     value: "pln",
                                     label: "Polish zloty",
                                 }
-                            ]
+                            ],
                         },
                         tile: {
                             title: "Text input with minimal configuration",
@@ -227,11 +227,22 @@ const config: Array<Page> = [
                         }
                     },
                     {
+                        type: "textareaInput",
+                        props: {
+                            name: "Bio",
+                            placeholder: "Tell us something about yourself",
+                        },
+                        tile: {
+                            title: "Textarea input with minimal configuration",
+                            description: "This is a plain textarea input without default values. This input cannot have labels."
+                        }
+                    },
+                    {
                         type: "textInput",
                         props: {
                             name: "Website address",
                             placeholder: "Enter your website address",
-                            prependText: "https://"
+                            prependText: "https://",
                         },
                         tile: {
                             title: "Input with custom name, placeholder and leading label",
@@ -258,7 +269,7 @@ const config: Array<Page> = [
                             placeholder: "Enter your GitHub profie name",
                             value: "filipsobol",
                             prependText: "https://github.com/",
-                            prependIcon: "github"
+                            prependIcon: "github",
                         },
                         tile: {
                             title: "Input with combined icon and text labels",
@@ -274,7 +285,7 @@ const config: Array<Page> = [
                             step: 0.01,
                             prependText: "$",
                             appendText: "Charged automatically at the beginning of every month",
-                            appendIcon: "info"
+                            appendIcon: "info",
                         },
                         tile: {
                             title: "Input with leading icon label and trailing text label",

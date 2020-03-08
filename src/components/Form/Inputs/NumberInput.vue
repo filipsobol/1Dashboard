@@ -11,7 +11,9 @@
             :step="step"
             :min="min"
             :max="max"
-            :placeholder="placeholder" />
+            :placeholder="placeholder"
+            :required="required"
+            :readonly="readonly"/>
 
         <button
             class="increment-button"
@@ -45,6 +47,16 @@
             placeholder: {
                 type: String,
                 required: true,
+            },
+            required: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                required: false,
+                default: false
             },
             value: {
                 type: Number,

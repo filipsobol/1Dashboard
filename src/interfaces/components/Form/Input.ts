@@ -1,6 +1,8 @@
 export interface Input {
     name: string;
     placeholder: string;
+    required?: boolean;
+    readonly?: boolean;
     prependText?: string;
     appendText?: string;
     prependIcon?: string;

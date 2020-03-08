@@ -5,11 +5,12 @@
         :append-text="appendText"
         :prepend-icon="prependIcon"
         :append-icon="appendIcon">
-        <select>
+        <select
+            :disabled="readonly"
+            v-model="value">
             <option
                 value=""
-                disabled
-                selected><!-- Remove "disabled" when required -->
+                :disabled="required">
                 {{ placeholder }}
             </option>
 
@@ -43,6 +44,16 @@
             placeholder: {
                 type: String,
                 required: true,
+            },
+            required: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                required: false,
+                default: false
             },
             options: {
                 type: Array,

@@ -5,8 +5,9 @@ import { Tabs } from "@/interfaces/components/Tabs";
 import { Text } from "@/interfaces/components/Text";
 import { NumberInput } from "@/interfaces/components/Form/NumberInput";
 import { PasswordInput } from "@/interfaces/components/Form/PasswordInput";
-import { TextInput } from "@/interfaces/components/Form/TextInput";
 import { SelectInput } from "@/interfaces/components/Form/SelectInput";
+import { TextareaInput } from "@/interfaces/components/Form/TextareaInput";
+import { TextInput } from "@/interfaces/components/Form/TextInput";
 
 export interface Component<T extends ComponentTypes> {
     type: T;
@@ -25,6 +26,7 @@ type ComponentsProps = {
     // Form
     "numberInput": NumberInput;
     "passwordInput": PasswordInput;
-    "textInput": TextInput;
     "selectInput": SelectInput;
+    "textareaInput": TextareaInput;
+    "textInput": TextInput;
 };

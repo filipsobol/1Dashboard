@@ -1,14 +1,9 @@
 <template>
-    <DbInput
-        :name="name"
-        :prepend-text="prependText"
-        :append-text="appendText"
-        :prepend-icon="prependIcon"
-        :append-icon="appendIcon">
-        <input
-            type="text"
-            :value="value"
+    <DbInput :name="name">
+        <textarea
+            v-model="value"
             :placeholder="placeholder"
+            :rows="rows"
             :required="required"
             :readonly="readonly" />
     </DbInput>
@@ -18,7 +13,7 @@
     import Vue from "vue";
 
     export default Vue.extend({
-        name: "TextInput",
+        name: "TextareaInput",
 
         components: {
             DbInput: Vue.component("db-input"),
@@ -48,22 +43,11 @@
                 required: false,
                 default: "",
             },
-            prependText: {
-                type: String,
+            rows: {
+                type: Number,
                 required: false,
+                default: 5,
             },
-            appendText: {
-                type: String,
-                required: false,
-            },
-            prependIcon: {
-                type: String,
-                required: false,
-            },
-            appendIcon: {
-                type: String,
-                required: false,
-            }
-        },
+        }
     });
 </script>
