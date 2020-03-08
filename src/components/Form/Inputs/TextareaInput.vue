@@ -1,7 +1,7 @@
 <template>
     <DbInput :name="name">
         <textarea
-            v-model="value"
+            :value="value"
             :placeholder="placeholder"
             :rows="rows"
             :required="required"

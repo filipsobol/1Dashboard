@@ -227,6 +227,53 @@ const config: Array<Page> = [
                         }
                     },
                     {
+                        type: "radioInput",
+                        props: {
+                            options: [
+                                {
+                                    value: "eur",
+                                    label: "Euro",
+                                },
+                                {
+                                    value: "usd",
+                                    label: "US Dollar",
+                                },
+                                {
+                                    value: "pln",
+                                    label: "Polish zloty",
+                                }
+                            ],
+                        },
+                        tile: {
+                            title: "Radio input with minimal configuration",
+                            description: "This is a plain radio input without default value."
+                        }
+                    },
+                    {
+                        type: "checkboxInput",
+                        props: {
+                            options: [
+                                {
+                                    value: "eur",
+                                    label: "Euro",
+                                },
+                                {
+                                    value: "usd",
+                                    label: "US Dollar",
+                                },
+                                {
+                                    value: "pln",
+                                    label: "Polish zloty",
+                                }
+                            ],
+                            value: []
+                        },
+                        tile: {
+                            title: "Radio input with minimal configuration",
+                            description: "This is a plain radio input without default value."
+                        }
+                    },
+                    {
                         type: "textareaInput",
                         props: {
                             name: "Bio",

@@ -6,8 +6,8 @@
         :prepend-icon="prependIcon"
         :append-icon="appendIcon">
         <select
-            :disabled="readonly"
-            v-model="value">
+            :value="value"
+            :disabled="readonly">
             <option
                 value=""
                 :disabled="required">
