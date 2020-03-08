@@ -197,8 +197,33 @@ const config: Array<Page> = [
                             placeholder: "Input placeholder",
                         },
                         tile: {
-                            title: "Input with minimal configuration",
-                            description: "This is a plain input without any labels or default values."
+                            title: "Text input with minimal configuration",
+                            description: "This is a plain text input without any labels or default values."
+                        }
+                    },
+                    {
+                        type: "selectInput",
+                        props: {
+                            name: "Currency",
+                            placeholder: "Select a currency",
+                            options: [
+                                {
+                                    value: "eur",
+                                    label: "Euro",
+                                },
+                                {
+                                    value: "usd",
+                                    label: "US Dollar",
+                                },
+                                {
+                                    value: "pln",
+                                    label: "Polish zloty",
+                                }
+                            ]
+                        },
+                        tile: {
+                            title: "Text input with minimal configuration",
+                            description: "This is a plain select input without any labels or default values."
                         }
                     },
                     {
@@ -250,31 +275,6 @@ const config: Array<Page> = [
                             prependText: "$",
                             appendText: "Charged automatically at the beginning of every month",
                             appendIcon: "info"
-                        },
-                        tile: {
-                            title: "Input with leading icon label and trailing text label",
-                            description: "Inputs can also have trailing labels to show additional hints or information."
-                        }
-                    },
-                    {
-                        type: "selectInput",
-                        props: {
-                            name: "Currency",
-                            placeholder: "Select a currency",
-                            options: [
-                                {
-                                    value: "eur",
-                                    label: "Euro",
-                                },
-                                {
-                                    value: "usd",
-                                    label: "US Dollar",
-                                },
-                                {
-                                    value: "pln",
-                                    label: "Polish zloty",
-                                }
-                            ]
                         },
                         tile: {
                             title: "Input with leading icon label and trailing text label",

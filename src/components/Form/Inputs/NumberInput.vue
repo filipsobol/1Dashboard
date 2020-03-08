@@ -16,13 +16,13 @@
         <button
             class="increment-button"
             @click="increment()">
-            <DBIcon type="chevron-up" />
+            <i class="icon-chevron-up" />
         </button>
 
         <button
             class="decrement-button"
             @click="decrement()">
-            <DBIcon type="chevron-down" />
+            <i class="icon-chevron-down" />
         </button>
     </DbInput>
 </template>
@@ -35,7 +35,6 @@
 
         components: {
             DbInput: Vue.component("db-input"),
-            DBIcon: Vue.component("db-icon"),
         },
 
         props: {

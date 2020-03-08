@@ -14,7 +14,7 @@
             v-if="displayRevealButton"
             class="visibility-button"
             @click="togglePasswordVisibility()">
-            <DbIcon :type="iconType" />
+            <i :class="'icon-' + iconType" />
         </button>
     </DbInput>
 </template>
@@ -27,7 +27,6 @@
 
         components: {
             DbInput: Vue.component("db-input"),
-            DbIcon: Vue.component("db-icon"),
         },
 
         props: {

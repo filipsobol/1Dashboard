@@ -6,9 +6,10 @@
             <div
                 v-if="hasLeadingLabel"
                 class="addon">
-                <DbIcon
+
+                <i
                     v-if="prependIcon"
-                    :type="prependIcon" />
+                    :class="'icon-' + prependIcon" />
 
                 <span v-if="prependText">{{ prependText }}</span>
             </div>
@@ -20,9 +21,9 @@
                 class="addon">
                 <span v-if="appendText">{{ appendText }}</span>
 
-                <DbIcon
+                <i
                     v-if="appendIcon"
-                    :type="appendIcon" />
+                    :class="'icon-' + appendIcon" />
             </div>
         </div>
     </label>
@@ -33,10 +34,6 @@
 
     export default Vue.extend({
         name: "Input",
-
-        components: {
-            DbIcon: Vue.component("db-icon"),
-        },
 
         props: {
             name: {
@@ -86,6 +83,7 @@
     }
 
     .input {
+        @apply relative;
         @apply flex;
         @apply mt-1;
         @apply border;
@@ -129,14 +127,12 @@
         }
     }
 
-    svg {
-        width: 20px;
-        height: 20px;
-
-        @apply text-gray-600;
+    i {
+        @apply text-2xl;
+        @apply text-gray-500;
 
         button:hover > & {
-            @apply text-gray-800;
+            @apply text-gray-700;
         }
     }
 

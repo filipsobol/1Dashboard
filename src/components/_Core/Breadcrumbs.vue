@@ -1,15 +1,13 @@
 <template>
-    <ol class="inline-flex text-gray-600">
+    <ol class="flex inline-flex text-gray-600">
         <li class="breadcrumb-item">
             <RouterLink to="/">
                 {{ app.title }}
             </RouterLink>
         </li>
 
-        <li class="px-2">
-            <db-icon
-                type="chevron-right"
-                size="16"/>
+        <li class="mx-3">
+            <i class="icon-chevron-right" />
         </li>
 
         <li class="breadcrumb-item active">
