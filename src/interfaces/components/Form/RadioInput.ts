@@ -1,4 +1,5 @@
 export interface RadioInput {
+    name: string;
     options: Array<SelectOption>;
     value?: string;
     required?: boolean;

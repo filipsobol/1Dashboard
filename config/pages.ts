@@ -191,99 +191,129 @@ const config: Array<Page> = [
             props: {
                 components: [
                     {
-                        type: "textInput",
+                        type: "grid",
                         props: {
-                            name: "Input name",
-                            placeholder: "Input placeholder",
-                        },
-                        tile: {
-                            title: "Text input with minimal configuration",
-                            description: "This is a plain text input without any labels or default values.",
-                        }
-                    },
-                    {
-                        type: "selectInput",
-                        props: {
-                            name: "Currency",
-                            placeholder: "Select a currency",
-                            options: [
+                            components: [
                                 {
-                                    value: "eur",
-                                    label: "Euro",
+                                    type: "textInput",
+                                    props: {
+                                        name: "Input name",
+                                        placeholder: "Input placeholder",
+                                    },
+                                    tile: {
+                                        style: {
+                                            background: "transparent",
+                                            padding: 1,
+                                            shadow: "0"
+                                        }
+                                    }
                                 },
                                 {
-                                    value: "usd",
-                                    label: "US Dollar",
+                                    type: "selectInput",
+                                    props: {
+                                        name: "Currency",
+                                        placeholder: "Select a currency",
+                                        options: [
+                                            {
+                                                value: "eur",
+                                                label: "Euro",
+                                            },
+                                            {
+                                                value: "usd",
+                                                label: "US Dollar",
+                                            },
+                                            {
+                                                value: "pln",
+                                                label: "Polish zloty",
+                                            }
+                                        ],
+                                    },
+                                    tile: {
+                                        style: {
+                                            background: "transparent",
+                                            padding: 1,
+                                            shadow: "0"
+                                        }
+                                    }
                                 },
                                 {
-                                    value: "pln",
-                                    label: "Polish zloty",
+                                    type: "radioInput",
+                                    props: {
+                                        name: "Currency",
+                                        options: [
+                                            {
+                                                value: "eur",
+                                                label: "Euro",
+                                            },
+                                            {
+                                                value: "usd",
+                                                label: "US Dollar",
+                                            },
+                                            {
+                                                value: "pln",
+                                                label: "Polish zloty",
+                                            }
+                                        ],
+                                        value: "eur"
+                                    },
+                                    tile: {
+                                        style: {
+                                            background: "transparent",
+                                            padding: 1,
+                                            shadow: "0"
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "checkboxInput",
+                                    props: {
+                                        name: "Currency",
+                                        options: [
+                                            {
+                                                value: "eur",
+                                                label: "Euro",
+                                            },
+                                            {
+                                                value: "usd",
+                                                label: "US Dollar",
+                                            },
+                                            {
+                                                value: "pln",
+                                                label: "Polish zloty",
+                                            }
+                                        ],
+                                        value: ["eur"]
+                                    },
+                                    tile: {
+                                        style: {
+                                            background: "transparent",
+                                            padding: 1,
+                                            shadow: "0"
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "textareaInput",
+                                    props: {
+                                        name: "Bio",
+                                        placeholder: "Tell us something about yourself",
+                                    },
+                                    tile: {
+                                        style: {
+                                            background: "transparent",
+                                            padding: 1,
+                                            shadow: "0"
+                                        }
+                                    }
                                 }
-                            ],
+                            ]
                         },
                         tile: {
-                            title: "Text input with minimal configuration",
-                            description: "This is a plain select input without any labels or default values."
+                            title: "Basic input types",
+                            description: "These are simple inputs with minimal configuration.",
                         }
                     },
-                    {
-                        type: "radioInput",
-                        props: {
-                            options: [
-                                {
-                                    value: "eur",
-                                    label: "Euro",
-                                },
-                                {
-                                    value: "usd",
-                                    label: "US Dollar",
-                                },
-                                {
-                                    value: "pln",
-                                    label: "Polish zloty",
-                                }
-                            ],
-                        },
-                        tile: {
-                            title: "Radio input with minimal configuration",
-                            description: "This is a plain radio input without default value."
-                        }
-                    },
-                    {
-                        type: "checkboxInput",
-                        props: {
-                            options: [
-                                {
-                                    value: "eur",
-                                    label: "Euro",
-                                },
-                                {
-                                    value: "usd",
-                                    label: "US Dollar",
-                                },
-                                {
-                                    value: "pln",
-                                    label: "Polish zloty",
-                                }
-                            ],
-                            value: []
-                        },
-                        tile: {
-                            title: "Radio input with minimal configuration",
-                            description: "This is a plain radio input without default value."
-                        }
-                    },
-                    {
-                        type: "textareaInput",
-                        props: {
-                            name: "Bio",
-                            placeholder: "Tell us something about yourself",
-                        },
-                        tile: {
-                            title: "Textarea input with minimal configuration",
-                            description: "This is a plain textarea input without default values. This input cannot have labels."
-                        }
-                    },
+
                     {
                         type: "textInput",
                         props: {

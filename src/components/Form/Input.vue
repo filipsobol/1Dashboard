@@ -81,6 +81,10 @@
         @apply select-none;
     }
 
+    .name {
+        @apply mb-2;
+    }
+
     .input {
         @apply relative;
         @apply flex;

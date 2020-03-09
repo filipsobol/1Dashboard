@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <div class="wrapper">
+        <div class="name">{{ name }}</div>
+
         <label
             v-for="option in options"
             :key="option.value">
@@ -24,6 +26,10 @@
         name: "CheckboxInput",
 
         props: {
+            name: {
+                type: String,
+                required: true,
+            },
             options: {
                 type: Array,
                 required: true,
@@ -55,6 +61,18 @@
 </script>
 
 <style lang="scss" scoped>
+    .wrapper {
+        @apply block;
+        @apply relative;
+        @apply text-gray-700;
+        @apply select-none;
+    }
+
+    .name {
+        @apply mb-2;
+        @apply font-medium;
+    }
+
     label {
         @apply flex;
         @apply items-center;
@@ -72,11 +90,5 @@
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-    }
-
-    span {
-        @apply font-medium;
-        @apply text-gray-700;
-        @apply select-none;
     }
 </style>

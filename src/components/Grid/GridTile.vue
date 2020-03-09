@@ -66,7 +66,7 @@
                 const style = this.component?.tile?.style;
 
                 return [
-                    `p-${style?.padding || 4}`
+                    `p-${style?.padding ?? 4}`
                 ];
             },
 

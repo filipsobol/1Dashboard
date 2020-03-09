@@ -1,4 +1,5 @@
 export interface CheckboxInput {
+    name: string;
     options: Array<SelectOption>;
     value?: Array<string> | boolean;
     required?: boolean;
