@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-    import { mapState } from "vuex";
     import Vue from "vue";
+    import { mapState } from "vuex";
 
     export default Vue.extend({
         name: "Breadcrumbs",

@@ -4,4 +4,4 @@ module.exports = {
         config.plugins.delete("prefetch");
         config.plugins.delete("preload");
     }
-}
+};

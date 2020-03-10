@@ -1,4 +1,5 @@
 import pages from "./pages";
+import styles from "./styles";
 import notFound from "./pages/notFound";
 import { App } from "@/interfaces/core/Config";
 
@@ -74,6 +75,11 @@ const config: App = {
      * Optional URL for the localization files.
      */
     locales: undefined,
+
+    /**
+     * General styles for the application.
+     */
+    styles,
 };
 
 export default config;

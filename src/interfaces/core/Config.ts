@@ -15,6 +15,7 @@ export interface App {
     errorPages: ErrorPages;
     defaultPageUrl?: string;
     locales?: object; // TODO
+    styles: Styles;
 }
 
 export interface Page {
@@ -31,4 +32,19 @@ export interface PageProps {
 
 export interface ErrorPages {
     notFound: Page;
+}
+
+export interface Styles {
+    tile: {
+        predefinedStyles: {
+            [styleName: string]: GridTileStyle;
+        };
+    };
+}
+
+export interface GridTileStyle {
+    background?: string;
+    padding?: number;
+    shadow?: string;
+    rounded?: string;
 }

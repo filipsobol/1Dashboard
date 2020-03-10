@@ -1,6 +1,9 @@
+// Tailwind CSS imports
+@import "tailwindcss";
+
+// Internal styles
 @import "./fonts.scss";
 @import "./icons.scss";
-@import "./tailwind.scss";
 
 html {
   font-size: 14px;
