@@ -17,11 +17,7 @@ const config: Page = {
                         body: "Page you are looking for doesn't exists. Click on a button below to go back to homepage."
                     },
                     tile: {
-                        style: {
-                            background: "transparent",
-                            shadow: "none",
-                            padding: 0,
-                        }
+                        style: "grid"
                     }
                 },
                 {
@@ -30,11 +26,7 @@ const config: Page = {
                         text: "Go back to homepage"
                     },
                     tile: {
-                        style: {
-                            background: "transparent",
-                            shadow: "none",
-                            padding: 0,
-                        }
+                        style: "content"
                     }
                 }
             ]
