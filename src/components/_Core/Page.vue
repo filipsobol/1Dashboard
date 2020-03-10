@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto flex-grow">
+    <div class="container flex-grow mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mt-6 mb-8">
             <DbBreadcrumbs
                 v-if="showBreadcrumbs"

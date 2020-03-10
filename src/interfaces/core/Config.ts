@@ -1,3 +1,4 @@
+import { Radius, Shadow } from "@/interfaces/core/Styles";
 import { Component, ComponentTypes } from "@/interfaces/core/Components";
 
 export interface App {
@@ -45,6 +46,6 @@ export interface Styles {
 export interface GridTileStyle {
     background?: string;
     padding?: number;
-    shadow?: string;
-    rounded?: string;
+    shadow?: Shadow;
+    radius?: Radius;
 }

@@ -1,4 +1,5 @@
 import { Styles } from "@/interfaces/core/Config";
+import { Radius, Shadow } from "@/interfaces/core/Styles";
 
 const config: Styles = {
     tile: {
@@ -6,14 +7,14 @@ const config: Styles = {
             grid: {
                 background: "white",
                 padding: 4,
-                shadow: "",
-                rounded: "",
+                shadow: Shadow.NEUTRAL,
+                radius: Radius.NEUTRAL,
             },
             content: {
                 background: "transparent",
                 padding: 1,
-                shadow: "none",
-                rounded: "none",
+                shadow: Shadow.NONE,
+                radius: Radius.NEUTRAL,
             }
         }
     }

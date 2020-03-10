@@ -1,3 +1,4 @@
+import { GridTileStyle } from "@/interfaces/core/Config";
 import { Component, ComponentTypes } from "@/interfaces/core/Components";
 
 export interface Grid {
@@ -12,12 +13,7 @@ export interface ComponentInGrid<T extends ComponentTypes> extends Component<T> 
             lg?: TileElement;
             xl?: TileElement;
         };
-        style?: {
-            background?: string;
-            padding?: number;
-            shadow?: string;
-            rounded?: string;
-        };
+        style?: string | GridTileStyle;
         title?: string;
         description?: string;
     };

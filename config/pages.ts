@@ -6,20 +6,6 @@ const config: Array<Page> = [
         name: "Homepage",
         title: "Welcome to 1Dashboard",
         component: {
-            type: "article",
-            props: {
-                title: "This is a component created in the configuration",
-                body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                author: "Filip Sobol",
-                createdAt: "29-02-2020"
-            }
-        }
-    },
-    {
-        url: "/grid",
-        name: "Grid",
-        title: "Grid",
-        component: {
             type: "grid",
             props: {
                 components: [
@@ -40,6 +26,7 @@ const config: Array<Page> = [
                                     width: 6,
                                 }
                             },
+                            style: "grid",
                             title: "Optional tile title",
                             description: "Optional tile description"
                         }
@@ -61,6 +48,7 @@ const config: Array<Page> = [
                                     width: 6,
                                 }
                             },
+                            style: "grid",
                             title: "Optional tile title",
                         }
                     },
@@ -71,14 +59,7 @@ const config: Array<Page> = [
                             author: "Filip Sobol"
                         },
                         tile: {
-                            layout: {
-                                sm: {
-                                    width: 12,
-                                },
-                                lg: {
-                                    width: 6,
-                                }
-                            },
+                            style: "grid",
                             title: "This can also be used as article title",
                             description: "29-02-2020"
                         }
@@ -92,14 +73,7 @@ const config: Array<Page> = [
                             createdAt: "29-02-2020"
                         },
                         tile: {
-                            layout: {
-                                sm: {
-                                    width: 12,
-                                },
-                                lg: {
-                                    width: 6,
-                                }
-                            }
+                            style: "grid",
                         }
                     }
                 ]
@@ -125,11 +99,7 @@ const config: Array<Page> = [
                                         placeholder: "Input placeholder",
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -153,11 +123,7 @@ const config: Array<Page> = [
                                         ],
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -181,11 +147,7 @@ const config: Array<Page> = [
                                         value: "eur"
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -209,11 +171,7 @@ const config: Array<Page> = [
                                         value: ["eur"]
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -223,21 +181,17 @@ const config: Array<Page> = [
                                         placeholder: "Tell us something about yourself",
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 }
                             ]
                         },
                         tile: {
+                            style: "grid",
                             title: "Basic input types",
                             description: "These are simple inputs with minimal configuration.",
                         }
                     },
-
                     {
                         type: "grid",
                         props: {
@@ -250,11 +204,7 @@ const config: Array<Page> = [
                                         prependText: "https://",
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -266,11 +216,7 @@ const config: Array<Page> = [
                                         displayRevealButton: true,
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -283,11 +229,7 @@ const config: Array<Page> = [
                                         prependIcon: "github",
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 },
                                 {
@@ -302,16 +244,13 @@ const config: Array<Page> = [
                                         appendIcon: "info",
                                     },
                                     tile: {
-                                        style: {
-                                            background: "transparent",
-                                            padding: 1,
-                                            shadow: "0"
-                                        }
+                                        style: "content"
                                     }
                                 }
                             ]
                         },
                         tile: {
+                            style: "grid",
                             title: "Inputs with text and icon label",
                             description: "Inputs can have labels on both sides to hint what user is expected to enter. It's possible to combine text and icon labels."
                         }

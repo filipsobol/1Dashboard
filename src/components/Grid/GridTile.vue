@@ -26,7 +26,10 @@
 
 <script lang="ts">
     import Vue from "vue";
+    import { mapState } from "vuex";
     import { getComponentName } from "@/utils/getComponentName";
+    import { GridTileStyle } from '@/interfaces/core/Config';
+    import { Shadow, Radius } from "@/interfaces/core/Styles";
 
     export default Vue.extend({
         name: "GridTile",
@@ -39,9 +42,29 @@
         },
 
         computed: {
+            ...mapState([
+                "app",
+            ]),
+
+            styles(): GridTileStyle {
+                const defaultStyles: GridTileStyle = {
+                    background: "transparent",
+                    padding: 0,
+                    shadow: Shadow.NONE,
+                    radius: Radius.NONE,
+                };
+
+                const tileStyles = this.component?.tile?.style || defaultStyles;
+
+                if (typeof tileStyles === "object") {
+                    return tileStyles;
+                }
+
+                return this.app.styles.tile.predefinedStyles[tileStyles];
+            },
+
             tileStyles(): Array<string> {
                 const tile = this.component?.tile;
-                const style = tile?.style;
 
                 const classes = Object
                     .entries(tile?.layout || {})
@@ -56,17 +79,15 @@
                 return [
                     ...classes,
                     "col-span-12",
-                    `bg-${tile?.style?.background || "white"}`,
-                    `shadow${style?.shadow ? `-${style.shadow}` : ""}`,
-                    `rounded${style?.rounded ? `-${style.rounded}` : ""}`
+                    `bg-${ this.styles.background || "transparent" }`,
+                    this.styles.shadow || Shadow.NONE,
+                    this.styles.radius || Radius.NONE
                 ];
             },
 
             contentStyles(): Array<string> {
-                const style = this.component?.tile?.style;
-
                 return [
-                    `p-${style?.padding ?? 4}`
+                    `p-${this.styles.padding ?? 0}`
                 ];
             },
 
