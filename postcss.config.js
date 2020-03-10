@@ -7,6 +7,7 @@ module.exports = {
                 /rows-/,
                 /col-start/,
                 /col-end/,
+                /^icon-/,
                 /^bg-/,
                 /^shadow/,
                 /^rounded/,
