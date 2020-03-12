@@ -27,10 +27,6 @@
                 default: "Try refreshing the page. If this doesn't help, please report this issue to the system administrator.",
             },
         },
-
-        created(): void {
-            console.log(this.$props);
-        }
     });
 </script>
 
