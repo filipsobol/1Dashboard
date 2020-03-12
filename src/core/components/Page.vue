@@ -22,12 +22,13 @@
 
 <script lang="ts">
     import Vue from "vue";
+    import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
 
     export default Vue.extend({
         name: "Page",
 
         components: {
-            DbBreadcrumbs: Vue.component("db-breadcrumbs")
+            DbBreadcrumbs,
         },
 
         props: {

@@ -1,16 +1,18 @@
 import Vue  from "vue";
 import Router from "vue-router";
 import CompositionApi from "@vue/composition-api";
-import MixinLoaded from "@/core/mixins/Loaded";
 import { Page } from "@/interfaces/core/Config";
 import { getComponentName } from "@/utils/getComponentName";
+
+// Components
+import AppComponent from "@/core/components/App.vue";
+import PageComponent from "@/core/components/Page.vue";
+import ErrorComponent from "@/core/components/Error.vue";
+import LoadingComponent from "@/core/components/Loading.vue";
 
 // Plugins
 Vue.use(Router);
 Vue.use(CompositionApi);
-
-// Mixins
-Vue.mixin(MixinLoaded);
 
 /**
  * Prepares all pieces required to display the application.
@@ -22,7 +24,7 @@ export function setup(store: any): void {
         el: "#app",
         store,
         router: setupRouter(store),
-        render: h => h(Vue.component("db-app")),
+        render: h => h(AppComponent),
     });
 }
 
@@ -37,12 +39,14 @@ function registerComponents(): void {
         .map((path: string) => path.replace(".vue", ""));
 
     paths.forEach((path: string) => {
-        Vue.component(getComponentName(path.replace(/^.*[/]/, "")), () => ({
-            component: import(`@/components/${path}.vue`),
-            loading: Vue.component("db-loading"),
-            error: Vue.component("db-error"),
-            delay: 200,
-            timeout: 3000,
+        const componentName = getComponentName(path.replace(/^.*[/]/, ""));
+
+        Vue.component(componentName, () => ({
+            component: import(/* webpackChunkName: "[request]" */ `@/components/${path}.vue`),
+            loading: LoadingComponent,
+            error: ErrorComponent,
+            delay: 0,
+            timeout: 60000, // 1 minute
         }));
     });
 }
@@ -56,7 +60,7 @@ function setupRouter(store: any): Router {
     // Map all pages from the template into routes
     const routes = app.pages.map((page: Page) => ({
         path: page.url,
-        component: Vue.component(`db-page`),
+        component: PageComponent,
         props: page,
     }));
 
@@ -71,7 +75,7 @@ function setupRouter(store: any): Router {
     // Add 404 page
     routes.push({
         path: "*",
-        component: Vue.component(`db-page`),
+        component: PageComponent,
         props: app.errorPages.notFound,
     });
 
