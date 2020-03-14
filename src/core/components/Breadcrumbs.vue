@@ -1,5 +1,5 @@
 <template>
-    <ol class="flex inline-flex text-gray-600">
+    <ol class="flex inline-flex text-gray-600 content-center">
         <li class="breadcrumb-item">
             <RouterLink to="/">
                 {{ app.title }}
@@ -37,3 +37,9 @@
         }
     });
 </script>
+
+<style lang="scss" scoped>
+    i::before {
+        @apply text-lg;
+    }
+</style>

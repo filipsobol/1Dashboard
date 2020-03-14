@@ -135,8 +135,9 @@
         input[readonly],
         textarea[readonly],
         select[disabled] {
-            @apply bg-gray-300;
+            @apply bg-gray-200;
             @apply text-gray-600;
+            @apply cursor-not-allowed;
 
             &::placeholder {
                 @apply text-gray-600;

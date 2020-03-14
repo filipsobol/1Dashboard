@@ -6,19 +6,25 @@
     src: url("../fonts/Feather.woff2") format("woff2");
 }
 
-[class^="icon-"]:before {
-    display: inline-block;
-    font-family: "Feather";
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    text-decoration: inherit;
-    text-rendering: optimizeLegibility;
-    text-transform: none;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+[class^="icon-"] {
+    @apply leading-none;
+
+    &:before {
+        display: inline-block;
+        font-family: "Feather";
+        font-weight: normal;
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-decoration: inherit;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+
+        @apply text-2xl;
+    }
 }
 
 .icon-activity:before {

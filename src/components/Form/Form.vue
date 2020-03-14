@@ -11,7 +11,7 @@
 
         <div
             v-if="showButtonsSection"
-            :class="[`form-buttons-${buttonsPosition}`]"
+            :class="'form-buttons-' + buttonsPosition"
             class="form-buttons">
             <db-button
                 v-if="showSubmitButton"
@@ -74,6 +74,7 @@
     .form-buttons {
         @apply flex;
         @apply flex-row;
+        @apply mt-12;
 
         &-start {
             @apply justify-start;

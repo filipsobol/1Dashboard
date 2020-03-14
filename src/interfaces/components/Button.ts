@@ -5,5 +5,7 @@ export interface Button {
 
 export interface ButtonProps {
     type?: "submit" | "reset" | "button";
+    disabled?: boolean;
     text: string;
+    icon?: string;
 }
