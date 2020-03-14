@@ -1,5 +1,9 @@
 <template>
-    <button>{{ props.text }}</button>
+    <button
+        @click="onClick"
+        :type="type">
+        {{ props.text }}
+    </button>
 </template>
 
 <script lang="ts">
@@ -15,5 +19,19 @@
                 required: true,
             }
         },
+
+        computed: {
+            type(): string {
+                return this.props.type ?? "button";
+            }
+        },
+
+        methods: {
+            onClick(): void {
+                this.$emit('click');
+
+                // TODO: Support event from template
+            }
+        }
     });
 </script>

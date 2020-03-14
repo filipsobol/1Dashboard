@@ -6,5 +6,10 @@ export interface Form {
 }
 
 export interface FormProps {
+    buttons?: {
+        position?: "start" | "center" | "end";
+        submit?: boolean;
+        reset?: boolean;
+    };
     components: Array<FormComponent>;
 }

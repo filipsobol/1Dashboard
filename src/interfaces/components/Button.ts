@@ -4,5 +4,6 @@ export interface Button {
 }
 
 export interface ButtonProps {
+    type?: "submit" | "reset" | "button";
     text: string;
 }
