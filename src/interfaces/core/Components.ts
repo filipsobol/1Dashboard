@@ -3,6 +3,7 @@ import { Button } from "@/interfaces/components/Button";
 import { Grid } from "@/interfaces/components/Grid";
 import { Tabs } from "@/interfaces/components/Tabs";
 import { Text } from "@/interfaces/components/Text";
+import { Form } from "@/interfaces/components/Form";
 import { CheckboxInput } from "@/interfaces/components/Form/CheckboxInput";
 import { NumberInput } from "@/interfaces/components/Form/NumberInput";
 import { PasswordInput } from "@/interfaces/components/Form/PasswordInput";
@@ -16,7 +17,9 @@ export type Component = Article
     | Grid
     | Tabs
     | Text
-    | CheckboxInput
+    | Form;
+
+export type FormComponent = CheckboxInput
     | NumberInput
     | PasswordInput
     | RadioInput

@@ -2,7 +2,7 @@ import Vue  from "vue";
 import Router from "vue-router";
 import CompositionApi from "@vue/composition-api";
 import { Page } from "@/interfaces/core/Config";
-import { getComponentName } from "@/utils/getComponentName";
+import { getComponentName } from "@/utils/nestedComponents";
 
 // Components
 import AppComponent from "@/core/components/App.vue";

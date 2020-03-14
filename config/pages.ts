@@ -93,95 +93,87 @@ const config: Array<Page> = [
                         props: {
                             components: [
                                 {
-                                    type: "textInput",
+                                    type: "form",
                                     props: {
-                                        name: "Input name",
-                                        placeholder: "Input placeholder",
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "selectInput",
-                                    props: {
-                                        name: "Currency",
-                                        placeholder: "Select a currency",
-                                        options: [
+                                        components: [
                                             {
-                                                value: "eur",
-                                                label: "Euro",
+                                                type: "textInput",
+                                                props: {
+                                                    name: "Input name",
+                                                    placeholder: "Input placeholder",
+                                                }
                                             },
                                             {
-                                                value: "usd",
-                                                label: "US Dollar",
+                                                type: "selectInput",
+                                                props: {
+                                                    name: "Currency",
+                                                    placeholder: "Select a currency",
+                                                    options: [
+                                                        {
+                                                            value: "eur",
+                                                            label: "Euro",
+                                                        },
+                                                        {
+                                                            value: "usd",
+                                                            label: "US Dollar",
+                                                        },
+                                                        {
+                                                            value: "pln",
+                                                            label: "Polish zloty",
+                                                        }
+                                                    ],
+                                                }
                                             },
                                             {
-                                                value: "pln",
-                                                label: "Polish zloty",
+                                                type: "radioInput",
+                                                props: {
+                                                    name: "Currency",
+                                                    options: [
+                                                        {
+                                                            value: "eur",
+                                                            label: "Euro",
+                                                        },
+                                                        {
+                                                            value: "usd",
+                                                            label: "US Dollar",
+                                                        },
+                                                        {
+                                                            value: "pln",
+                                                            label: "Polish zloty",
+                                                        }
+                                                    ],
+                                                    value: "eur"
+                                                }
+                                            },
+                                            {
+                                                type: "checkboxInput",
+                                                props: {
+                                                    name: "Currency",
+                                                    options: [
+                                                        {
+                                                            value: "eur",
+                                                            label: "Euro",
+                                                        },
+                                                        {
+                                                            value: "usd",
+                                                            label: "US Dollar",
+                                                        },
+                                                        {
+                                                            value: "pln",
+                                                            label: "Polish zloty",
+                                                        }
+                                                    ],
+                                                    value: ["eur"]
+                                                }
+                                            },
+                                            {
+                                                type: "textareaInput",
+                                                props: {
+                                                    name: "Bio",
+                                                    placeholder: "Tell us something about yourself",
+                                                }
                                             }
-                                        ],
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "radioInput",
-                                    props: {
-                                        name: "Currency",
-                                        options: [
-                                            {
-                                                value: "eur",
-                                                label: "Euro",
-                                            },
-                                            {
-                                                value: "usd",
-                                                label: "US Dollar",
-                                            },
-                                            {
-                                                value: "pln",
-                                                label: "Polish zloty",
-                                            }
-                                        ],
-                                        value: "eur"
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "checkboxInput",
-                                    props: {
-                                        name: "Currency",
-                                        options: [
-                                            {
-                                                value: "eur",
-                                                label: "Euro",
-                                            },
-                                            {
-                                                value: "usd",
-                                                label: "US Dollar",
-                                            },
-                                            {
-                                                value: "pln",
-                                                label: "Polish zloty",
-                                            }
-                                        ],
-                                        value: ["eur"]
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "textareaInput",
-                                    props: {
-                                        name: "Bio",
-                                        placeholder: "Tell us something about yourself",
-                                    },
-                                    tile: {
-                                        style: "content"
+                                        ]
                                     }
                                 }
                             ]
@@ -197,54 +189,49 @@ const config: Array<Page> = [
                         props: {
                             components: [
                                 {
-                                    type: "textInput",
+                                    type: "form",
                                     props: {
-                                        name: "Website address",
-                                        placeholder: "Enter your website address",
-                                        prependText: "https://",
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "passwordInput",
-                                    props: {
-                                        name: "Password",
-                                        placeholder: "Enter your password",
-                                        prependIcon: "lock",
-                                        displayRevealButton: true,
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "textInput",
-                                    props: {
-                                        name: "GitHub Profile",
-                                        placeholder: "Enter your GitHub profie name",
-                                        value: "filipsobol",
-                                        prependText: "https://github.com/",
-                                        prependIcon: "github",
-                                    },
-                                    tile: {
-                                        style: "content"
-                                    }
-                                },
-                                {
-                                    type: "numberInput",
-                                    props: {
-                                        name: "Transfer amount",
-                                        placeholder: "Enter transfer amount",
-                                        value: 4.20,
-                                        step: 0.01,
-                                        prependText: "$",
-                                        appendText: "Charged automatically at the beginning of every month",
-                                        appendIcon: "info",
-                                    },
-                                    tile: {
-                                        style: "content"
+                                        components: [
+                                            {
+                                                type: "textInput",
+                                                props: {
+                                                    name: "Website address",
+                                                    placeholder: "Enter your website address",
+                                                    prependText: "https://",
+                                                }
+                                            },
+                                            {
+                                                type: "passwordInput",
+                                                props: {
+                                                    name: "Password",
+                                                    placeholder: "Enter your password",
+                                                    prependIcon: "lock",
+                                                    displayRevealButton: true,
+                                                }
+                                            },
+                                            {
+                                                type: "textInput",
+                                                props: {
+                                                    name: "GitHub Profile",
+                                                    placeholder: "Enter your GitHub profie name",
+                                                    value: "filipsobol",
+                                                    prependText: "https://github.com/",
+                                                    prependIcon: "github",
+                                                }
+                                            },
+                                            {
+                                                type: "numberInput",
+                                                props: {
+                                                    name: "Transfer amount",
+                                                    placeholder: "Enter transfer amount",
+                                                    value: 4.20,
+                                                    step: 0.01,
+                                                    prependText: "$",
+                                                    appendText: "Charged automatically at the beginning of every month",
+                                                    appendIcon: "info",
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             ]

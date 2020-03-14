@@ -14,8 +14,8 @@
 
         <div class="mb-8">
             <component
-                :is="'db-' + component.type"
-                v-bind="{ ...component }" />
+                :is="getComponentName(component.type)"
+                v-bind="{ ...getComponentData(component) }" />
         </div>
     </div>
 </template>
@@ -23,6 +23,7 @@
 <script lang="ts">
     import Vue from "vue";
     import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
+    import { getComponentName, getComponentData } from "@/utils/nestedComponents";
 
     export default Vue.extend({
         name: "Page",
@@ -60,6 +61,11 @@
             showBreadcrumbs(): boolean {
                 return !this.props?.hideBreadcrumbs ?? true;
             }
-        }
+        },
+
+        methods: {
+            getComponentName,
+            getComponentData,
+        },
     });
 </script>

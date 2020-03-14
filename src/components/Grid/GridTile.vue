@@ -19,7 +19,7 @@
         <div :class="contentStyles">
             <component
                 :is="componentName"
-                v-bind="{ ...component }" />
+                v-bind="{ ...componentData }" />
         </div>
     </div>
 </template>
@@ -27,7 +27,7 @@
 <script lang="ts">
     import Vue from "vue";
     import { mapState } from "vuex";
-    import { getComponentName } from "@/utils/getComponentName";
+    import { getComponentName, getComponentData } from "@/utils/nestedComponents";
     import { GridTileStyle } from '@/interfaces/core/Config';
     import { Shadow, Radius } from "@/interfaces/core/Styles";
 
@@ -93,6 +93,10 @@
 
             componentName(): string {
                 return getComponentName(this.component.type);
+            },
+
+            componentData(): any {
+                return getComponentData(this.component);
             },
         }
     });

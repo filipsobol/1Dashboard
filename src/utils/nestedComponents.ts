@@ -6,3 +6,9 @@ export function getComponentName(text: string): string {
 
     return `db-${componentName}`;
 }
+
+export function getComponentData(component: any) {
+    const { type, tile, ...rest } = component;
+
+    return rest;
+}

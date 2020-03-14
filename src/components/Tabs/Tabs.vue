@@ -24,7 +24,7 @@
 
                 <component
                     :is="getComponentName(tab.component.type)"
-                    v-bind="{ ...tab.component }" />
+                    v-bind="{ ...getComponentData(tab.component) }" />
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { getComponentName } from "@/utils/getComponentName";
+    import { getComponentName, getComponentData } from "@/utils/nestedComponents";
     import { TabsProps } from "@/interfaces/components/Tabs";
 
     export default Vue.extend({
@@ -59,7 +59,8 @@
         },
 
         methods: {
-            getComponentName
-        }
+            getComponentName,
+            getComponentData,
+        },
     });
 </script>

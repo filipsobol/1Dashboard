@@ -11,7 +11,7 @@ export interface GridProps {
 }
 
 export type ComponentInGrid = Component & {
-    tile: {
+    tile?: {
         layout?: {
             sm?: TileElement;
             md?: TileElement;
@@ -24,7 +24,7 @@ export type ComponentInGrid = Component & {
     };
 }
 
-export interface TileElement {
+interface TileElement {
     width?: number;
     height?: number;
     offsetStart?: number;
