@@ -1,81 +1,38 @@
 <template>
-    <DbInput
-        :name="name"
-        :prepend-text="prependText"
-        :append-text="appendText"
-        :prepend-icon="prependIcon"
-        :append-icon="appendIcon">
+    <db-input
+        :name="props.name"
+        :prepend-text="props.prependText"
+        :append-text="props.appendText"
+        :prepend-icon="props.prependIcon"
+        :append-icon="props.appendIcon">
         <input
             :type="inputType"
-            :value="value"
-            :placeholder="placeholder"
-            :required="required"
-            :readonly="readonly" />
+            :value="props.value"
+            :placeholder="props.placeholder"
+            :required="props.required"
+            :readonly="props.readonly" />
 
         <button
-            v-if="displayRevealButton"
+            v-if="props.displayRevealButton"
             class="visibility-button"
             @click="togglePasswordVisibility()">
             <i :class="'icon-' + iconType" />
         </button>
-    </DbInput>
+    </db-input>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { PasswordInputProps } from "@/interfaces/components/Form/PasswordInput";
 
     export default Vue.extend({
         name: "PasswordInput",
 
-        components: {
-            DbInput: Vue.component("db-input"),
-        },
-
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<PasswordInputProps>,
                 required: true,
             },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            value: {
-                type: String,
-                required: false,
-                default: "",
-            },
-            displayRevealButton: {
-                type: Boolean,
-                required: false,
-                default: true,
-            },
-            prependText: {
-                type: String,
-                required: false,
-            },
-            appendText: {
-                type: String,
-                required: false,
-            },
-            prependIcon: {
-                type: String,
-                required: false,
-            },
-            appendIcon: {
-                type: String,
-                required: false,
-            }
         },
 
         data: () => ({

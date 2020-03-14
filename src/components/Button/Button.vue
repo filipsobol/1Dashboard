@@ -1,18 +1,19 @@
 <template>
-    <button>{{ text }}</button>
+    <button>{{ props.text }}</button>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { ButtonProps } from "@/interfaces/components/Button";
 
     export default Vue.extend({
         name: "Button",
 
         props: {
-            text: {
-                type: String,
+            props: {
+                type: Object as PropType<ButtonProps>,
                 required: true,
-            },
+            }
         },
     });
 </script>

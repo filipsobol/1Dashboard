@@ -11,26 +11,15 @@ import { SelectInput } from "@/interfaces/components/Form/SelectInput";
 import { TextareaInput } from "@/interfaces/components/Form/TextareaInput";
 import { TextInput } from "@/interfaces/components/Form/TextInput";
 
-export interface Component<T extends ComponentTypes> {
-    type: T;
-    props: ComponentsProps[T];
-}
-
-export type ComponentTypes = keyof ComponentsProps;
-
-type ComponentsProps = {
-    "article": Article;
-    "button": Button;
-    "grid": Grid;
-    "tabs": Tabs;
-    "text": Text;
-
-    // Form
-    "checkboxInput": CheckboxInput;
-    "numberInput": NumberInput;
-    "passwordInput": PasswordInput;
-    "radioInput": RadioInput;
-    "selectInput": SelectInput;
-    "textareaInput": TextareaInput;
-    "textInput": TextInput;
-};
+export type Component = Article
+    | Button
+    | Grid
+    | Tabs
+    | Text
+    | CheckboxInput
+    | NumberInput
+    | PasswordInput
+    | RadioInput
+    | SelectInput
+    | TextareaInput
+    | TextInput;

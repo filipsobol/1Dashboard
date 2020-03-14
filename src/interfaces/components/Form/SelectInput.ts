@@ -1,6 +1,11 @@
-import { Input } from "@/interfaces/components/Form/Input";
+import { InputProps } from "@/interfaces/components/Form/Input";
 
-export interface SelectInput extends Input {
+export interface SelectInput {
+    type: "selectInput";
+    props: SelectInputProps;
+}
+
+export interface SelectInputProps extends InputProps {
     options: Array<SelectOption>;
     value?: string;
 }

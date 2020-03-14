@@ -15,7 +15,7 @@
         <div class="mb-8">
             <component
                 :is="'db-' + component.type"
-                v-bind="{ ...component.props }" />
+                v-bind="{ ...component }" />
         </div>
     </div>
 </template>

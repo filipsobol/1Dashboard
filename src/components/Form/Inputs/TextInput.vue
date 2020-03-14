@@ -1,69 +1,31 @@
 <template>
-    <DbInput
-        :name="name"
-        :prepend-text="prependText"
-        :append-text="appendText"
-        :prepend-icon="prependIcon"
-        :append-icon="appendIcon">
+    <db-input
+        :name="props.name"
+        :prepend-text="props.prependText"
+        :append-text="props.appendText"
+        :prepend-icon="props.prependIcon"
+        :append-icon="props.appendIcon">
         <input
             type="text"
-            :value="value"
-            :placeholder="placeholder"
-            :required="required"
-            :readonly="readonly" />
-    </DbInput>
+            :value="props.value"
+            :placeholder="props.placeholder"
+            :required="props.required"
+            :readonly="props.readonly" />
+    </db-input>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { TextInputProps } from "@/interfaces/components/Form/TextInput";
 
     export default Vue.extend({
         name: "TextInput",
 
-        components: {
-            DbInput: Vue.component("db-input"),
-        },
-
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<TextInputProps>,
                 required: true,
             },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            value: {
-                type: String,
-                required: false,
-                default: "",
-            },
-            prependText: {
-                type: String,
-                required: false,
-            },
-            appendText: {
-                type: String,
-                required: false,
-            },
-            prependIcon: {
-                type: String,
-                required: false,
-            },
-            appendIcon: {
-                type: String,
-                required: false,
-            }
         },
     });
 </script>

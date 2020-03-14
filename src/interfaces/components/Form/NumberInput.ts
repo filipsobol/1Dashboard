@@ -1,6 +1,11 @@
-import { Input } from "@/interfaces/components/Form/Input";
+import { InputProps } from "@/interfaces/components/Form/Input";
 
-export interface NumberInput extends Input {
+export interface NumberInput {
+    type: "numberInput";
+    props: NumberInputProps;
+}
+
+export interface NumberInputProps extends InputProps {
     value?: number;
     step?: number;
     min?: number;

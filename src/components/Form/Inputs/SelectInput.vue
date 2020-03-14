@@ -1,21 +1,21 @@
 <template>
-    <DbInput
-        :name="name"
-        :prepend-text="prependText"
-        :append-text="appendText"
-        :prepend-icon="prependIcon"
-        :append-icon="appendIcon">
+    <db-input
+        :name="props.name"
+        :prepend-text="props.prependText"
+        :append-text="props.appendText"
+        :prepend-icon="props.prependIcon"
+        :append-icon="props.appendIcon">
         <select
-            :value="value"
-            :disabled="readonly">
+            :value="props.value"
+            :disabled="props.readonly">
             <option
                 value=""
-                :disabled="required">
-                {{ placeholder }}
+                :disabled="props.required">
+                {{ props.placeholder }}
             </option>
 
             <option
-                v-for="option in options"
+                v-for="option in props.options"
                 :key="option.value"
                 :value="option.value">
                 {{ option.label || option.value }}
@@ -23,63 +23,21 @@
         </select>
 
         <i class="icon-chevron-down" />
-    </DbInput>
+    </db-input>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { SelectInputProps } from '@/interfaces/components/Form/SelectInput';
 
     export default Vue.extend({
         name: "NumberInput",
 
-        components: {
-            DbInput: Vue.component("db-input"),
-        },
-
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<SelectInputProps>,
                 required: true,
-            },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            options: {
-                type: Array,
-                required: true,
-            },
-            value: {
-                type: String,
-                required: false,
-                default: "",
-            },
-            prependText: {
-                type: String,
-                required: false,
-            },
-            appendText: {
-                type: String,
-                required: false,
-            },
-            prependIcon: {
-                type: String,
-                required: false,
-            },
-            appendIcon: {
-                type: String,
-                required: false,
-            },
+            }
         },
     });
 </script>

@@ -1,5 +1,5 @@
 import { Radius, Shadow } from "@/interfaces/core/Styles";
-import { Component, ComponentTypes } from "@/interfaces/core/Components";
+import { Component } from "@/interfaces/core/Components";
 
 export interface App {
     url: string;
@@ -23,7 +23,7 @@ export interface Page {
     url: string;
     name: string;
     title?: string;
-    component: Component<ComponentTypes>;
+    component: Component;
     props?: PageProps;
 }
 

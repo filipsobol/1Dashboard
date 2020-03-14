@@ -1,4 +1,4 @@
-export interface Input {
+export interface InputProps {
     name: string;
     placeholder: string;
     required?: boolean;

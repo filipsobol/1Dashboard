@@ -1,4 +1,9 @@
 export interface CheckboxInput {
+    type: "checkboxInput";
+    props: CheckboxInputProps;
+}
+
+export interface CheckboxInputProps {
     name: string;
     options: Array<SelectOption>;
     value?: Array<string> | boolean;

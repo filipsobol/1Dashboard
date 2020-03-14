@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper">
-        <div class="name">{{ name }}</div>
+        <div class="name">{{ props.name }}</div>
 
         <label
-            v-for="option in options"
+            v-for="option in props.options"
             :key="option.value">
             <input
                 :value="option.value"
@@ -19,42 +19,26 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
-    import { SelectOption } from '@/interfaces/components/Form/CheckboxInput';
+    import Vue, { PropType } from "vue";
+    import { CheckboxInputProps, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
 
     export default Vue.extend({
         name: "CheckboxInput",
 
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<CheckboxInputProps>,
                 required: true,
-            },
-            options: {
-                type: Array,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-            value: {
-                type: [ Boolean, Array ],
-                required: false,
-            },
+            }
         },
 
         methods: {
             optionIsActive(option: SelectOption): boolean {
-                return this.value instanceof Array
-                    ? this.value.includes(option.value)
-                    : this.value;
+                if (Array.isArray(this.props.value)) {
+                    return this.props.value.includes(option.value);
+                }
+
+                return this.props.value ?? false;
             }
         }
     });

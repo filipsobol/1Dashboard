@@ -1,27 +1,24 @@
 <template>
     <div class="grid grid-cols-12 gap-6 row-gap-6">
-        <DbGridTile
-            v-for="(component, index) in components"
+        <db-grid-tile
+            v-for="(component, index) in props.components"
             :key="index"
             :component="component" />
     </div>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { GridProps } from '@/interfaces/components/Grid';
 
     export default Vue.extend({
         name: "Grid",
 
-        components: {
-            DbGridTile: Vue.component("db-grid-tile")
-        },
-
         props: {
-            components: {
-                type: Array,
+            props: {
+                type: Object as PropType<GridProps>,
                 required: true,
-            },
+            }
         },
     });
 </script>

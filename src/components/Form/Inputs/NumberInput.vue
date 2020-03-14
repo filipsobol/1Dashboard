@@ -1,19 +1,19 @@
 <template>
-    <DbInput
-        :name="name"
-        :prepend-text="prependText"
-        :append-text="appendText"
-        :prepend-icon="prependIcon"
-        :append-icon="appendIcon">
+    <db-input
+        :name="props.name"
+        :prepend-text="props.prependText"
+        :append-text="props.appendText"
+        :prepend-icon="props.prependIcon"
+        :append-icon="props.appendIcon">
         <input
             type="number"
-            :value="value"
-            :step="step"
-            :min="min"
-            :max="max"
-            :placeholder="placeholder"
-            :required="required"
-            :readonly="readonly"/>
+            :value="props.value"
+            :step="props.step"
+            :min="props.min"
+            :max="props.max"
+            :placeholder="props.placeholder"
+            :required="props.required"
+            :readonly="props.readonly"/>
 
         <button
             class="increment-button"
@@ -26,81 +26,30 @@
             @click="decrement()">
             <i class="icon-chevron-down" />
         </button>
-    </DbInput>
+    </db-input>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { NumberInputProps } from "@/interfaces/components/Form/NumberInput";
 
     export default Vue.extend({
         name: "NumberInput",
 
-        components: {
-            DbInput: Vue.component("db-input"),
-        },
-
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<NumberInputProps>,
                 required: true,
             },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            value: {
-                type: Number,
-                required: false,
-                default: 0,
-            },
-            step: {
-                type: Number,
-                required: false,
-                default: 1,
-            },
-            min: {
-                type: Number,
-                required: false,
-            },
-            max: {
-                type: Number,
-                required: false,
-            },
-            prependText: {
-                type: String,
-                required: false,
-            },
-            appendText: {
-                type: String,
-                required: false,
-            },
-            prependIcon: {
-                type: String,
-                required: false,
-            },
-            appendIcon: {
-                type: String,
-                required: false,
-            }
         },
 
         methods: {
             increment(): void {
-                this.$emit("input", this.value + this.step);
+                this.$emit("input", (this.props.value || 0) + (this.props.step || 1));
             },
 
             decrement(): void {
-                this.$emit("input", this.value - this.step);
+                this.$emit("input", (this.props.value || 0) - (this.props.step || 1));
             },
         },
     });

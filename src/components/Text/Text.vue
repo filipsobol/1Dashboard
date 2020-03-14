@@ -1,16 +1,17 @@
 <template>
-    <div>{{ text }}</div>
+    <div>{{ props.text }}</div>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { TextProps } from "@/interfaces/components/Text";
 
     export default Vue.extend({
         name: "Text",
 
         props: {
-            text: {
-                type: String,
+            props: {
+                type: Object as PropType<TextProps>,
                 required: true,
             },
         },

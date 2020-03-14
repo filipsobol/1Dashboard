@@ -19,7 +19,7 @@
         <div :class="contentStyles">
             <component
                 :is="componentName"
-                v-bind="{ ...component.props }" />
+                v-bind="{ ...component }" />
         </div>
     </div>
 </template>

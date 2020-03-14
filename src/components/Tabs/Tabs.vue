@@ -2,7 +2,7 @@
     <div>
         <ul class="nav nav-tabs">
             <li
-                v-for="tab in tabs"
+                v-for="tab in props.tabs"
                 :key="tab.id"
                 class="nav-item">
                 <a
@@ -17,29 +17,30 @@
 
         <div class="tab-content">
             <div
-                v-for="tab in tabs"
+                v-for="tab in props.tabs"
                 :key="tab.id"
                 :class="{ active: tab.id === activeId }"
                 class="tab-pane">
 
                 <component
                     :is="getComponentName(tab.component.type)"
-                    v-bind="{ ...tab.component.props }" />
+                    v-bind="{ ...tab.component }" />
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
     import { getComponentName } from "@/utils/getComponentName";
+    import { TabsProps } from "@/interfaces/components/Tabs";
 
     export default Vue.extend({
         name: "Tabs",
 
         props: {
-            tabs: {
-                type: Array,
+            props: {
+                type: Object as PropType<TabsProps>,
                 required: true,
             },
         },

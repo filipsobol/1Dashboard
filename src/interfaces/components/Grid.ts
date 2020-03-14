@@ -1,12 +1,17 @@
 import { GridTileStyle } from "@/interfaces/core/Config";
-import { Component, ComponentTypes } from "@/interfaces/core/Components";
+import { Component } from "@/interfaces/core/Components";
 
 export interface Grid {
-    components: Array<ComponentInGrid<ComponentTypes>>;
+    type: "grid",
+    props: GridProps;
 }
 
-export interface ComponentInGrid<T extends ComponentTypes> extends Component<T> {
-    tile?: {
+export interface GridProps {
+    components: Array<ComponentInGrid>;
+}
+
+export type ComponentInGrid = Component & {
+    tile: {
         layout?: {
             sm?: TileElement;
             md?: TileElement;

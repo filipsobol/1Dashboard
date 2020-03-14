@@ -1,53 +1,26 @@
 <template>
-    <DbInput :name="name">
+    <db-input :name="props.name">
         <textarea
-            :value="value"
-            :placeholder="placeholder"
-            :rows="rows"
-            :required="required"
-            :readonly="readonly" />
-    </DbInput>
+            :value="props.value"
+            :placeholder="props.placeholder"
+            :rows="props.rows"
+            :required="props.required"
+            :readonly="props.readonly" />
+    </db-input>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { TextareaInputProps } from "@/interfaces/components/Form/TextareaInput";
 
     export default Vue.extend({
         name: "TextareaInput",
 
-        components: {
-            DbInput: Vue.component("db-input"),
-        },
-
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<TextareaInputProps>,
                 required: true,
             },
-            placeholder: {
-                type: String,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            value: {
-                type: String,
-                required: false,
-                default: "",
-            },
-            rows: {
-                type: Number,
-                required: false,
-                default: 5,
-            },
-        }
+        },
     });
 </script>

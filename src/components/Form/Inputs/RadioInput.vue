@@ -1,13 +1,13 @@
 <template>
     <div class="wrapper">
-        <div class="name">{{ name }}</div>
+        <div class="name">{{ props.name }}</div>
 
         <label
-            v-for="option in options"
+            v-for="option in props.options"
             :key="option.value">
             <input
                 :value="option.value"
-                :class="{ 'icon-circle': value !== option.value, 'icon-check-circle': value === option.value }"
+                :class="{ 'icon-circle': !optionIsActive(option), 'icon-check-circle': optionIsActive(option) }"
                 type="radio">
 
             <span class="ml-2">
@@ -18,36 +18,24 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import Vue, { PropType } from "vue";
+    import { RadioInputProps, SelectOption } from "@/interfaces/components/Form/RadioInput";
 
     export default Vue.extend({
         name: "RadioInput",
 
         props: {
-            name: {
-                type: String,
+            props: {
+                type: Object as PropType<RadioInputProps>,
                 required: true,
-            },
-            options: {
-                type: Array,
-                required: true,
-            },
-            required: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-            readonly: {
-                type: Boolean,
-                required: false,
-                default: false,
-            },
-            value: {
-                type: String,
-                required: false,
-                default: "",
-            },
+            }
         },
+
+        methods: {
+            optionIsActive(option: SelectOption): boolean {
+                return this.props.value === option.value;
+            }
+        }
     });
 </script>
 
