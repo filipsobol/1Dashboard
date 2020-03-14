@@ -5,21 +5,33 @@
         <label class="input">
             <div
                 v-if="hasLeadingLabel"
-                class="addon">
+                class="addon addon-left">
 
                 <i
                     v-if="prependIcon"
                     :class="'icon-' + prependIcon" />
 
-                <span v-if="prependText">{{ prependText }}</span>
+                <span
+                    v-if="prependText"
+                    :title="prependText"
+                    class="addon-text">
+                    {{ prependText }}
+                </span>
             </div>
 
-            <slot />
+            <div class="slot">
+                <slot />
+            </div>
 
             <div
                 v-if="hasTrailingLabel"
-                class="addon">
-                <span v-if="appendText">{{ appendText }}</span>
+                class="addon addon-right">
+                <span
+                    v-if="appendText"
+                    :title="appendText"
+                    class="addon-text">
+                    {{ appendText }}
+                </span>
 
                 <i
                     v-if="appendIcon"
@@ -74,15 +86,14 @@
     $borderColor: theme('colors.gray.300');
 
     .wrapper {
-        @apply block;
-        @apply relative;
-        @apply font-medium;
-        @apply text-gray-700;
-        @apply select-none;
+        @apply flex;
+        @apply flex-col;
     }
 
     .name {
         @apply mb-2;
+        @apply font-medium;
+        @apply text-gray-700;
     }
 
     .input {
@@ -101,44 +112,78 @@
         }
     }
 
+    .slot {
+        @apply flex;
+        @apply flex-row;
+        @apply flex-grow;
+        @apply relative;
+        @apply z-10;
+
+        input,
+        textarea,
+        select, {
+            @apply block;
+            @apply w-full;
+            @apply h-full;
+            @apply p-2;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input[readonly],
+        textarea[readonly],
+        select[disabled] {
+            @apply bg-gray-300;
+            @apply text-gray-600;
+
+            &::placeholder {
+                @apply text-gray-600;
+            }
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        input {
+            min-width: 0;
+            appearance: textfield;
+            -moz-appearance: textfield;
+            -webkit-appearance: textfield;
+        }
+    }
+
     .addon {
-        @apply px-4;
+        @apply px-3;
         @apply flex;
         @apply items-center;
         @apply bg-gray-200;
-        @apply border-r;
         @apply text-gray-600;
         @apply font-medium;
         @apply select-none;
 
+        min-height: theme('spacing.12');
+        overflow: hidden;
         border-color: $borderColor;
 
+        &-left {
+            @apply border-r;
+        }
+
+        &-right {
+            @apply border-l;
+        }
+
+        span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         * + * {
-            @apply ml-3;
-        }
-    }
-
-    input,
-    textarea,
-    select, {
-        @apply flex-grow;
-        @apply block;
-        @apply p-3;
-        @apply z-10;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    input[readonly],
-    textarea[readonly],
-    select[disabled] {
-        @apply bg-gray-300;
-        @apply text-gray-600;
-
-        &::placeholder {
-            @apply text-gray-600;
+            @apply ml-2;
         }
     }
 
@@ -149,15 +194,5 @@
         button:hover > & {
             @apply text-gray-700;
         }
-    }
-
-    button:focus {
-        outline: none;
-    }
-
-    input {
-        appearance: textfield;
-        -moz-appearance: textfield;
-        -webkit-appearance: textfield;
     }
 </style>

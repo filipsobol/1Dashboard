@@ -56,12 +56,19 @@
 </script>
 
 <style lang="scss" scoped>
-    .increment-button {
-        @apply pl-3;
-        @apply pr-1;
+    input {
+        @apply pr-0 #{!important};
     }
+
+    .increment-button {
+        @apply pl-2;
+        @apply pr-1;
+        @apply bg-transparent;
+    }
+
     .decrement-button {
         @apply pl-1;
-        @apply pr-3;
+        @apply pr-2;
+        @apply bg-transparent;
     }
 </style>

@@ -226,8 +226,8 @@ const config: Array<Page> = [
                                                     placeholder: "Enter transfer amount",
                                                     value: 4.20,
                                                     step: 0.01,
-                                                    prependText: "$",
-                                                    appendText: "Charged automatically at the beginning of every month",
+                                                    prependIcon: "dollar-sign",
+                                                    appendText: "Charged at the beginning of the month",
                                                     appendIcon: "info",
                                                 }
                                             }

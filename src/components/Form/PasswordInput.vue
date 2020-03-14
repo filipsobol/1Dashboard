@@ -58,7 +58,11 @@
 </script>
 
 <style lang="scss" scoped>
+    input {
+        @apply pr-0 #{!important};
+    }
+
     .visibility-button {
-        @apply px-3;
+        @apply px-2;
     }
 </style>
