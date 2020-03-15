@@ -152,6 +152,174 @@ const config: Array<Page> = [
                             title: "Disabled buttons with text and/or icon",
                             description: "These buttons are disabled. User cannot click on them to perform actions.",
                         }
+                    },
+                    {
+                        type: "grid",
+                        props: {
+                            components: [
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "facebook",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "twitter",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "instagram",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "linkedin",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "twitch",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "github",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "gitlab",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "codepen",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "codesandbox",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "trello",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "slack",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "figma",
+                                    },
+                                    tile: {
+                                        layout: {
+                                            sm: {
+                                                width: 1
+                                            }
+                                        }
+                                    }
+                                },
+                            ]
+                        },
+                        tile: {
+                            style: "grid",
+                            title: "Buttons with icons",
+                            description: "Buttons with icons of social networks and popular development tools."
+                        }
                     }
                 ]
             }
