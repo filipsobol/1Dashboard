@@ -4,8 +4,14 @@ export interface Button {
 }
 
 export interface ButtonProps {
-    type?: "submit" | "reset" | "button";
+    type?: ButtonType;
     disabled?: boolean;
-    text: string;
+    text?: string;
     icon?: string;
+}
+
+export enum ButtonType {
+    Button = "button",
+    Submit = "submit",
+    Reset = "reset",
 }

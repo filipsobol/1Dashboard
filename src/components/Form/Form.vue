@@ -15,19 +15,20 @@
             class="form-buttons">
             <db-button
                 v-if="showSubmitButton"
-                :props="{ type: 'submit', text: 'Submit' }" />
+                :props="submitButtonProps" />
 
             <db-button
                 v-if="showResetButton"
-                :props="{ type: 'reset', text: 'Reset' }" />
+                :props="resetButtonProps" />
         </div>
     </form>
 </template>
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { getComponentName, getComponentData } from "@/utils/nestedComponents";
-    import { FormProps } from "@/interfaces/components/Form";
+    import { getComponentData, getComponentName } from "@/utils/nestedComponents";
+    import { FormProps, FormButtonPosition } from "@/interfaces/components/Form";
+    import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
 
     export default Vue.extend({
         name: "Form",
@@ -52,9 +53,23 @@
                 return this.showSubmitButton || this.showResetButton;
             },
 
-            buttonsPosition(): string {
-                return this.props?.buttons?.position ?? "left";
-            }
+            buttonsPosition(): FormButtonPosition {
+                return this.props?.buttons?.position ?? FormButtonPosition.Start;
+            },
+
+            submitButtonProps(): ButtonProps {
+                return {
+                    type: ButtonType.Submit,
+                    text: "Submit",
+                };
+            },
+
+            resetButtonProps(): ButtonProps {
+                return {
+                    type: ButtonType.Reset,
+                    text: "Reset",
+                };
+            },
         },
 
         methods: {
@@ -65,6 +80,7 @@
             },
 
             getComponentName,
+
             getComponentData,
         },
     });

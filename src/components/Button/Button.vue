@@ -7,13 +7,13 @@
             v-if="props.icon"
             :class="'icon-' + props.icon" />
 
-        <span>{{ props.text }}</span>
+        <span v-if="props.text">{{ props.text }}</span>
     </button>
 </template>
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { ButtonProps } from "@/interfaces/components/Button";
+    import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
 
     export default Vue.extend({
         name: "Button",
@@ -26,8 +26,8 @@
         },
 
         computed: {
-            type(): string {
-                return this.props.type ?? "button";
+            type(): ButtonType {
+                return this.props.type ?? ButtonType.Button;
             },
 
             disabled(): boolean {
@@ -49,8 +49,8 @@
     button {
         @apply flex;
         @apply flex-row;
-        @apply py-2;
-        @apply px-4;
+        @apply py-3;
+        @apply px-6;
         @apply items-center;
         @apply rounded;
         @apply font-bold;
@@ -58,7 +58,7 @@
         @apply text-gray-800;
         @apply shadow-sm;
 
-        min-height: theme('spacing.8');
+        min-height: theme('spacing.12');
 
         &[disabled] {
             @apply opacity-50;
@@ -66,8 +66,11 @@
         }
 
         i {
-            @apply mr-2;
             @apply text-gray-600;
+        }
+
+        i + span {
+            @apply ml-3;
         }
 
         & + & {

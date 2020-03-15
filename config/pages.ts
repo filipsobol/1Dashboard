@@ -81,6 +81,83 @@ const config: Array<Page> = [
         }
     },
     {
+        url: "/buttons",
+        name: "Buttons",
+        title: "Buttons",
+        component: {
+            type: "grid",
+            props: {
+                components: [
+                    {
+                        type: "grid",
+                        props: {
+                            components: [
+                                {
+                                    type: "button",
+                                    props: {
+                                        text: "Submit",
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        text: "Submit",
+                                        icon: "send",
+                                    },
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "send",
+                                    },
+                                },
+                            ]
+                        },
+                        tile: {
+                            style: "grid",
+                            title: "Buttons with text and icons",
+                            description: "These are simple buttons with text, icon or both, depending on the configuration.",
+                        }
+                    },
+                    {
+                        type: "grid",
+                        props: {
+                            components: [
+                                {
+                                    type: "button",
+                                    props: {
+                                        text: "Submit",
+                                        disabled: true,
+                                    }
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        text: "Submit",
+                                        icon: "send",
+                                        disabled: true,
+                                    },
+                                },
+                                {
+                                    type: "button",
+                                    props: {
+                                        icon: "send",
+                                        disabled: true,
+                                    },
+                                },
+                            ]
+                        },
+                        tile: {
+                            style: "grid",
+                            title: "Disabled buttons with text and/or icon",
+                            description: "These buttons are disabled. User cannot click on them to perform actions.",
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
         url: "/form",
         name: "Forms",
         title: "Form inputs",
@@ -245,7 +322,7 @@ const config: Array<Page> = [
                 ]
             }
         }
-    }
+    },
 ];
 
 export default config;

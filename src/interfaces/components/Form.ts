@@ -7,9 +7,15 @@ export interface Form {
 
 export interface FormProps {
     buttons?: {
-        position?: "start" | "center" | "end";
+        position?: FormButtonPosition;
         submit?: boolean;
         reset?: boolean;
     };
     components: Array<FormComponent>;
+}
+
+export enum FormButtonPosition {
+    Start = "start",
+    Center = "center",
+    End = "end",
 }
