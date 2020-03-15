@@ -71,11 +71,11 @@
 
         methods: {
             increment(): void {
-                this.$emit("input", this.formatWithPrecision(this.value + this.step));
+                this.$emit("input", this.formatWithPrecision((this.value ?? 0) + this.step));
             },
 
             decrement(): void {
-                this.$emit("input", this.formatWithPrecision(this.value - this.step));
+                this.$emit("input", this.formatWithPrecision((this.value ?? 0) - this.step));
             },
 
             formatWithPrecision(value: number): number {
