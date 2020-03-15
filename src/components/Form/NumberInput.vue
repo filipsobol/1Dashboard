@@ -18,12 +18,14 @@
             @input="$emit('input', Number($event.target.value))" />
 
         <button
+            type="button"
             class="increment-button"
             @click="increment()">
             <i class="icon-chevron-up" />
         </button>
 
         <button
+            type="button"
             class="decrement-button"
             @click="decrement()">
             <i class="icon-chevron-down" />
