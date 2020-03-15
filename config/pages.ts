@@ -176,6 +176,7 @@ const config: Array<Page> = [
                                             {
                                                 type: "textInput",
                                                 props: {
+                                                    id: "name",
                                                     name: "Input name",
                                                     placeholder: "Input placeholder",
                                                 }
@@ -183,6 +184,7 @@ const config: Array<Page> = [
                                             {
                                                 type: "selectInput",
                                                 props: {
+                                                    id: "currencySelect",
                                                     name: "Currency",
                                                     placeholder: "Select a currency",
                                                     options: [
@@ -204,6 +206,7 @@ const config: Array<Page> = [
                                             {
                                                 type: "radioInput",
                                                 props: {
+                                                    id: "currencyRadio",
                                                     name: "Currency",
                                                     options: [
                                                         {
@@ -219,12 +222,12 @@ const config: Array<Page> = [
                                                             label: "Polish zloty",
                                                         }
                                                     ],
-                                                    value: "eur"
                                                 }
                                             },
                                             {
                                                 type: "checkboxInput",
                                                 props: {
+                                                    id: "currencyCheckbox",
                                                     name: "Currency",
                                                     options: [
                                                         {
@@ -240,12 +243,12 @@ const config: Array<Page> = [
                                                             label: "Polish zloty",
                                                         }
                                                     ],
-                                                    value: ["eur"]
                                                 }
                                             },
                                             {
                                                 type: "textareaInput",
                                                 props: {
+                                                    id: "bio",
                                                     name: "Bio",
                                                     placeholder: "Tell us something about yourself",
                                                 }
@@ -272,6 +275,7 @@ const config: Array<Page> = [
                                             {
                                                 type: "textInput",
                                                 props: {
+                                                    id: "url",
                                                     name: "Website address",
                                                     placeholder: "Enter your website address",
                                                     prependText: "https://",
@@ -280,6 +284,7 @@ const config: Array<Page> = [
                                             {
                                                 type: "passwordInput",
                                                 props: {
+                                                    id: "password",
                                                     name: "Password",
                                                     placeholder: "Enter your password",
                                                     prependIcon: "lock",
@@ -289,9 +294,9 @@ const config: Array<Page> = [
                                             {
                                                 type: "textInput",
                                                 props: {
+                                                    id: "ghProfile",
                                                     name: "GitHub Profile",
                                                     placeholder: "Enter your GitHub profie name",
-                                                    value: "filipsobol",
                                                     prependText: "https://github.com/",
                                                     prependIcon: "github",
                                                 }
@@ -299,15 +304,28 @@ const config: Array<Page> = [
                                             {
                                                 type: "numberInput",
                                                 props: {
+                                                    id: "transferAmount",
                                                     name: "Transfer amount",
                                                     placeholder: "Enter transfer amount",
-                                                    value: 4.20,
                                                     step: 0.01,
                                                     prependIcon: "dollar-sign",
                                                     appendText: "Charged at the beginning of the month",
                                                     appendIcon: "info",
                                                 }
-                                            }
+                                            },
+                                            {
+                                                type: "checkboxInput",
+                                                props: {
+                                                    id: "terms",
+                                                    name: "Currency",
+                                                    options: [
+                                                        {
+                                                            label: "I agree to the Terms of Service",
+                                                            required: true,
+                                                        }
+                                                    ],
+                                                }
+                                            },
                                         ]
                                     }
                                 }

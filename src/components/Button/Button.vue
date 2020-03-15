@@ -65,6 +65,11 @@
             @apply cursor-not-allowed;
         }
 
+        &:focus {
+            @apply border-blue-100;
+            @apply shadow-outline;
+        }
+
         i {
             @apply text-gray-600;
         }

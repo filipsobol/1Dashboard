@@ -7,10 +7,12 @@
         :append-icon="props.appendIcon">
         <input
             type="text"
-            :value="props.value"
+            :name="props.id"
+            :value="value"
             :placeholder="props.placeholder"
-            :required="props.required"
-            :readonly="props.readonly" />
+            :required="required"
+            :readonly="props.readonly"
+            @input="$emit('input', $event.target.value)" />
     </db-input>
 </template>
 
@@ -26,6 +28,16 @@
                 type: Object as PropType<TextInputProps>,
                 required: true,
             },
+            value: {
+                type: String,
+                required: false,
+            },
         },
+
+        computed: {
+            required(): boolean {
+                return this.props.required ?? true;
+            },
+        }
     });
 </script>

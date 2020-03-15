@@ -4,6 +4,7 @@ export interface RadioInput {
 }
 
 export interface RadioInputProps {
+    id: string;
     name: string;
     options: Array<SelectOption>;
     value?: string;

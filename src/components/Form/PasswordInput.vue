@@ -7,10 +7,12 @@
         :append-icon="props.appendIcon">
         <input
             :type="inputType"
-            :value="props.value"
+            :name="props.id"
+            :value="value"
             :placeholder="props.placeholder"
-            :required="props.required"
-            :readonly="props.readonly" />
+            :required="required"
+            :readonly="props.readonly"
+            @input="$emit('input', $event.target.value)" />
 
         <button
             v-if="props.displayRevealButton"
@@ -33,6 +35,10 @@
                 type: Object as PropType<PasswordInputProps>,
                 required: true,
             },
+            value: {
+                type: String,
+                required: false,
+            },
         },
 
         data: () => ({
@@ -40,6 +46,10 @@
         }),
 
         computed: {
+            required(): boolean {
+                return this.props.required ?? true;
+            },
+
             inputType(): string {
                 return this.visible ? "text" : "password";
             },

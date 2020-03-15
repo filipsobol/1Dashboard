@@ -6,6 +6,7 @@ export interface NumberInput {
 }
 
 export interface NumberInputProps extends InputProps {
+    id: string;
     value?: number;
     step?: number;
     min?: number;

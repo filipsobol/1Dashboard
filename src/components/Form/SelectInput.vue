@@ -6,11 +6,12 @@
         :prepend-icon="props.prependIcon"
         :append-icon="props.appendIcon">
         <select
-            :value="props.value"
-            :disabled="props.readonly">
-            <option
-                value=""
-                :disabled="props.required">
+            :value="value"
+            :name="props.id"
+            :required="required"
+            :disabled="props.readonly"
+            @change="$emit('input', $event.target.value)">
+            <option value="">
                 {{ props.placeholder }}
             </option>
 
@@ -31,13 +32,23 @@
     import { SelectInputProps } from '@/interfaces/components/Form/SelectInput';
 
     export default Vue.extend({
-        name: "NumberInput",
+        name: "SelectInput",
 
         props: {
             props: {
                 type: Object as PropType<SelectInputProps>,
                 required: true,
-            }
+            },
+            value: {
+                type: String,
+                required: false,
+            },
+        },
+
+        computed: {
+            required(): boolean {
+                return this.props.required ?? true;
+            },
         },
     });
 </script>

@@ -6,7 +6,8 @@
             class="mb-6">
             <component
                 :is="getComponentName(component.type)"
-                v-bind="{ ...getComponentData(component) }" />
+                v-bind="{ ...getComponentData(component) }"
+                v-model="values[component.props.id]" />
         </div>
 
         <div
@@ -27,8 +28,9 @@
 <script lang="ts">
     import Vue, { PropType } from "vue";
     import { getComponentData, getComponentName } from "@/utils/nestedComponents";
-    import { FormProps, FormButtonPosition } from "@/interfaces/components/Form";
+    import { FormComponent } from "@/interfaces/core/Components";
     import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
+    import { FormProps, FormButtonPosition } from "@/interfaces/components/Form";
 
     export default Vue.extend({
         name: "Form",
@@ -39,6 +41,10 @@
                 required: true,
             }
         },
+
+        data: () => ({
+            values: {},
+        }),
 
         computed: {
             showSubmitButton(): boolean {
@@ -69,6 +75,16 @@
                     type: ButtonType.Reset,
                     text: "Reset",
                 };
+            },
+        },
+
+        watch: {
+            "props.components": {
+                handler(components) {
+                    const dataEntries = components.map(({ props }: FormComponent) => [props.id, props.value]);
+                    this.values = Object.fromEntries(dataEntries);
+                },
+                immediate: true,
             },
         },
 

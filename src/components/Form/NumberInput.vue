@@ -7,13 +7,15 @@
         :append-icon="props.appendIcon">
         <input
             type="number"
-            :value="props.value"
-            :step="props.step"
+            :name="props.id"
+            :value="value"
+            :step="step"
             :min="props.min"
             :max="props.max"
             :placeholder="props.placeholder"
-            :required="props.required"
-            :readonly="props.readonly"/>
+            :required="required"
+            :readonly="props.readonly"
+            @input="$emit('input', Number($event.target.value))" />
 
         <button
             class="increment-button"
@@ -41,16 +43,42 @@
                 type: Object as PropType<NumberInputProps>,
                 required: true,
             },
+            value: {
+                type: Number,
+                required: false
+            }
+        },
+
+        computed: {
+            required(): boolean {
+                return this.props.required ?? true;
+            },
+
+            step(): number {
+                return this.props.step ?? 1;
+            },
+
+            precision(): number {
+                if (Math.floor(this.step) === this.step) {
+                    return 0;
+                }
+
+                return this.step.toString().split(".")[1].length || 0;
+            }
         },
 
         methods: {
             increment(): void {
-                this.$emit("input", (this.props.value || 0) + (this.props.step || 1));
+                this.$emit("input", this.formatWithPrecision(this.value + this.step));
             },
 
             decrement(): void {
-                this.$emit("input", (this.props.value || 0) - (this.props.step || 1));
+                this.$emit("input", this.formatWithPrecision(this.value - this.step));
             },
+
+            formatWithPrecision(value: number): number {
+                return Number(value.toFixed(this.precision));
+            }
         },
     });
 </script>

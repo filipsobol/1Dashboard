@@ -7,8 +7,10 @@
             :key="option.value">
             <input
                 :value="option.value"
-                :class="{ 'icon-circle': !optionIsActive(option), 'icon-check-circle': optionIsActive(option) }"
-                type="radio">
+                :name="props.id"
+                :required="required"
+                type="radio"
+                @click="$emit('input', $event.target.value)">
 
             <span class="ml-2">
                 {{ option.label }}
@@ -28,12 +30,22 @@
             props: {
                 type: Object as PropType<RadioInputProps>,
                 required: true,
-            }
+            },
+            value: {
+                type: String,
+                required: false,
+            },
+        },
+
+        computed: {
+            required(): boolean {
+                return this.props.required ?? true;
+            },
         },
 
         methods: {
             optionIsActive(option: SelectOption): boolean {
-                return this.props.value === option.value;
+                return this.value === option.value;
             }
         }
     });
@@ -55,19 +67,34 @@
     label {
         @apply flex;
         @apply items-center;
+        @apply py-1;
 
         & + & {
-            @apply mt-2;
+            @apply mt-1;
         }
     }
 
     input {
-        @apply text-2xl;
-        @apply leading-none;
-        @apply text-gray-600;
+        @apply w-6;
+        @apply h-6;
+        @apply border-2;
+        @apply rounded-full;
+        @apply border-gray-500;
 
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
+
+        &:not(:checked):hover {
+            @apply border-gray-600;
+        }
+        &:checked {
+            @apply border-8;
+            @apply border-gray-600;
+            @apply bg-gray-100;
+        }
+        &:focus-within {
+            @apply shadow-outline;
+        }
     }
 </style>

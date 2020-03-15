@@ -7,9 +7,13 @@
             :key="option.value">
             <input
                 :value="option.value"
-                :class="{ 'icon-square': !optionIsActive(option), 'icon-check-square': optionIsActive(option) }"
+                :name="props.id"
                 :checked="optionIsActive(option)"
-                type="checkbox">
+                :required="option.required"
+                type="checkbox"
+                @change="onChange($event.target.value)">
+
+            <i class="icon-check" />
 
             <span class="ml-2">
                 {{ option.label }}
@@ -20,7 +24,7 @@
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { CheckboxInputProps, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
+    import { CheckboxInputProps, CheckboxValue, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
 
     export default Vue.extend({
         name: "CheckboxInput",
@@ -29,16 +33,36 @@
             props: {
                 type: Object as PropType<CheckboxInputProps>,
                 required: true,
-            }
+            },
+            value: {
+                type: [Array, Boolean] as PropType<CheckboxValue>,
+                required: false,
+            },
         },
 
         methods: {
             optionIsActive(option: SelectOption): boolean {
-                if (Array.isArray(this.props.value)) {
-                    return this.props.value.includes(option.value);
+                if (Array.isArray(this.value)) {
+                    return this.value.includes(option.value ?? "");
                 }
 
-                return this.props.value ?? false;
+                return this.value ?? false;
+            },
+
+            onChange(value: string): any {
+                if (this.props.options.length === 1) {
+                    return this.$emit("input", !this.value);
+                }
+
+                if (!Array.isArray(this.value)) {
+                    return this.$emit("input", [value]);
+                }
+
+                if(this.value.includes(value)) {
+                    return this.$emit("input", this.value.filter((element: string) => element !== value));
+                }
+
+                this.$emit("input", this.value.concat(value));
             }
         }
     });
@@ -58,21 +82,56 @@
     }
 
     label {
+        @apply relative;
         @apply flex;
         @apply items-center;
+        @apply py-1;
 
         & + & {
-            @apply mt-2;
+            @apply mt-1;
         }
     }
 
     input {
-        @apply text-2xl;
-        @apply leading-none;
-        @apply text-gray-600;
+        @apply w-6;
+        @apply h-6;
+        @apply border-2;
+        @apply rounded;
+        @apply border-gray-500;
 
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
+
+        &:not(:checked):hover {
+            @apply border-gray-600;
+        }
+        &:checked {
+            @apply bg-gray-600;
+            @apply border-gray-600;
+        }
+        &:focus-within {
+            @apply border-0;
+            @apply shadow-outline;
+        }
+    }
+
+    i {
+        @apply absolute;
+        @apply top-0;
+        @apply left-0;
+        @apply text-transparent;
+
+        margin-top: 6.5px;
+        margin-left: 2.5px;
+
+        &::before {
+            @apply text-lg;
+            @apply font-bold;
+        }
+    }
+
+    input:checked + i {
+        @apply text-gray-100;
     }
 </style>

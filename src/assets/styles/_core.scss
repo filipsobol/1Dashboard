@@ -15,3 +15,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: #2D3748;
 }
+
+*:invalid {
+  @apply shadow-none;
+}
