@@ -6,8 +6,7 @@
         :class="{ loading }">
         <i
             v-if="props.icon"
-            :class="'icon-' + props.icon"
-            class="prop-icon" />
+            :class="['icon-' + props.icon, 'prop-icon']" />
 
         <span v-if="props.text">{{ props.text }}</span>
 
