@@ -16,11 +16,13 @@
             class="form-buttons">
             <db-button
                 v-if="showSubmitButton"
-                :props="submitButtonProps" />
+                :props="submitButtonProps"
+                :loading="submitting" />
 
             <db-button
                 v-if="showResetButton"
-                :props="resetButtonProps" />
+                :props="resetButtonProps"
+                :loading="submitting" />
         </div>
     </form>
 </template>
@@ -44,6 +46,7 @@
 
         data: () => ({
             values: {},
+            submitting: false,
         }),
 
         computed: {
@@ -90,9 +93,11 @@
 
         methods: {
             onFormSubmit(): void {
+                this.submitting = true;
                 this.$emit('submit'); // TODO: Pass form data
 
                 // TODO: Support event from template
+                // this.submitting = false;
             },
 
             getComponentName,

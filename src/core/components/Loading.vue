@@ -17,24 +17,10 @@
         @apply flex;
         @apply content-center;
         @apply justify-center;
-        @apply text-4xl;
-
-        @keyframes spin {
-            0% {
-                @apply text-gray-400;
-                transform: rotate(0deg);
-            }
-            50% {
-                @apply text-gray-600;
-                transform: rotate(180deg);
-            }
-            100% {
-                @apply text-gray-400;
-                transform: rotate(360deg);
-            }
-        }
+        @apply text-gray-500;
 
         i.icon-loader::before {
+            @apply text-4xl;
             animation: spin 4000ms infinite linear;
         }
     }
