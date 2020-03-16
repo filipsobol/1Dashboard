@@ -1,5 +1,5 @@
 export interface Button {
-    type: "button";
+    type: "Button";
     props: ButtonProps;
 }
 

@@ -1,7 +1,7 @@
 import { InputProps } from "@/interfaces/components/Form/Input";
 
 export interface PasswordInput {
-    type: "passwordInput";
+    type: "PasswordInput";
     props: PasswordInputProps;
 }
 

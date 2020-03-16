@@ -1,5 +1,5 @@
 export interface Text {
-    type: "text";
+    type: "Text";
     props: TextProps;
 }
 

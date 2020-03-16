@@ -1,7 +1,7 @@
 import { FormComponent } from "@/interfaces/core/Components";
 
 export interface Form {
-    type: "form";
+    type: "Form";
     props: FormProps;
 }
 

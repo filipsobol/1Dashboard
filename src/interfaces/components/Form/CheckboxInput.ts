@@ -1,5 +1,5 @@
 export interface CheckboxInput {
-    type: "checkboxInput";
+    type: "CheckboxInput";
     props: CheckboxInputProps;
 }
 

@@ -1,7 +1,7 @@
 import { Component } from "@/interfaces/core/Components";
 
 export interface Tabs {
-    type: "tabs";
+    type: "Tabs";
     props: TabsProps;
 }
 

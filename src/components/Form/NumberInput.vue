@@ -20,6 +20,7 @@
         <button
             type="button"
             class="increment-button"
+            tabindex="-1"
             @click="increment()">
             <i class="icon-chevron-up" />
         </button>
@@ -27,6 +28,7 @@
         <button
             type="button"
             class="decrement-button"
+            tabindex="-1"
             @click="decrement()">
             <i class="icon-chevron-down" />
         </button>

@@ -1,5 +1,5 @@
 export interface Article {
-    type: "article";
+    type: "Article";
     props: ArticleProps;
 }
 

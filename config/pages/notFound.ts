@@ -8,11 +8,11 @@ const config: Page = {
         hideBreadcrumbs: true
     },
     component: {
-        type: "grid",
+        type: "Grid",
         props: {
             components: [
                 {
-                    type: "article",
+                    type: "Article",
                     props: {
                         body: "Page you are looking for doesn't exists. Click on a button below to go back to homepage."
                     },
@@ -21,7 +21,7 @@ const config: Page = {
                     }
                 },
                 {
-                    type: "button",
+                    type: "Button",
                     props: {
                         text: "Go back to homepage"
                     },

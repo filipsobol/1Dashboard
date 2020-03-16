@@ -11,6 +11,7 @@ import { RadioInput } from "@/interfaces/components/Form/RadioInput";
 import { SelectInput } from "@/interfaces/components/Form/SelectInput";
 import { TextareaInput } from "@/interfaces/components/Form/TextareaInput";
 import { TextInput } from "@/interfaces/components/Form/TextInput";
+import { ToggleInput } from "@/interfaces/components/Form/ToggleInput";
 
 export type Component = Article
     | Button
@@ -25,4 +26,5 @@ export type FormComponent = CheckboxInput
     | RadioInput
     | SelectInput
     | TextareaInput
-    | TextInput;
+    | TextInput
+    | ToggleInput;

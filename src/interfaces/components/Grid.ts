@@ -2,7 +2,7 @@ import { GridTileStyle } from "@/interfaces/core/Config";
 import { Component } from "@/interfaces/core/Components";
 
 export interface Grid {
-    type: "grid",
+    type: "Grid",
     props: GridProps;
 }
 

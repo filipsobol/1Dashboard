@@ -1,5 +1,5 @@
 export interface TextareaInput {
-    type: "textareaInput";
+    type: "TextareaInput";
     props: TextareaInputProps;
 }
 

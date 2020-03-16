@@ -18,6 +18,7 @@
             v-if="props.displayRevealButton"
             type="button"
             class="visibility-button"
+            tabindex="-1"
             @click="togglePasswordVisibility()">
             <i :class="'icon-' + iconType" />
         </button>

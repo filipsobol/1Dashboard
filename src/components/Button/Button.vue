@@ -61,7 +61,7 @@
     button {
         @apply flex;
         @apply flex-row;
-        @apply px-6;
+        @apply px-8;
         @apply h-12;
         @apply items-center;
         @apply rounded;

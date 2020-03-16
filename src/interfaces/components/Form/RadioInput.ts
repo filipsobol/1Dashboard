@@ -1,5 +1,5 @@
 export interface RadioInput {
-    type: "radioInput";
+    type: "RadioInput";
     props: RadioInputProps;
 }
 

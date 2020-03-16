@@ -6,11 +6,11 @@ const config: Array<Page> = [
         name: "Homepage",
         title: "Welcome to 1Dashboard",
         component: {
-            type: "grid",
+            type: "Grid",
             props: {
                 components: [
                     {
-                        type: "article",
+                        type: "Article",
                         props: {
                             title: "This is users page",
                             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
@@ -32,7 +32,7 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "article",
+                        type: "Article",
                         props: {
                             title: "This is users page",
                             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
@@ -53,7 +53,7 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "article",
+                        type: "Article",
                         props: {
                             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
                             author: "Filip Sobol"
@@ -65,7 +65,7 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "article",
+                        type: "Article",
                         props: {
                             title: "This is users page",
                             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
@@ -85,28 +85,28 @@ const config: Array<Page> = [
         name: "Buttons",
         title: "Buttons",
         component: {
-            type: "grid",
+            type: "Grid",
             props: {
                 components: [
                     {
-                        type: "grid",
+                        type: "Grid",
                         props: {
                             components: [
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         text: "Submit",
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         text: "Submit",
                                         icon: "send",
                                     },
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "send",
                                     },
@@ -120,18 +120,18 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "grid",
+                        type: "Grid",
                         props: {
                             components: [
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         text: "Submit",
                                         disabled: true,
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         text: "Submit",
                                         icon: "send",
@@ -139,7 +139,7 @@ const config: Array<Page> = [
                                     },
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "send",
                                         disabled: true,
@@ -154,11 +154,11 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "grid",
+                        type: "Grid",
                         props: {
                             components: [
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "facebook",
                                     },
@@ -171,7 +171,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "twitter",
                                     },
@@ -184,7 +184,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "instagram",
                                     },
@@ -197,7 +197,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "linkedin",
                                     },
@@ -210,7 +210,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "twitch",
                                     },
@@ -223,7 +223,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "github",
                                     },
@@ -236,7 +236,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "gitlab",
                                     },
@@ -249,7 +249,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "codepen",
                                     },
@@ -262,7 +262,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "codesandbox",
                                     },
@@ -275,7 +275,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "trello",
                                     },
@@ -288,7 +288,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "slack",
                                     },
@@ -301,7 +301,7 @@ const config: Array<Page> = [
                                     }
                                 },
                                 {
-                                    type: "button",
+                                    type: "Button",
                                     props: {
                                         icon: "figma",
                                     },
@@ -330,19 +330,19 @@ const config: Array<Page> = [
         name: "Forms",
         title: "Form inputs",
         component: {
-            type: "grid",
+            type: "Grid",
             props: {
                 components: [
                     {
-                        type: "grid",
+                        type: "Grid",
                         props: {
                             components: [
                                 {
-                                    type: "form",
+                                    type: "Form",
                                     props: {
                                         components: [
                                             {
-                                                type: "textInput",
+                                                type: "TextInput",
                                                 props: {
                                                     id: "name",
                                                     name: "Input name",
@@ -350,7 +350,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "selectInput",
+                                                type: "SelectInput",
                                                 props: {
                                                     id: "currencySelect",
                                                     name: "Currency",
@@ -372,7 +372,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "radioInput",
+                                                type: "RadioInput",
                                                 props: {
                                                     id: "currencyRadio",
                                                     name: "Currency",
@@ -393,7 +393,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "checkboxInput",
+                                                type: "CheckboxInput",
                                                 props: {
                                                     id: "currencyCheckbox",
                                                     name: "Currency",
@@ -414,7 +414,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "textareaInput",
+                                                type: "TextareaInput",
                                                 props: {
                                                     id: "bio",
                                                     name: "Bio",
@@ -433,15 +433,15 @@ const config: Array<Page> = [
                         }
                     },
                     {
-                        type: "grid",
+                        type: "Grid",
                         props: {
                             components: [
                                 {
-                                    type: "form",
+                                    type: "Form",
                                     props: {
                                         components: [
                                             {
-                                                type: "textInput",
+                                                type: "TextInput",
                                                 props: {
                                                     id: "url",
                                                     name: "Website address",
@@ -450,7 +450,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "passwordInput",
+                                                type: "PasswordInput",
                                                 props: {
                                                     id: "password",
                                                     name: "Password",
@@ -460,7 +460,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "textInput",
+                                                type: "TextInput",
                                                 props: {
                                                     id: "ghProfile",
                                                     name: "GitHub Profile",
@@ -470,7 +470,7 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "numberInput",
+                                                type: "NumberInput",
                                                 props: {
                                                     id: "transferAmount",
                                                     name: "Transfer amount",
@@ -482,16 +482,11 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
-                                                type: "checkboxInput",
+                                                type: "ToggleInput",
                                                 props: {
                                                     id: "terms",
-                                                    name: "Currency",
-                                                    options: [
-                                                        {
-                                                            label: "I agree to the Terms of Service",
-                                                            required: true,
-                                                        }
-                                                    ],
+                                                    name: "Terms of Service",
+                                                    label: "I agree to the Terms of Service"
                                                 }
                                             },
                                         ]

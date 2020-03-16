@@ -1,7 +1,7 @@
 import { InputProps } from "@/interfaces/components/Form/Input";
 
 export interface NumberInput {
-    type: "numberInput";
+    type: "NumberInput";
     props: NumberInputProps;
 }
 
