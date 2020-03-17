@@ -79,7 +79,7 @@
 
         // Transition background color on toggle
         @apply transition-colors;
-        @apply duration-100;
+        @apply duration-200;
         @apply ease-in-out;
 
         appearance: none;
@@ -103,7 +103,7 @@
 
             // Transition position of inner circle on toggle
             @apply transition-all;
-            @apply duration-100;
+            @apply duration-200;
             @apply ease-in-out;
 
             content: "";

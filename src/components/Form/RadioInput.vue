@@ -81,6 +81,11 @@
         @apply rounded-full;
         @apply border-gray-500;
 
+        // Transition border on toggle
+        @apply transition-all;
+        @apply duration-200;
+        @apply ease-in-out;
+
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;

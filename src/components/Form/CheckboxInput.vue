@@ -98,6 +98,12 @@
         @apply border-2;
         @apply rounded;
         @apply border-gray-500;
+        @apply bg-white;
+
+        // Transition background color on toggle
+        @apply transition-colors;
+        @apply duration-200;
+        @apply ease-in-out;
 
         appearance: none;
         -moz-appearance: none;
