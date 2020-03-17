@@ -6,7 +6,7 @@ export interface TextareaInput {
 export interface TextareaInputProps {
     id: string;
     name: string;
-    placeholder: string;
+    placeholder?: string;
     required?: boolean;
     readonly?: boolean;
     value?: string;

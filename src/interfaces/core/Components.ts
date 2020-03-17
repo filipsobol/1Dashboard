@@ -5,6 +5,7 @@ import { Tabs } from "@/interfaces/components/Tabs";
 import { Text } from "@/interfaces/components/Text";
 import { Form } from "@/interfaces/components/Form";
 import { CheckboxInput } from "@/interfaces/components/Form/CheckboxInput";
+import { FileInput } from "@/interfaces/components/Form/FileInput";
 import { NumberInput } from "@/interfaces/components/Form/NumberInput";
 import { PasswordInput } from "@/interfaces/components/Form/PasswordInput";
 import { RadioInput } from "@/interfaces/components/Form/RadioInput";
@@ -21,6 +22,7 @@ export type Component = Article
     | Form;
 
 export type FormComponent = CheckboxInput
+    | FileInput
     | NumberInput
     | PasswordInput
     | RadioInput

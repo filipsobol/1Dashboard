@@ -482,6 +482,14 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
+                                                type: "FileInput",
+                                                props: {
+                                                    id: "profileImage",
+                                                    name: "Profile image",
+                                                    placeholder: "Browse or drag your profile image"
+                                                }
+                                            },
+                                            {
                                                 type: "ToggleInput",
                                                 props: {
                                                     id: "terms",

@@ -63,8 +63,9 @@
     label {
         @apply relative;
         @apply flex;
-        @apply items-center;
         @apply py-1;
+        @apply items-center;
+        @apply cursor-pointer;
     }
 
     input {
@@ -76,6 +77,7 @@
         @apply border-gray-400;
         @apply bg-gray-300;
         @apply shadow-sm;
+        @apply cursor-pointer;
 
         // Transition background color on toggle
         @apply transition-colors;
