@@ -70,8 +70,10 @@
 
     input {
         @apply relative;
-        @apply w-16;
-        @apply h-8;
+        @apply flex;
+        @apply items-center;
+        @apply w-12;
+        @apply h-6;
         @apply border;
         @apply rounded-full;
         @apply border-gray-500;
@@ -101,9 +103,8 @@
 
         &::after {
             @apply absolute;
-            @apply w-5;
-            @apply h-5;
-            @apply top-0;
+            @apply w-4;
+            @apply h-4;
             @apply left-0;
             @apply rounded-full;
             @apply bg-gray-600;
@@ -114,11 +115,10 @@
             @apply ease-in-out;
 
             content: "";
-            margin-top: 4px;
         }
 
         &:not(:checked)::after {
-            margin-left: 5px;
+            margin-left: 3px;
         }
 
         &:checked {
@@ -128,7 +128,7 @@
             &::after {
                 @apply bg-gray-100;
 
-                margin-left: calc(100% - (theme("spacing.5") + 4px)); // "spacing.5" corresponds to "w-5" on inner circle
+                margin-left: calc(100% - (theme("spacing.4") + 3px)); // "spacing.5" corresponds to "w-5" on inner circle
             }
         }
     }

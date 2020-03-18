@@ -124,11 +124,10 @@
 
     i {
         @apply absolute;
-        @apply top-0;
         @apply left-0;
         @apply text-transparent;
+        @apply leading-none;
 
-        margin-top: 5px;
         margin-left: 2px;
 
         &::before {
