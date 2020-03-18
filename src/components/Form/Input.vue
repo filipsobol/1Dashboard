@@ -83,7 +83,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $borderColor: theme('colors.gray.300');
+    $borderColor: theme('colors.gray.400');
 
     .wrapper {
         @apply flex;
@@ -102,12 +102,12 @@
         @apply mt-1;
         @apply border;
         @apply rounded;
-        @apply shadow-sm;
+        @apply overflow-hidden;
 
         border-color: $borderColor;
 
         &:focus-within {
-            @apply border-blue-100;
+            @apply border-blue-300;
             @apply shadow-outline;
         }
     }
@@ -126,6 +126,10 @@
             @apply w-full;
             @apply h-full;
             @apply p-2;
+
+            &::placeholder {
+                @apply text-gray-600;
+            }
 
             &:focus {
                 outline: none;
@@ -160,9 +164,8 @@
         @apply px-3;
         @apply flex;
         @apply items-center;
-        @apply bg-gray-200;
+        @apply bg-gray-100;
         @apply text-gray-600;
-        @apply font-medium;
         @apply select-none;
 
         min-height: theme('spacing.12');

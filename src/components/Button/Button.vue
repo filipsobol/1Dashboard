@@ -89,11 +89,13 @@
         }
 
         i {
+            @apply h-6;
+            @apply w-6;
             @apply text-gray-600;
         }
 
         i + span {
-            @apply ml-3;
+            @apply ml-4;
         }
 
         & + & {

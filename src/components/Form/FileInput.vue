@@ -27,7 +27,7 @@
             <span
                 v-else
                 class="drop-to-add">
-                Drop to add
+                Drop to add this file
             </span>
         </div>
     </db-input>
@@ -80,7 +80,7 @@
         @apply flex;
         @apply justify-center;
         @apply items-center;
-        @apply bg-gray-100;
+        @apply bg-white;
         @apply cursor-pointer;
 
         // Transition background color
@@ -92,13 +92,13 @@
             @apply flex;
             @apply flex-col;
             @apply items-center;
-            @apply text-gray-500;
+            @apply text-gray-600;
 
             span {
                 @apply mt-3;
             }
             i::before {
-                @apply text-gray-500;
+                @apply text-gray-600;
             }
         }
 
@@ -109,7 +109,7 @@
         }
 
         &.active {
-            @apply bg-gray-200;
+            @apply bg-gray-300;
         }
     }
 

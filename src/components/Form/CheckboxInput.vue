@@ -95,7 +95,7 @@
     input {
         @apply w-6;
         @apply h-6;
-        @apply border-2;
+        @apply border;
         @apply rounded;
         @apply border-gray-500;
         @apply bg-white;
@@ -128,8 +128,8 @@
         @apply left-0;
         @apply text-transparent;
 
-        margin-top: 6.5px;
-        margin-left: 2.5px;
+        margin-top: 5px;
+        margin-left: 2px;
 
         &::before {
             @apply text-lg;

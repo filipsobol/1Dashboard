@@ -77,7 +77,7 @@
     input {
         @apply w-6;
         @apply h-6;
-        @apply border-2;
+        @apply border;
         @apply rounded-full;
         @apply border-gray-500;
 

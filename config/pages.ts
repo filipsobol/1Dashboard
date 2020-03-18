@@ -345,7 +345,15 @@ const config: Array<Page> = [
                                                 type: "TextInput",
                                                 props: {
                                                     id: "name",
-                                                    name: "Input name",
+                                                    name: "Text",
+                                                    placeholder: "Input placeholder",
+                                                }
+                                            },
+                                            {
+                                                type: "NumberInput",
+                                                props: {
+                                                    id: "transferAmount",
+                                                    name: "Number",
                                                     placeholder: "Input placeholder",
                                                 }
                                             },
@@ -353,7 +361,7 @@ const config: Array<Page> = [
                                                 type: "SelectInput",
                                                 props: {
                                                     id: "currencySelect",
-                                                    name: "Currency",
+                                                    name: "Select",
                                                     placeholder: "Select a currency",
                                                     options: [
                                                         {
@@ -375,7 +383,7 @@ const config: Array<Page> = [
                                                 type: "RadioInput",
                                                 props: {
                                                     id: "currencyRadio",
-                                                    name: "Currency",
+                                                    name: "Radio",
                                                     options: [
                                                         {
                                                             value: "eur",
@@ -396,7 +404,7 @@ const config: Array<Page> = [
                                                 type: "CheckboxInput",
                                                 props: {
                                                     id: "currencyCheckbox",
-                                                    name: "Currency",
+                                                    name: "Checkbox",
                                                     options: [
                                                         {
                                                             value: "eur",
@@ -414,13 +422,29 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
+                                                type: "ToggleInput",
+                                                props: {
+                                                    id: "terms",
+                                                    name: "Toggle",
+                                                    label: "I agree to the Terms of Service"
+                                                }
+                                            },
+                                            {
                                                 type: "TextareaInput",
                                                 props: {
                                                     id: "bio",
-                                                    name: "Bio",
-                                                    placeholder: "Tell us something about yourself",
+                                                    name: "Textarea",
+                                                    placeholder: "Input placeholder",
                                                 }
-                                            }
+                                            },
+                                            {
+                                                type: "FileInput",
+                                                props: {
+                                                    id: "profileImage",
+                                                    name: "File",
+                                                    placeholder: "Click to browse or drag a file"
+                                                }
+                                            },
                                         ]
                                     }
                                 }
@@ -479,22 +503,6 @@ const config: Array<Page> = [
                                                     prependIcon: "dollar-sign",
                                                     appendText: "Charged at the beginning of the month",
                                                     appendIcon: "info",
-                                                }
-                                            },
-                                            {
-                                                type: "FileInput",
-                                                props: {
-                                                    id: "profileImage",
-                                                    name: "Profile image",
-                                                    placeholder: "Browse or drag your profile image"
-                                                }
-                                            },
-                                            {
-                                                type: "ToggleInput",
-                                                props: {
-                                                    id: "terms",
-                                                    name: "Terms of Service",
-                                                    label: "I agree to the Terms of Service"
                                                 }
                                             },
                                         ]
