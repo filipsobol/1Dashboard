@@ -6,6 +6,7 @@
         :prepend-icon="props.prependIcon"
         :append-icon="props.appendIcon">
         <input
+            ref="input"
             type="number"
             :name="props.id"
             :value="value"
@@ -21,16 +22,18 @@
             type="button"
             class="increment-button"
             tabindex="-1"
+            aria-label="Increment"
             @click="increment()">
-            <i class="icon-chevron-up" />
+            <i class="icon-plus" />
         </button>
 
         <button
             type="button"
             class="decrement-button"
             tabindex="-1"
+            aria-label="Decrement"
             @click="decrement()">
-            <i class="icon-chevron-down" />
+            <i class="icon-minus" />
         </button>
     </db-input>
 </template>
@@ -47,6 +50,7 @@
                 type: Object as PropType<NumberInputProps>,
                 required: true,
             },
+
             value: {
                 type: Number,
                 required: false
@@ -74,10 +78,12 @@
         methods: {
             increment(): void {
                 this.$emit("input", this.formatWithPrecision((this.value ?? 0) + this.step));
+                (this.$refs.input as HTMLElement).focus();
             },
 
             decrement(): void {
                 this.$emit("input", this.formatWithPrecision((this.value ?? 0) - this.step));
+                (this.$refs.input as HTMLElement).focus();
             },
 
             formatWithPrecision(value: number): number {

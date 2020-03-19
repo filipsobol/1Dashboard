@@ -17,12 +17,14 @@
             <db-button
                 v-if="showSubmitButton"
                 :props="submitButtonProps"
-                :loading="submitting" />
+                :loading="submitting"
+                aria-label="Submit form" />
 
             <db-button
                 v-if="showResetButton"
                 :props="resetButtonProps"
-                :loading="submitting" />
+                :loading="submitting"
+                aria-label="Reset form" />
         </div>
     </form>
 </template>

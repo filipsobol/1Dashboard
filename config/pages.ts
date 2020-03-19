@@ -380,6 +380,27 @@ const config: Array<Page> = [
                                                 }
                                             },
                                             {
+                                                type: "MultiSelectInput",
+                                                props: {
+                                                    id: "currencyMultiSelect",
+                                                    name: "Select",
+                                                    options: [
+                                                        {
+                                                            value: "eur",
+                                                            label: "Euro",
+                                                        },
+                                                        {
+                                                            value: "usd",
+                                                            label: "US Dollar",
+                                                        },
+                                                        {
+                                                            value: "pln",
+                                                            label: "Polish zloty",
+                                                        }
+                                                    ],
+                                                }
+                                            },
+                                            {
                                                 type: "RadioInput",
                                                 props: {
                                                     id: "currencyRadio",

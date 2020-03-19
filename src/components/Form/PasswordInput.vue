@@ -6,6 +6,7 @@
         :prepend-icon="props.prependIcon"
         :append-icon="props.appendIcon">
         <input
+            ref="input"
             :type="inputType"
             :name="props.id"
             :value="value"
@@ -19,6 +20,7 @@
             type="button"
             class="visibility-button"
             tabindex="-1"
+            aria-label="Toggle password visibility"
             @click="togglePasswordVisibility()">
             <i :class="'icon-' + iconType" />
         </button>
@@ -64,6 +66,7 @@
         methods: {
             togglePasswordVisibility() {
                 this.visible = !this.visible;
+                (this.$refs.input as HTMLElement).focus();
             },
         },
     });

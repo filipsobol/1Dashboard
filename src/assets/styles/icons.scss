@@ -7,7 +7,7 @@
 }
 
 [class^="icon-"] {
-    @apply leading-normal;
+    @apply leading-none;
 
     &:before {
         display: inline-block;

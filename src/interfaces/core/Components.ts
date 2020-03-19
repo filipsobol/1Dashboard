@@ -7,6 +7,7 @@ import { Form } from "@/interfaces/components/Form";
 import { CheckboxInput } from "@/interfaces/components/Form/CheckboxInput";
 import { FileInput } from "@/interfaces/components/Form/FileInput";
 import { NumberInput } from "@/interfaces/components/Form/NumberInput";
+import { MultiSelectInput } from "@/interfaces/components/Form/MultiSelectInput";
 import { PasswordInput } from "@/interfaces/components/Form/PasswordInput";
 import { RadioInput } from "@/interfaces/components/Form/RadioInput";
 import { SelectInput } from "@/interfaces/components/Form/SelectInput";
@@ -24,6 +25,7 @@ export type Component = Article
 export type FormComponent = CheckboxInput
     | FileInput
     | NumberInput
+    | MultiSelectInput
     | PasswordInput
     | RadioInput
     | SelectInput
