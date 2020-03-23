@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Page } from "@/interfaces/core/Config";
 
 const config: Array<Page> = [
@@ -516,15 +517,7 @@ const config: Array<Page> = [
                                             },
                                             {
                                                 type: "NumberInput",
-                                                props: {
-                                                    id: "transferAmount",
-                                                    name: "Transfer amount",
-                                                    placeholder: "Enter transfer amount",
-                                                    step: 0.01,
-                                                    prependIcon: "dollar-sign",
-                                                    appendText: "Charged at the beginning of the month",
-                                                    appendIcon: "info",
-                                                }
+                                                props: async () => axios.get("http://www.mocky.io/v2/5e771fbb3300002900099eda?mocky-delay=5000ms"),
                                             },
                                         ]
                                     }

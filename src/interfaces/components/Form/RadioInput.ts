@@ -1,9 +1,13 @@
+import { ComponentProps } from "@/interfaces/core/Components";
+
 export interface RadioInput {
     type: "RadioInput";
     props: RadioInputProps;
 }
 
-export interface RadioInputProps {
+export type RadioInputProps = ComponentProps<Props>;
+
+interface Props {
     id: string;
     name: string;
     options: Array<SelectOption>;

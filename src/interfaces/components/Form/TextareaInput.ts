@@ -1,9 +1,13 @@
+import { ComponentProps } from "@/interfaces/core/Components";
+
 export interface TextareaInput {
     type: "TextareaInput";
     props: TextareaInputProps;
 }
 
-export interface TextareaInputProps {
+export type TextareaInputProps = ComponentProps<Props>;
+
+interface Props {
     id: string;
     name: string;
     placeholder?: string;

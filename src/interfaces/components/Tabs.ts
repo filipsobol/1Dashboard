@@ -1,11 +1,13 @@
-import { Component } from "@/interfaces/core/Components";
+import { Component, ComponentProps } from "@/interfaces/core/Components";
 
 export interface Tabs {
     type: "Tabs";
     props: TabsProps;
 }
 
-export interface TabsProps {
+export type TabsProps = ComponentProps<Props>;
+
+interface Props {
     tabs: Array<Tab>;
 }
 

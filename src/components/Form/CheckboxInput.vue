@@ -23,48 +23,60 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
-    import { CheckboxInputProps, CheckboxValue, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
+    import { defineComponent, toRefs } from "@vue/composition-api";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
+    import { CheckboxInputProps, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "CheckboxInput",
 
         props: {
             props: {
-                type: Object as PropType<CheckboxInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             value: {
-                type: [Array, Boolean] as PropType<CheckboxValue>,
+                type: [Array, Boolean],
                 required: false,
             },
         },
 
-        methods: {
-            optionIsActive(option: SelectOption): boolean {
-                if (Array.isArray(this.value)) {
-                    return this.value.includes(option.value ?? "");
+        setup(_: any, { emit }) {
+            const props = useConfigProps<CheckboxInputProps>(_.props);
+
+            function optionIsActive(option: SelectOption): boolean {
+                if (Array.isArray(_.value)) {
+                    return _.value.includes(option.value ?? "");
                 }
 
-                return this.value ?? false;
-            },
-
-            onChange(value: string): any {
-                if (this.props.options.length === 1) {
-                    return this.$emit("input", !this.value);
-                }
-
-                if (!Array.isArray(this.value)) {
-                    return this.$emit("input", [value]);
-                }
-
-                if(this.value.includes(value)) {
-                    return this.$emit("input", this.value.filter((element: string) => element !== value));
-                }
-
-                this.$emit("input", this.value.concat(value));
+                return _.value ?? false;
             }
-        }
+
+            function onChange(value: string): void {
+                if (props.data.options.length === 1) {
+                    return emit("input", !_.value);
+                }
+
+                if (!Array.isArray(_.value)) {
+                    return emit("input", [value]);
+                }
+
+                if (_.value.includes(value)) {
+                    return emit("input", _.value.filter((element: string) => element !== value));
+                }
+
+                emit("input", _.value.concat(value));
+            }
+
+            return {
+                // State
+                ...toRefs(props),
+
+                // Methods
+                optionIsActive,
+                onChange,
+            };
+        },
     });
 </script>
 

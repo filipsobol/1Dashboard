@@ -15,6 +15,8 @@ import { TextareaInput } from "@/interfaces/components/Form/TextareaInput";
 import { TextInput } from "@/interfaces/components/Form/TextInput";
 import { ToggleInput } from "@/interfaces/components/Form/ToggleInput";
 
+export type ComponentProps<T> = T | { (): Promise<T> };
+
 export type Component = Article
     | Button
     | Grid

@@ -5,10 +5,10 @@
         :disabled="disabled"
         :class="{ loading }">
         <i
-            v-if="props.icon"
-            :class="['icon-' + props.icon, 'prop-icon']" />
+            v-if="data.icon"
+            :class="['icon-' + data.icon, 'prop-icon']" />
 
-        <span v-if="props.text">{{ props.text }}</span>
+        <span v-if="data.text">{{ data.text }}</span>
 
         <div class="loading-overlay">
             <i class="icon-loader" />
@@ -17,15 +17,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, toRefs } from "@vue/composition-api";
     import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Button",
 
         props: {
             props: {
-                type: Object as PropType<ButtonProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             loading: {
@@ -35,25 +36,31 @@
             },
         },
 
-        computed: {
-            type(): ButtonType {
-                return this.props.type ?? ButtonType.Button;
-            },
+        setup(_, { emit }) {
+            const props = useConfigProps<ButtonProps>(_.props);
 
-            disabled(): boolean {
-                return this.props.disabled
-                    ?? this.loading
-                    ?? false;
-            }
-        },
+            // Computed
+            const type = computed<ButtonType>(() => props.data.type ?? ButtonType.Button);
+            const disabled = computed<boolean>(() => props.data.disabled ?? _.loading ?? false);
 
-        methods: {
-            onClick(): void {
-                this.$emit('click');
+            function onClick(): void {
+                emit("click");
 
                 // TODO: Support event from template
             }
-        }
+
+            return {
+                // State
+                ...toRefs(props),
+
+                // Computed
+                type,
+                disabled,
+
+                // Methods
+                onClick,
+            };
+        },
     });
 </script>
 

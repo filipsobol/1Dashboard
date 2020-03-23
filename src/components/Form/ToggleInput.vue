@@ -18,15 +18,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, toRefs } from "@vue/composition-api";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
     import { ToggleInputProps } from '@/interfaces/components/Form/ToggleInput';
 
-    export default Vue.extend({
-        name: "RadioInput",
+    export default defineComponent({
+        name: "ToggleInput",
 
         props: {
             props: {
-                type: Object as PropType<ToggleInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             value: {
@@ -35,14 +36,22 @@
             },
         },
 
-        computed: {
-            active(): boolean {
-                return this.value ?? false;
-            },
+        setup(_) {
+            // State
+            const props = useConfigProps<ToggleInputProps>(_.props);
 
-            required(): boolean {
-                return this.props.required ?? true;
-            },
+            // Computed
+            const active = computed<boolean>(() => _.value ?? false);
+            const required = computed<boolean>(() => props.data.required ?? true);
+
+            return {
+                // State
+                ...toRefs(props),
+
+                // Computed
+                active,
+                required,
+            };
         },
     });
 </script>

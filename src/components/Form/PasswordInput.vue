@@ -28,15 +28,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, ref, toRefs } from "@vue/composition-api";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
     import { PasswordInputProps } from "@/interfaces/components/Form/PasswordInput";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "PasswordInput",
 
         props: {
             props: {
-                type: Object as PropType<PasswordInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             value: {
@@ -45,30 +46,43 @@
             },
         },
 
-        data: () => ({
-            visible: false,
-        }),
+        setup(_) {
+            // Template refs
+            const input = ref<HTMLElement>(null);
 
-        computed: {
-            required(): boolean {
-                return this.props.required ?? true;
-            },
+            // State
+            const visible = ref<boolean>(false);
+            const props = useConfigProps<PasswordInputProps>(_.props);
 
-            inputType(): string {
-                return this.visible ? "text" : "password";
-            },
+            // Computed
+            const required = computed<boolean>(() => props.data.required ?? true);
+            const inputType = computed<string>(() => visible.value ? "text" : "password");
+            const iconType = computed<string>(() => visible.value ? "eye-off" : "eye");
 
-            iconType(): string {
-                return this.visible ? "eye-off" : "eye";
-            },
+            // Methods
+            function togglePasswordVisibility() {
+                visible.value = !visible.value;
+                input.value?.focus();
+            }
+
+            return {
+                // Template refs
+                input,
+
+                // State
+                visible,
+                ...toRefs(props),
+
+                // Computed
+                required,
+                inputType,
+                iconType,
+
+                // Methods
+                togglePasswordVisibility
+            };
         },
 
-        methods: {
-            togglePasswordVisibility() {
-                this.visible = !this.visible;
-                (this.$refs.input as HTMLElement).focus();
-            },
-        },
     });
 </script>
 

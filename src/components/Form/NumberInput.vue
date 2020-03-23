@@ -1,53 +1,66 @@
 <template>
-    <db-input
-        :name="props.name"
-        :prepend-text="props.prependText"
-        :append-text="props.appendText"
-        :prepend-icon="props.prependIcon"
-        :append-icon="props.appendIcon">
-        <input
-            ref="input"
-            type="number"
-            :name="props.id"
-            :value="value"
-            :step="step"
-            :min="props.min"
-            :max="props.max"
-            :placeholder="props.placeholder"
-            :required="required"
-            :readonly="props.readonly"
-            @input="$emit('input', Number($event.target.value))" />
+    <div>
+        <div v-if="data">
+            <db-input
+                :name="data.name"
+                :prepend-text="data.prependText"
+                :append-text="data.appendText"
+                :prepend-icon="data.prependIcon"
+                :append-icon="data.appendIcon">
+                <input
+                    ref="input"
+                    type="number"
+                    :name="data.id"
+                    :value="value"
+                    :step="step"
+                    :min="data.min"
+                    :max="data.max"
+                    :placeholder="data.placeholder"
+                    :required="required"
+                    :readonly="data.readonly"
+                    @input="$emit('input', Number($event.target.value))" />
 
-        <button
-            type="button"
-            class="increment-button"
-            tabindex="-1"
-            aria-label="Increment"
-            @click="increment()">
-            <i class="icon-plus" />
-        </button>
+                <button
+                    type="button"
+                    class="increment-button"
+                    tabindex="-1"
+                    aria-label="Increment"
+                    @click="increment()">
+                    <i class="icon-plus" />
+                </button>
 
-        <button
-            type="button"
-            class="decrement-button"
-            tabindex="-1"
-            aria-label="Decrement"
-            @click="decrement()">
-            <i class="icon-minus" />
-        </button>
-    </db-input>
+                <button
+                    type="button"
+                    class="decrement-button"
+                    tabindex="-1"
+                    aria-label="Decrement"
+                    @click="decrement()">
+                    <i class="icon-minus" />
+                </button>
+            </db-input>
+        </div>
+
+        <div v-else-if="fetching">
+            Loading...
+        </div>
+
+        <div v-else-if="error">
+            {{ error }}
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, ref, toRefs } from "@vue/composition-api";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
     import { NumberInputProps } from "@/interfaces/components/Form/NumberInput";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "NumberInput",
 
         props: {
             props: {
-                type: Object as PropType<NumberInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
 
@@ -57,38 +70,57 @@
             }
         },
 
-        computed: {
-            required(): boolean {
-                return this.props.required ?? true;
-            },
+        setup(_, { emit }) {
+            // Template refs
+            const input = ref<HTMLElement>(null);
 
-            step(): number {
-                return this.props.step ?? 1;
-            },
+            // State
+            const props = useConfigProps<NumberInputProps>(_.props);
 
-            precision(): number {
-                if (Math.floor(this.step) === this.step) {
+            // Computed
+            const required = computed<boolean>(() => props.data.required ?? true);
+
+            const step = computed<number>(() => props.data.step ?? 1);
+
+            const precision = computed(() => {
+                if (Math.floor(step.value) === step.value) {
                     return 0;
                 }
 
-                return this.step.toString().split(".")[1].length || 0;
+                return step.value.toString().split(".")[1].length || 0;
+            });
+
+            // Function available in the template
+            function increment() {
+                emit("input", formatWithPrecision((_.value ?? 0) + step.value));
+                focusInput();
             }
-        },
 
-        methods: {
-            increment(): void {
-                this.$emit("input", this.formatWithPrecision((this.value ?? 0) + this.step));
-                (this.$refs.input as HTMLElement).focus();
-            },
-
-            decrement(): void {
-                this.$emit("input", this.formatWithPrecision((this.value ?? 0) - this.step));
-                (this.$refs.input as HTMLElement).focus();
-            },
-
-            formatWithPrecision(value: number): number {
-                return Number(value.toFixed(this.precision));
+            function decrement() {
+                emit("input", formatWithPrecision((_.value ?? 0) - step.value));
+                focusInput();
             }
+
+            // Helper functions
+            const focusInput = (): void => input.value?.focus();
+            const formatWithPrecision = (value: number): number => Number(value.toFixed(precision.value));
+
+            return {
+                // Template refs
+                input,
+
+                // State
+                ...toRefs(props),
+
+                // Computed
+                required,
+                step,
+                precision,
+
+                // Methods
+                increment,
+                decrement
+            };
         },
     });
 </script>

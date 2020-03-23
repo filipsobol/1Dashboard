@@ -1,12 +1,14 @@
 import { GridTileStyle } from "@/interfaces/core/Config";
-import { Component } from "@/interfaces/core/Components";
+import { Component, ComponentProps } from "@/interfaces/core/Components";
 
 export interface Grid {
     type: "Grid",
     props: GridProps;
 }
 
-export interface GridProps {
+export type GridProps = ComponentProps<Props>;
+
+interface Props {
     components: Array<ComponentInGrid>;
 }
 

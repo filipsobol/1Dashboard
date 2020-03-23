@@ -18,15 +18,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, toRefs } from "@vue/composition-api";
     import { MultiSelectInputProps, MultiSelectOption } from '@/interfaces/components/Form/MultiSelectInput';
+    import { useConfigProps } from "@/core/composable/useConfigProps";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "MultiSelectInput",
 
         props: {
             props: {
-                type: Object as PropType<MultiSelectInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
 
@@ -36,29 +37,42 @@
             },
         },
 
-        computed: {
-            required(): boolean {
-                return this.props.required ?? true;
-            },
-        },
+        setup(_, { emit }) {
+            // State
+            const props = useConfigProps<MultiSelectInputProps>(_.props);
 
-        methods: {
-            toggleOption({ value }: MultiSelectOption): void {
-                const values = this.value || [];
+            // Computed
+            const required = computed<boolean>(() => props.data.required ?? true);
+
+            // Functions
+            function toggleOption({ value }: MultiSelectOption): void {
+                const values = _.value || [];
 
                 values.includes(value)
-                    ? this.$emit("input", values.filter(element => element !== value))
-                    : this.$emit("input", values.concat(value));
-            },
+                    ? emit("input", values.filter(element => element !== value))
+                    : emit("input", values.concat(value));
+            }
 
-            optionSelected({ value }: MultiSelectOption): boolean {
-                if (!this.value) {
+            function optionSelected({ value }: MultiSelectOption): boolean {
+                if (!_.value) {
                     return false;
                 }
 
-                return this.value.includes(value);
+                return _.value.includes(value);
             }
-        }
+
+            return {
+                // State
+                ...toRefs(props),
+
+                // Computed
+                required,
+
+                // Methods
+                toggleOption,
+                optionSelected,
+            }
+        },
     });
 </script>
 

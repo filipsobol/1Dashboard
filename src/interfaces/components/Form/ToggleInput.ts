@@ -1,9 +1,13 @@
+import { ComponentProps } from "@/interfaces/core/Components";
+
 export interface ToggleInput {
     type: "ToggleInput",
     props: ToggleInputProps;
 }
 
-export interface ToggleInputProps {
+export type ToggleInputProps = ComponentProps<Props>;
+
+interface Props {
     id: string;
     name: string;
     label: string;

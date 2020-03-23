@@ -1,11 +1,13 @@
-import { FormComponent } from "@/interfaces/core/Components";
+import { FormComponent, ComponentProps } from "@/interfaces/core/Components";
 
 export interface Form {
     type: "Form";
     props: FormProps;
 }
 
-export interface FormProps {
+export type FormProps = ComponentProps<Props>;
+
+interface Props {
     buttons?: {
         position?: FormButtonPosition;
         submit?: boolean;

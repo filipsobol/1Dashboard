@@ -12,15 +12,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, computed, toRefs } from "@vue/composition-api";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
     import { TextareaInputProps } from "@/interfaces/components/Form/TextareaInput";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "TextareaInput",
 
         props: {
             props: {
-                type: Object as PropType<TextareaInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             value: {
@@ -29,10 +30,20 @@
             },
         },
 
-        computed: {
-            required(): boolean {
-                return this.props.required ?? true;
-            },
+        setup(_) {
+            // State
+            const props = useConfigProps<TextareaInputProps>(_.props);
+
+            // Computed
+            const required = computed<boolean>(() => props.data.required ?? true);
+
+            return {
+                // State
+                ...toRefs(props),
+
+                // Computed
+                required,
+            };
         },
     });
 </script>

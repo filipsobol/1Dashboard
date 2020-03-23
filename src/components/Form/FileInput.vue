@@ -34,15 +34,16 @@
 </template>
 
 <script lang="ts">
-    import Vue, { PropType } from "vue";
+    import { defineComponent, ref, computed, toRefs } from "@vue/composition-api";
     import { FileInputProps } from "@/interfaces/components/Form/FileInput";
+    import { useConfigProps } from "@/core/composable/useConfigProps";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "FileInput",
 
         props: {
             props: {
-                type: Object as PropType<FileInputProps>,
+                type: [ Object, Function ],
                 required: true,
             },
             value: {
@@ -51,24 +52,34 @@
             },
         },
 
-        data: () => ({
-            active: false,
-        }),
+        setup(_) {
+            const active = ref<boolean>(false);
+            const props = useConfigProps<FileInputProps>(_.props);
 
-        computed: {
-            required(): boolean {
-                return this.props.required ?? true;
-            },
-        },
+            // Computed
+            const required = computed(() => props.data.required ?? true);
 
-        methods: {
-            onInput(): void {
+            // Methods
+            function onInput(): void {
                 // TODO
-            },
+            }
 
-            onDrag(): void {
+            function onDrag(): void {
                 // TODO
-            },
+            }
+
+            return {
+                // State
+                active,
+                ...toRefs(props),
+
+                // Computed
+                required,
+
+                // Methods
+                onInput,
+                onDrag,
+            };
         },
     });
 </script>

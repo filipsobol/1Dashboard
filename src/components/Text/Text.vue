@@ -11,7 +11,7 @@
 
         props: {
             props: {
-                type: Object as PropType<TextProps>,
+                type: [ Object, Function ] as PropType<TextProps>,
                 required: true,
             },
         },
