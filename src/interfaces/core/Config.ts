@@ -2,21 +2,21 @@ import { Radius, Shadow } from "@/interfaces/core/Styles";
 import { Component } from "@/interfaces/core/Components";
 
 export interface App {
+    debug: boolean;
     url: string;
     title: string;
     description: string;
     keywords: string;
     faviconUrl: string;
     faviconType: string;
+    defaultPageUrl?: string;
+}
+
+export interface Localization {
     timezone: string;
     locale: string;
     fallbackLocale: string;
-    debug: boolean;
-    pages: Array<Page>;
-    errorPages: ErrorPages;
-    defaultPageUrl?: string;
-    locales?: object; // TODO
-    styles: Styles;
+    locales?: object;
 }
 
 export interface Page {
@@ -24,28 +24,20 @@ export interface Page {
     name: string;
     title?: string;
     component: Component;
-    props?: PageProps;
-}
-
-export interface PageProps {
-    hideBreadcrumbs?: boolean;
-}
-
-export interface ErrorPages {
-    notFound: Page;
+    props?: {
+        hideBreadcrumbs?: boolean;
+    };
 }
 
 export interface Styles {
     tile: {
         predefinedStyles: {
-            [styleName: string]: GridTileStyle;
+            [styleName: string]: {
+                background?: string;
+                padding?: number;
+                shadow?: Shadow;
+                radius?: Radius;
+            };
         };
     };
-}
-
-export interface GridTileStyle {
-    background?: string;
-    padding?: number;
-    shadow?: Shadow;
-    radius?: Radius;
 }

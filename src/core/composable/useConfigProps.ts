@@ -2,20 +2,19 @@ import { reactive } from "@vue/composition-api";
 import { UnwrapRef } from "@vue/composition-api/dist/reactivity";
 
 export interface ConfigProps<T> {
-    data: any;
+    data: T;
     fetching: boolean;
     error: string | null;
 }
 
 export function useConfigProps<T>(props: any | Function): UnwrapRef<ConfigProps<T>> {
     const state = reactive<ConfigProps<T>>({
-        data: null,
+        data: props,
         fetching: false,
         error: null,
     });
 
     if (typeof props !== "function") {
-        state.data = props;
         return state;
     }
 
