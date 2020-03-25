@@ -4,17 +4,15 @@ const page: Page = {
     url: "/",
     name: "Homepage",
     title: "Welcome to 1Dashboard",
-    component: {
+    layout: ({ route }) => ({
         type: "Grid",
         props: {
             components: [
                 {
                     type: "Article",
                     props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
+                        body: "To change author of this article you can add following query to the end of the URL: ?author=Your Name",
+                        author: route.query?.author as string,
                     },
                     tile: {
                         layout: {
@@ -26,8 +24,8 @@ const page: Page = {
                             }
                         },
                         style: "grid",
-                        title: "Optional tile title",
-                        description: "Optional tile description"
+                        title: "Component with dynamic data",
+                        description: "This component uses dynamic data coming from"
                     }
                 },
                 {
@@ -77,7 +75,7 @@ const page: Page = {
                 }
             ]
         }
-    }
+    })
 };
 
 export default page;

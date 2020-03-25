@@ -14,8 +14,8 @@
 
         <div class="mb-8">
             <component
-                :is="getComponentName(component.type)"
-                v-bind="{ ...getComponentData(component) }" />
+                :is="getComponentName(layout.type)"
+                v-bind="{ ...getComponentData(layout) }" />
         </div>
     </div>
 </template>
@@ -47,7 +47,7 @@
                 type: String,
             },
 
-            component: {
+            layout: {
                 type: Object,
                 required: true,
             },

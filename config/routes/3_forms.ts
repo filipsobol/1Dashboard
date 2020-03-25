@@ -1,11 +1,10 @@
-import axios from "axios";
 import { Page } from "@/interfaces/core/Config";
 
 const page: Page = {
     url: "/form",
     name: "Forms",
     title: "Form inputs",
-    component: {
+    layout: {
         type: "Grid",
         props: {
             components: [
@@ -189,11 +188,7 @@ const page: Page = {
                                                 prependText: "https://github.com/",
                                                 prependIcon: "github",
                                             }
-                                        },
-                                        {
-                                            type: "NumberInput",
-                                            props: async () => axios.get("http://www.mocky.io/v2/5e771fbb3300002900099eda?mocky-delay=5000ms"),
-                                        },
+                                        }
                                     ]
                                 }
                             }

@@ -1,5 +1,6 @@
 import { Radius, Shadow } from "@/interfaces/core/Styles";
 import { Component } from "@/interfaces/core/Components";
+import { Route } from "vue-router";
 
 export interface App {
     debug: boolean;
@@ -23,10 +24,14 @@ export interface Page {
     url: string;
     name: string;
     title?: string;
-    component: Component;
+    layout: Component | { (context: PageLayoutContext): Component };
     props?: {
         hideBreadcrumbs?: boolean;
     };
+}
+
+export interface PageLayoutContext {
+    route: Route
 }
 
 export interface Styles {

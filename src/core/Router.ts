@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Router from "vue-router";
+import Router, { Route } from "vue-router";
 import PageComponent from "@/core/components/Page.vue";
 import { Page } from "@/interfaces/core/Config";
 
@@ -26,7 +26,22 @@ export function setup(store: any): Router {
         routes: pages.map((page: Page) => ({
             path: page.url,
             component: PageComponent,
-            props: page,
+            props: (route: Route) => resolvePageProps(page, route),
         })),
     });
+}
+
+function resolvePageProps(page: Page, route: Route) {
+    if (typeof page.layout !== "function") {
+        return page;
+    }
+
+    const layout = page.layout({
+        route
+    });
+
+    return {
+        ...page,
+        layout,
+    };
 }

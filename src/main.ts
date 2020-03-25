@@ -16,10 +16,12 @@ import "@/assets/styles/_core.scss";
 
 // Setup application
 (async () => {
-    const store = setupStore();
-    const router = setupRouter(store);
-    setupConfiguration(store);
     setupComponents();
+
+    const store = setupStore();                 // Create empty store
+    setupConfiguration(store);                  // Load configuration files into store
+
+    const router = setupRouter(store);          // Register routes and resolve them when entered
 
     new Vue({
         el: "#app",

@@ -7,7 +7,7 @@ const config: Page = {
     props: {
         hideBreadcrumbs: true
     },
-    component: {
+    layout: {
         type: "Grid",
         props: {
             components: [
