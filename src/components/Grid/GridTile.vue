@@ -43,10 +43,10 @@
 
         computed: {
             ...mapState([
-                "app",
+                "styles",
             ]),
 
-            styles(): GridTileStyle {
+            normalizedStyles(): GridTileStyle {
                 const defaultStyles: GridTileStyle = {
                     background: "transparent",
                     padding: 0,
@@ -60,7 +60,7 @@
                     return tileStyles;
                 }
 
-                return this.app.styles.tile.predefinedStyles[tileStyles];
+                return this.styles.tile.predefinedStyles[tileStyles];
             },
 
             tileStyles(): Array<string> {
@@ -79,15 +79,15 @@
                 return [
                     ...classes,
                     "col-span-12",
-                    `bg-${ this.styles.background || "transparent" }`,
-                    this.styles.shadow || Shadow.NONE,
-                    this.styles.radius || Radius.NONE
+                    `bg-${ this.normalizedStyles.background || "transparent" }`,
+                    this.normalizedStyles.shadow || Shadow.NONE,
+                    this.normalizedStyles.radius || Radius.NONE
                 ];
             },
 
             contentStyles(): Array<string> {
                 return [
-                    `p-${this.styles.padding ?? 0}`
+                    `p-${this.normalizedStyles.padding ?? 0}`
                 ];
             },
 

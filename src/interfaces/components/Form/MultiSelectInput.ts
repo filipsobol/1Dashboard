@@ -1,13 +1,9 @@
-import { ComponentProps } from "@/interfaces/core/Components";
-
 export interface MultiSelectInput  {
     type: "MultiSelectInput";
     props: MultiSelectInputProps;
 }
 
-export type MultiSelectInputProps = ComponentProps<Props>;
-
-interface Props {
+export interface MultiSelectInputProps {
     id: string;
     name: string;
     required?: boolean;

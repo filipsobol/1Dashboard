@@ -34,9 +34,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, ref, computed, toRefs } from "@vue/composition-api";
-    import { FileInputProps } from "@/interfaces/components/Form/FileInput";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
+    import { defineComponent, ref, computed } from "@vue/composition-api";
 
     export default defineComponent({
         name: "FileInput",
@@ -54,10 +52,9 @@
 
         setup(_) {
             const active = ref<boolean>(false);
-            const props = useConfigProps<FileInputProps>(_.props);
 
             // Computed
-            const required = computed(() => props.data.required ?? true);
+            const required = computed(() => _.props.required ?? true);
 
             // Methods
             function onInput(): void {
@@ -70,8 +67,8 @@
 
             return {
                 // State
+                _,
                 active,
-                ...toRefs(props),
 
                 // Computed
                 required,

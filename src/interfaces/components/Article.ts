@@ -1,13 +1,9 @@
-import { ComponentProps } from "@/interfaces/core/Components";
-
 export interface Article {
     type: "Article";
     props: ArticleProps;
 }
 
-export type ArticleProps = ComponentProps<Props>;
-
-interface Props {
+export interface ArticleProps {
     title?: string;
     body: string;
     author?: string;

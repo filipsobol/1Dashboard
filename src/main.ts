@@ -1,7 +1,15 @@
+import Vue from "vue";
+
+// This part can be removed after upgrade to Vue 3
+import CompositionApi from "@vue/composition-api";
+Vue.use(CompositionApi);
+
 // Load core services
 import { setup as setupStore } from "@/core/Store";
-import { setup as setupConfig } from "@/core/Config";
-import { setup as setupRenderer } from "@/core/Renderer";
+import { setup as setupRouter } from "@/core/Router";
+import { setup as setupConfiguration } from "@/core/Config";
+import { setup as setupComponents } from "@/core/Components";
+import AppComponent from "@/core/components/App.vue";
 
 // Load styles
 import "@/assets/styles/_core.scss";
@@ -9,6 +17,14 @@ import "@/assets/styles/_core.scss";
 // Setup application
 (async () => {
     const store = setupStore();
-    await setupConfig(store);
-    setupRenderer(store);
+    const router = setupRouter(store);
+    setupConfiguration(store);
+    setupComponents();
+
+    new Vue({
+        el: "#app",
+        store,
+        router,
+        render: h => h(AppComponent),
+    });
 })();

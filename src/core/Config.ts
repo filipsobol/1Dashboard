@@ -1,11 +1,21 @@
 import AppConfig from "@/../config/app";
+import LocalizationConfig from "@/../config/localization";
+import StylesConfig from "@/../config/styles";
 
-export async function setup(store: any) {
-    updateDocumentHead();
-
+export function setup(store: any) {
     store.commit("update", {
         name: "app",
         value: AppConfig,
+    });
+
+    store.commit("update", {
+        name: "localization",
+        value: LocalizationConfig,
+    });
+
+    store.commit("update", {
+        name: "styles",
+        value: StylesConfig,
     });
 }
 

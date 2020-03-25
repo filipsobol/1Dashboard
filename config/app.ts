@@ -39,7 +39,7 @@ const app: App = {
     /**
      * URL of the page to be displayed when user visits "/".
      */
-    defaultPageUrl: undefined,
+    defaultPageUrl: "/",
 };
 
 export default app;

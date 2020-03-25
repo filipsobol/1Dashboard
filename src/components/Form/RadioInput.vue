@@ -20,9 +20,8 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { RadioInputProps, SelectOption } from "@/interfaces/components/Form/RadioInput";
+    import { defineComponent, computed } from "@vue/composition-api";
+    import { SelectOption } from "@/interfaces/components/Form/RadioInput";
 
     export default defineComponent({
         name: "RadioInput",
@@ -39,11 +38,8 @@
         },
 
         setup(_) {
-            // State
-            const props = useConfigProps<RadioInputProps>(_.props);
-
             // Computed
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
 
             // Methods
             function optionIsActive(option: SelectOption): boolean {
@@ -52,7 +48,7 @@
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 required,

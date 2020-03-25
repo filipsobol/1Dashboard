@@ -1,59 +1,45 @@
 <template>
-    <div>
-        <div v-if="data">
-            <db-input
-                :name="data.name"
-                :prepend-text="data.prependText"
-                :append-text="data.appendText"
-                :prepend-icon="data.prependIcon"
-                :append-icon="data.appendIcon">
-                <input
-                    ref="input"
-                    type="number"
-                    :name="data.id"
-                    :value="value"
-                    :step="step"
-                    :min="data.min"
-                    :max="data.max"
-                    :placeholder="data.placeholder"
-                    :required="required"
-                    :readonly="data.readonly"
-                    @input="$emit('input', Number($event.target.value))" />
+    <db-input
+        :name="props.name"
+        :prepend-text="props.prependText"
+        :append-text="props.appendText"
+        :prepend-icon="props.prependIcon"
+        :append-icon="props.appendIcon">
+        <input
+            ref="input"
+            type="number"
+            :name="props.id"
+            :value="value"
+            :step="step"
+            :min="props.min"
+            :max="props.max"
+            :placeholder="props.placeholder"
+            :required="required"
+            :readonly="props.readonly"
+            @input="$emit('input', Number($event.target.value))" />
 
-                <button
-                    type="button"
-                    class="increment-button"
-                    tabindex="-1"
-                    aria-label="Increment"
-                    @click="increment()">
-                    <i class="icon-plus" />
-                </button>
+        <button
+            type="button"
+            class="increment-button"
+            tabindex="-1"
+            aria-label="Increment"
+            @click="increment()">
+            <i class="icon-plus" />
+        </button>
 
-                <button
-                    type="button"
-                    class="decrement-button"
-                    tabindex="-1"
-                    aria-label="Decrement"
-                    @click="decrement()">
-                    <i class="icon-minus" />
-                </button>
-            </db-input>
-        </div>
-
-        <div v-else-if="fetching">
-            Loading...
-        </div>
-
-        <div v-else-if="error">
-            {{ error }}
-        </div>
-    </div>
+        <button
+            type="button"
+            class="decrement-button"
+            tabindex="-1"
+            aria-label="Decrement"
+            @click="decrement()">
+            <i class="icon-minus" />
+        </button>
+    </db-input>
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, ref, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { NumberInputProps } from "@/interfaces/components/Form/NumberInput";
+    import { defineComponent, computed, ref } from "@vue/composition-api";
 
     export default defineComponent({
         name: "NumberInput",
@@ -74,13 +60,10 @@
             // Template refs
             const input = ref<HTMLElement>(null);
 
-            // State
-            const props = useConfigProps<NumberInputProps>(_.props);
-
             // Computed
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
 
-            const step = computed<number>(() => props.data.step ?? 1);
+            const step = computed<number>(() => _.props.step ?? 1);
 
             const precision = computed(() => {
                 if (Math.floor(step.value) === step.value) {
@@ -110,7 +93,7 @@
                 input,
 
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 required,

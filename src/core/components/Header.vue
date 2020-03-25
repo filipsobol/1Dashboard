@@ -14,10 +14,10 @@
                     <div class="hidden md:block">
                         <div class="ml-6 flex items-baseline">
                             <router-link
-                                v-for="page in app.pages"
+                                v-for="page in pages"
                                 :key="page.url"
                                 :to="page.url"
-                                active-class="text-white bg-gray-900 hover:text-white hover:bg-gray-900"
+                                exact-active-class="text-white bg-gray-900 hover:text-white hover:bg-gray-900"
                                 class="ml-4 mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-300 hover:text-white hover:bg-gray-700"
                                 tag="a">
                                 {{ page.name }}
@@ -119,10 +119,10 @@
             class="block md:hidden">
             <div class="px-2 pt-2 pb-3 sm:px-3">
                 <router-link
-                    v-for="page in app.pages"
+                    v-for="page in pages"
                     :key="page.url"
                     :to="page.url"
-                    active-class="active"
+                    exact-active-class="active"
                     class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     tag="a">
                     {{ page.name }}
@@ -176,7 +176,7 @@
 
         computed: {
             ...mapState([
-                "app",
+                "pages",
             ]),
         },
     });

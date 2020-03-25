@@ -9,6 +9,9 @@ export function setup(): any {
 
         state: {
             app: null,
+            localization: null,
+            styles: null,
+            pages: null,
         },
 
         getters: {},

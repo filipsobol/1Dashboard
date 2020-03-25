@@ -28,9 +28,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, ref, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { PasswordInputProps } from "@/interfaces/components/Form/PasswordInput";
+    import { defineComponent, computed, ref } from "@vue/composition-api";
 
     export default defineComponent({
         name: "PasswordInput",
@@ -52,10 +50,9 @@
 
             // State
             const visible = ref<boolean>(false);
-            const props = useConfigProps<PasswordInputProps>(_.props);
 
             // Computed
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
             const inputType = computed<string>(() => visible.value ? "text" : "password");
             const iconType = computed<string>(() => visible.value ? "eye-off" : "eye");
 
@@ -70,8 +67,8 @@
                 input,
 
                 // State
+                _,
                 visible,
-                ...toRefs(props),
 
                 // Computed
                 required,

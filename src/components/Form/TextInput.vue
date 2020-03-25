@@ -17,9 +17,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { TextInputProps } from "@/interfaces/components/Form/TextInput";
+    import { defineComponent, computed } from "@vue/composition-api";
 
     export default defineComponent({
         name: "TextInput",
@@ -36,15 +34,12 @@
         },
 
         setup(_) {
-            // State
-            const props = useConfigProps<TextInputProps>(_.props);
-
             // Computed
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 required,

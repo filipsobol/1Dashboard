@@ -1,7 +1,7 @@
 import { Page } from "@/interfaces/core/Config";
 
 const config: Page = {
-    url: "/404",
+    url: "*",
     name: "404",
     title: "404 - Page not found",
     props: {

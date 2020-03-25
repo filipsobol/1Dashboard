@@ -5,10 +5,10 @@
         :disabled="disabled"
         :class="{ loading }">
         <i
-            v-if="data.icon"
-            :class="['icon-' + data.icon, 'prop-icon']" />
+            v-if="props.icon"
+            :class="['icon-' + props.icon, 'prop-icon']" />
 
-        <span v-if="data.text">{{ data.text }}</span>
+        <span v-if="props.text">{{ props.text }}</span>
 
         <div class="loading-overlay">
             <i class="icon-loader" />
@@ -17,9 +17,8 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, toRefs } from "@vue/composition-api";
-    import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
+    import { defineComponent, computed } from "@vue/composition-api";
+    import { ButtonType } from "@/interfaces/components/Button";
 
     export default defineComponent({
         name: "Button",
@@ -37,11 +36,9 @@
         },
 
         setup(_, { emit }) {
-            const props = useConfigProps<ButtonProps>(_.props);
-
             // Computed
-            const type = computed<ButtonType>(() => props.data.type ?? ButtonType.Button);
-            const disabled = computed<boolean>(() => props.data.disabled ?? _.loading ?? false);
+            const type = computed<ButtonType>(() => _.props.type ?? ButtonType.Button);
+            const disabled = computed<boolean>(() => _.props.disabled ?? _.loading ?? false);
 
             function onClick(): void {
                 emit("click");
@@ -51,7 +48,7 @@
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 type,

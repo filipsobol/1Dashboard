@@ -9,7 +9,7 @@ export interface App {
     keywords: string;
     faviconUrl: string;
     faviconType: string;
-    defaultPageUrl?: string;
+    defaultPageUrl: string;
 }
 
 export interface Localization {
@@ -32,12 +32,14 @@ export interface Page {
 export interface Styles {
     tile: {
         predefinedStyles: {
-            [styleName: string]: {
-                background?: string;
-                padding?: number;
-                shadow?: Shadow;
-                radius?: Radius;
-            };
+            [styleName: string]: GridTileStyle;
         };
     };
+}
+
+export interface GridTileStyle {
+    background?: string;
+    padding?: number;
+    shadow?: Shadow;
+    radius?: Radius;
 }

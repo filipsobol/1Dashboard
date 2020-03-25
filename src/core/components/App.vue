@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import { defineComponent } from "@vue/composition-api";
     import DbHeader from "@/core/components/Header.vue";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Application",
 
         components: {
@@ -24,7 +24,7 @@
     });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity .5s;

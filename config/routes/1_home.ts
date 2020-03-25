@@ -1,7 +1,7 @@
 import { Page } from "../../src/interfaces/core/Config";
 
 const page: Page = {
-    url: "/home",
+    url: "/",
     name: "Homepage",
     title: "Welcome to 1Dashboard",
     component: {

@@ -1,13 +1,9 @@
-import { ComponentProps } from "@/interfaces/core/Components";
-
 export interface CheckboxInput {
     type: "CheckboxInput";
     props: CheckboxInputProps;
 }
 
-export type CheckboxInputProps = ComponentProps<Props>;
-
-interface Props {
+export interface CheckboxInputProps {
     id: string;
     name: string;
     options: Array<SelectOption>;

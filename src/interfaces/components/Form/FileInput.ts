@@ -1,13 +1,9 @@
-import { ComponentProps } from "@/interfaces/core/Components";
-
 export interface FileInput {
     type: "FileInput";
     props: FileInputProps;
 }
 
-export type FileInputProps = ComponentProps<Props>;
-
-export interface Props {
+export interface FileInputProps {
     id: string;
     name: string;
     placeholder?: string;

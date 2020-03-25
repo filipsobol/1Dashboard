@@ -84,7 +84,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -97,7 +97,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -110,7 +110,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -123,7 +123,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -136,7 +136,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -149,7 +149,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -162,7 +162,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -175,7 +175,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -188,7 +188,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -201,7 +201,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -214,7 +214,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }
@@ -227,7 +227,7 @@ const page: Page = {
                                 },
                                 tile: {
                                     layout: {
-                                        sm: {
+                                        xl: {
                                             width: 1
                                         }
                                     }

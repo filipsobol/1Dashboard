@@ -18,9 +18,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { ToggleInputProps } from '@/interfaces/components/Form/ToggleInput';
+    import { defineComponent, computed } from "@vue/composition-api";
 
     export default defineComponent({
         name: "ToggleInput",
@@ -37,16 +35,13 @@
         },
 
         setup(_) {
-            // State
-            const props = useConfigProps<ToggleInputProps>(_.props);
-
             // Computed
             const active = computed<boolean>(() => _.value ?? false);
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 active,

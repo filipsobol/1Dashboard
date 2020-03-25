@@ -30,11 +30,10 @@
 </template>
 
 <script lang="ts">
-    import { computed, defineComponent, reactive, ref, toRefs, } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
+    import { computed, defineComponent, reactive, ref } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@/utils/nestedComponents";
     import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
-    import { FormButtonPosition, FormProps } from "@/interfaces/components/Form";
+    import { FormButtonPosition } from "@/interfaces/components/Form";
 
     export default defineComponent({
         name: "Form",
@@ -58,15 +57,14 @@
             };
 
             // State
-            const props = useConfigProps<FormProps>(_.props);
             const values = reactive<object>({});
             const submitting = ref<boolean>(false);
 
             // Computed
-            const showSubmitButton = computed<boolean>(() => props.data?.buttons?.submit ?? true);
-            const showResetButton = computed<boolean>(() => props.data?.buttons?.reset ?? true);
+            const showSubmitButton = computed<boolean>(() => _.props.buttons?.submit ?? true);
+            const showResetButton = computed<boolean>(() => _.props.buttons?.reset ?? true);
             const showButtonsSection = computed<boolean>(() => showSubmitButton.value || showResetButton.value);
-            const buttonsPosition = computed<FormButtonPosition>(() => props.data?.buttons?.position ?? FormButtonPosition.Start);
+            const buttonsPosition = computed<FormButtonPosition>(() => _.props.buttons?.position ?? FormButtonPosition.Start);
 
             // Methods
             function onFormSubmit(): void {
@@ -83,9 +81,9 @@
                 resetButtonProps,
 
                 // State
+                _,
                 values,
                 submitting,
-                ...toRefs(props),
 
                 // Computed
                 showSubmitButton,

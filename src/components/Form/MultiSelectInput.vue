@@ -18,9 +18,8 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, toRefs } from "@vue/composition-api";
-    import { MultiSelectInputProps, MultiSelectOption } from '@/interfaces/components/Form/MultiSelectInput';
-    import { useConfigProps } from "@/core/composable/useConfigProps";
+    import { defineComponent, computed } from "@vue/composition-api";
+    import { MultiSelectOption } from '@/interfaces/components/Form/MultiSelectInput';
 
     export default defineComponent({
         name: "MultiSelectInput",
@@ -38,11 +37,8 @@
         },
 
         setup(_, { emit }) {
-            // State
-            const props = useConfigProps<MultiSelectInputProps>(_.props);
-
             // Computed
-            const required = computed<boolean>(() => props.data.required ?? true);
+            const required = computed<boolean>(() => _.props.required ?? true);
 
             // Functions
             function toggleOption({ value }: MultiSelectOption): void {
@@ -63,7 +59,7 @@
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Computed
                 required,

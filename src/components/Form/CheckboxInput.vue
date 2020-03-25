@@ -23,9 +23,8 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, toRefs } from "@vue/composition-api";
-    import { useConfigProps } from "@/core/composable/useConfigProps";
-    import { CheckboxInputProps, SelectOption } from '@/interfaces/components/Form/CheckboxInput';
+    import { defineComponent } from "@vue/composition-api";
+    import { SelectOption } from '@/interfaces/components/Form/CheckboxInput';
 
     export default defineComponent({
         name: "CheckboxInput",
@@ -42,8 +41,6 @@
         },
 
         setup(_: any, { emit }) {
-            const props = useConfigProps<CheckboxInputProps>(_.props);
-
             function optionIsActive(option: SelectOption): boolean {
                 if (Array.isArray(_.value)) {
                     return _.value.includes(option.value ?? "");
@@ -53,7 +50,7 @@
             }
 
             function onChange(value: string): void {
-                if (props.data.options.length === 1) {
+                if (_.props.options.length === 1) {
                     return emit("input", !_.value);
                 }
 
@@ -70,7 +67,7 @@
 
             return {
                 // State
-                ...toRefs(props),
+                _,
 
                 // Methods
                 optionIsActive,
