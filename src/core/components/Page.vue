@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import { defineComponent, computed } from "@vue/composition-api";
     import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
     import { getComponentName, getComponentData } from "@/utils/nestedComponents";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Page",
 
         components: {
@@ -57,15 +57,20 @@
             },
         },
 
-        computed: {
-            showBreadcrumbs(): boolean {
-                return !this.props?.hideBreadcrumbs ?? true;
-            }
-        },
+        setup(_) {
+            const showBreadcrumbs = computed(() => _.props?.hideBreadcrumbs ?? true);
 
-        methods: {
-            getComponentName,
-            getComponentData,
+            return {
+                // State
+                _,
+
+                // Computed
+                showBreadcrumbs,
+
+                // Methods
+                getComponentName,
+                getComponentData,
+            };
         },
     });
 </script>

@@ -1,8 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import { Page } from "@/interfaces/core/Config";
 import PageComponent from "@/core/components/Page.vue";
-import AppConfig from "../../config/app";
+import { Page } from "@/interfaces/core/Config";
 
 Vue.use(Router);
 

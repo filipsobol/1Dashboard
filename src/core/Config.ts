@@ -3,6 +3,8 @@ import LocalizationConfig from "@/../config/localization";
 import StylesConfig from "@/../config/styles";
 
 export function setup(store: any) {
+    updateDocumentHead();
+
     store.commit("update", {
         name: "app",
         value: AppConfig,

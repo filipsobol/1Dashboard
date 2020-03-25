@@ -28,7 +28,8 @@
     import Vue from "vue";
     import { mapState } from "vuex";
     import { getComponentName, getComponentData } from "@/utils/nestedComponents";
-    import { GridTileStyle } from '@/interfaces/core/Config';
+    import { Component } from "@/interfaces/core/Components";
+    import { GridTileStyle } from "@/interfaces/core/Config";
     import { Shadow, Radius } from "@/interfaces/core/Styles";
 
     export default Vue.extend({
@@ -95,7 +96,7 @@
                 return getComponentName(this.component.type);
             },
 
-            componentData(): any {
+            componentData(): Partial<Component> {
                 return getComponentData(this.component);
             },
         }
