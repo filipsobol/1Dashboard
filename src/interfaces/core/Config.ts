@@ -1,6 +1,7 @@
-import { Radius, Shadow } from "@/interfaces/core/Styles";
-import { Component } from "@/interfaces/core/Components";
 import { Route } from "vue-router";
+import { AxiosRequestConfig } from "axios";
+import { Component } from "@/interfaces/core/Components";
+import { Radius, Shadow } from "@/interfaces/core/Styles";
 
 export interface App {
     debug: boolean;
@@ -21,10 +22,12 @@ export interface Localization {
 }
 
 export interface Page {
-    url: string;
+    url?: string;
     name: string;
     title?: string;
-    layout: Component | { (context: PageLayoutContext): Component };
+    layout: Component | {
+        (context: PageLayoutContext): Component | Promise<Component>
+    };
     props?: {
         hideBreadcrumbs?: boolean;
     };
@@ -32,6 +35,11 @@ export interface Page {
 
 export interface PageLayoutContext {
     route: Route
+    get(url: string, config?: AxiosRequestConfig): Promise<any>;
+    post(url: string, config?: AxiosRequestConfig): Promise<any>;
+    put(url: string, config?: AxiosRequestConfig): Promise<any>;
+    patch(url: string, config?: AxiosRequestConfig): Promise<any>;
+    delete(url: string, config?: AxiosRequestConfig): Promise<any>;
 }
 
 export interface Styles {

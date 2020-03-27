@@ -4,7 +4,7 @@ const page: Page = {
     url: "/form",
     name: "Forms",
     title: "Form inputs",
-    layout: {
+    layout: ({ route }) => ({
         type: "Grid",
         props: {
             components: [
@@ -142,7 +142,13 @@ const page: Page = {
                                             }
                                         },
                                     ]
-                                }
+                                },
+                                events: [
+                                    {
+                                        on: "submit",
+                                        callback: () => console.log(route),
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -202,7 +208,7 @@ const page: Page = {
                 },
             ]
         }
-    }
+    })
 };
 
 export default page;

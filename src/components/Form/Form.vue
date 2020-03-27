@@ -42,6 +42,10 @@
             props: {
                 type: [Object, Function],
                 required: true,
+            },
+            events: {
+                type: Array,
+                required: false
             }
         },
 
@@ -71,7 +75,12 @@
                 submitting.value = true;
                 emit("submit"); // TODO: Pass form data
 
-                // TODO: Support event from template
+                if (_.events) {
+                    const events = _.events.filter((event: any) => event.on === "submit");
+
+                    events.forEach((event: any) => event.callback()); // TODO: Pass form data
+                }
+
                 // submitting.value = false;
             }
 

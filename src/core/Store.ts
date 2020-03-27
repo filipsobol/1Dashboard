@@ -12,6 +12,7 @@ export function setup(): any {
             localization: null,
             styles: null,
             pages: null,
+            resources: null,
         },
 
         getters: {},

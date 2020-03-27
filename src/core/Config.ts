@@ -1,5 +1,6 @@
 import AppConfig from "@/../config/app";
 import LocalizationConfig from "@/../config/localization";
+import ResourcesConfig from "@/../config/resources";
 import StylesConfig from "@/../config/styles";
 
 export function setup(store: any) {
@@ -18,6 +19,11 @@ export function setup(store: any) {
     store.commit("update", {
         name: "styles",
         value: StylesConfig,
+    });
+
+    store.commit("update", {
+        name: "resources",
+        value: ResourcesConfig,
     });
 }
 

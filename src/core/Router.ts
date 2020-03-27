@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Router, { Route } from "vue-router";
+import Router from "vue-router";
 import PageComponent from "@/core/components/Page.vue";
 import { Page } from "@/interfaces/core/Config";
 
@@ -13,35 +13,22 @@ export function setup(store: any): Router {
 
     const pages = context
         .keys()
-        .map((key: string) => context(key).default);
+        .map((key: string) => context(key).default)
+        .filter(({ url }: Page) => url);
 
     store.commit("update", {
         name: "pages",
-        value: pages.filter(({ url }: Page) => !url.includes("*")),
+        value: pages,
     });
 
-    // Create Vue Router
+    const routes = pages.map((page: Page) => ({
+        path: page.url as string,
+        component: PageComponent,
+        props: page
+    }));
+
     return new Router({
         mode: "history", // TODO: Mode should be configurable
-        routes: pages.map((page: Page) => ({
-            path: page.url,
-            component: PageComponent,
-            props: (route: Route) => resolvePageProps(page, route),
-        })),
+        routes,
     });
-}
-
-function resolvePageProps(page: Page, route: Route) {
-    if (typeof page.layout !== "function") {
-        return page;
-    }
-
-    const layout = page.layout({
-        route
-    });
-
-    return {
-        ...page,
-        layout,
-    };
 }

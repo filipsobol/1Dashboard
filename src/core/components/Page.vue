@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex-grow mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container flex-grow flex flex-col mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mt-6 mb-8">
             <DbBreadcrumbs
                 v-if="showBreadcrumbs"
@@ -12,16 +12,27 @@
             </h1>
         </div>
 
-        <div class="mb-8">
+        <div
+            v-if="resolvedLayout"
+            class="mb-8 flex-grow">
             <component
-                :is="getComponentName(layout.type)"
-                v-bind="{ ...getComponentData(layout) }" />
+                v-bind="{ ...getComponentData(resolvedLayout) }"
+                :is="getComponentName(resolvedLayout.type)" />
+        </div>
+
+        <div
+            v-else
+            class="flex flex-grow justify-center items-center">
+            <DbLoading />
         </div>
     </div>
 </template>
 
 <script lang="ts">
+    import { Route } from 'vue-router';
+    import axios, { AxiosRequestConfig, Method } from "axios";
     import { defineComponent, computed } from "@vue/composition-api";
+    import DbLoading from "@/core/components/Loading.vue";
     import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
     import { getComponentName, getComponentData } from "@/utils/nestedComponents";
 
@@ -30,6 +41,7 @@
 
         components: {
             DbBreadcrumbs,
+            DbLoading,
         },
 
         props: {
@@ -48,13 +60,55 @@
             },
 
             layout: {
-                type: Object,
+                type: [
+                    Object,
+                    Function,
+                    Promise,
+                ],
                 required: true,
             },
 
             props: {
                 type: Object,
             },
+        },
+
+        data: () => ({
+            resolvedLayout: null
+        }),
+
+        beforeRouteEnter (to: Route, from: Route, next: Function): void {
+            next(async (vm: any) => {
+                if (typeof vm.layout !== "function") {
+                    vm.resolvedLayout = vm.layout;
+                    return;
+                }
+
+                const request = axios.create(vm.$store.state.resources);
+
+                const makeRequest = async (method: Method, url: string, config?: AxiosRequestConfig) => {
+                    const { data } = await request({
+                        url,
+                        method,
+                        ...config
+                    });
+
+                    return data;
+                };
+
+                try {
+                    vm.resolvedLayout = await vm.layout({
+                        route: to,
+                        get: (url: string, config?: AxiosRequestConfig) => makeRequest("get", url, config),
+                        post: (url: string, config?: AxiosRequestConfig) => makeRequest("post", url, config),
+                        put: (url: string, config?: AxiosRequestConfig) => makeRequest("put", url, config),
+                        patch: (url: string, config?: AxiosRequestConfig) => makeRequest("patch", url, config),
+                        delete: (url: string, config?: AxiosRequestConfig) => makeRequest("delete", url, config),
+                    });
+                } catch {
+                    // TODO: Display 500 page
+                }
+            });
         },
 
         setup(_) {

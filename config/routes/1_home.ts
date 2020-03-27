@@ -1,10 +1,11 @@
-import { Page } from "../../src/interfaces/core/Config";
+import { Page } from "@/interfaces/core/Config";
+import { Component } from "@/interfaces/core/Components";
 
 const page: Page = {
     url: "/",
     name: "Homepage",
     title: "Welcome to 1Dashboard",
-    layout: ({ route }) => ({
+    layout: async ({ route, get }): Promise<Component> => ({
         type: "Grid",
         props: {
             components: [
@@ -12,7 +13,7 @@ const page: Page = {
                     type: "Article",
                     props: {
                         body: "To change author of this article you can add following query to the end of the URL: ?author=Your Name",
-                        author: route.query?.author as string,
+                        author: route.query?.author as string || "Default author",
                     },
                     tile: {
                         layout: {
@@ -30,12 +31,7 @@ const page: Page = {
                 },
                 {
                     type: "Article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
-                    },
+                    props: await get("http://www.mocky.io/v2/5e7cf1643500002a9806a02d?mocky-delay=1500ms"),
                     tile: {
                         layout: {
                             sm: {
@@ -47,18 +43,6 @@ const page: Page = {
                         },
                         style: "grid",
                         title: "Optional tile title",
-                    }
-                },
-                {
-                    type: "Article",
-                    props: {
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol"
-                    },
-                    tile: {
-                        style: "grid",
-                        title: "This can also be used as article title",
-                        description: "29-02-2020"
                     }
                 },
                 {
