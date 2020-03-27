@@ -28,6 +28,10 @@
                 type: [ Object, Function ],
                 required: true,
             },
+            events: {
+                type: Array,
+                required: false,
+            },
             loading: {
                 type: Boolean,
                 required: false,
@@ -43,7 +47,9 @@
             function onClick(): void {
                 emit("click");
 
-                // TODO: Support event from template
+                _.events
+                    ?.filter((event: any) => event.on === "click")
+                    .forEach((event: any) => event.callback());
             }
 
             return {

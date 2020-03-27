@@ -29,11 +29,12 @@
 </template>
 
 <script lang="ts">
-    import { Route } from 'vue-router';
+    import { Route } from "vue-router";
     import axios, { AxiosRequestConfig, Method } from "axios";
     import { defineComponent, computed } from "@vue/composition-api";
     import DbLoading from "@/core/components/Loading.vue";
     import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
+    import { Page, PageUrl } from "@/interfaces/core/Config";
     import { getComponentName, getComponentData } from "@/utils/nestedComponents";
 
     export default defineComponent({
@@ -46,7 +47,7 @@
 
         props: {
             url: {
-                type: String,
+                type: [String, Number],
                 required: true,
             },
 
@@ -79,26 +80,27 @@
 
         beforeRouteEnter (to: Route, from: Route, next: Function): void {
             next(async (vm: any) => {
-                if (typeof vm.layout !== "function") {
-                    vm.resolvedLayout = vm.layout;
-                    return;
-                }
-
-                const request = axios.create(vm.$store.state.resources);
-
-                const makeRequest = async (method: Method, url: string, config?: AxiosRequestConfig) => {
-                    const { data } = await request({
-                        url,
-                        method,
-                        ...config
-                    });
-
-                    return data;
-                };
-
                 try {
+                    if (typeof vm.layout !== "function") {
+                        vm.resolvedLayout = vm.layout;
+                        return;
+                    }
+
+                    const request = axios.create(vm.$store.state.resources);
+
+                    const makeRequest = async (method: Method, url: string, config?: AxiosRequestConfig) => {
+                        const { data } = await request({
+                            url,
+                            method,
+                            ...config
+                        });
+
+                        return data;
+                    };
+
                     vm.resolvedLayout = await vm.layout({
-                        route: to,
+                        route: vm.$router.history.current,
+                        router: vm.$router,
                         get: (url: string, config?: AxiosRequestConfig) => makeRequest("get", url, config),
                         post: (url: string, config?: AxiosRequestConfig) => makeRequest("post", url, config),
                         put: (url: string, config?: AxiosRequestConfig) => makeRequest("put", url, config),
@@ -106,7 +108,12 @@
                         delete: (url: string, config?: AxiosRequestConfig) => makeRequest("delete", url, config),
                     });
                 } catch {
-                    // TODO: Display 500 page
+                    const internalErrorPage = vm.$store.state.statusPages.find(({ url }: Page) => url === PageUrl.InternalError);
+
+                    if (internalErrorPage) {
+                        // TODO: This page might also have dynamic layout
+                        vm.resolvedLayout = internalErrorPage.layout;
+                    }
                 }
             });
         },

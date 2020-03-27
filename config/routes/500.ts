@@ -1,6 +1,7 @@
-import { Page } from "@/interfaces/core/Config";
+import { Page, PageUrl } from "@/interfaces/core/Config";
 
 const config: Page = {
+    url: PageUrl.InternalError,
     name: "500",
     title: "500 - Internal Error",
     props: {
@@ -13,19 +14,10 @@ const config: Page = {
                 {
                     type: "Article",
                     props: {
-                        body: "There was an error when trying to display this page."
+                        body: "An error occurred trying to load the page. Please try refreshing this page. If it persists, please report it to your system administrator."
                     },
                     tile: {
                         style: "grid"
-                    }
-                },
-                {
-                    type: "Button",
-                    props: {
-                        text: "Go back to homepage"
-                    },
-                    tile: {
-                        style: "content"
                     }
                 }
             ]

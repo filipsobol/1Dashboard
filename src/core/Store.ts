@@ -11,7 +11,8 @@ export function setup(): any {
             app: null,
             localization: null,
             styles: null,
-            pages: null,
+            contentPages: null,
+            statusPages: null,
             resources: null,
         },
 

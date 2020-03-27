@@ -31,7 +31,7 @@ const page: Page = {
                 },
                 {
                     type: "Article",
-                    props: await get("http://www.mocky.io/v2/5e7cf1643500002a9806a02d?mocky-delay=1500ms"),
+                    props: await get("https://www.mocky.io/v2/5e7cf1643500002a9806a02d?mocky-delay=1500ms"),
                     tile: {
                         layout: {
                             sm: {

@@ -1,4 +1,4 @@
-import { Route } from "vue-router";
+import VueRouter, { Route } from "vue-router";
 import { AxiosRequestConfig } from "axios";
 import { Component } from "@/interfaces/core/Components";
 import { Radius, Shadow } from "@/interfaces/core/Styles";
@@ -22,19 +22,25 @@ export interface Localization {
 }
 
 export interface Page {
-    url?: string;
+    url: string | PageUrl;
     name: string;
     title?: string;
     layout: Component | {
-        (context: PageLayoutContext): Component | Promise<Component>
+        (context: PageLayoutContext): Component | Promise<Component>;
     };
     props?: {
         hideBreadcrumbs?: boolean;
     };
 }
 
+export enum PageUrl {
+    NotFound = 404,
+    InternalError = 500,
+}
+
 export interface PageLayoutContext {
-    route: Route
+    route: Route;
+    router: VueRouter;
     get(url: string, config?: AxiosRequestConfig): Promise<any>;
     post(url: string, config?: AxiosRequestConfig): Promise<any>;
     put(url: string, config?: AxiosRequestConfig): Promise<any>;

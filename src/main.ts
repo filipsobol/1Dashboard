@@ -20,8 +20,7 @@ import "@/assets/styles/_core.scss";
 
     const store = setupStore();                 // Create empty store
     setupConfiguration(store);                  // Load configuration files into store
-
-    const router = setupRouter(store);          // Register routes and resolve them when entered
+    const router = setupRouter(store);          // Register routes
 
     new Vue({
         el: "#app",

@@ -1,13 +1,13 @@
-import { Page } from "@/interfaces/core/Config";
+import { Page, PageUrl } from "@/interfaces/core/Config";
 
 const config: Page = {
-    url: "*",
+    url: PageUrl.NotFound,
     name: "404",
     title: "404 - Page not found",
     props: {
         hideBreadcrumbs: true
     },
-    layout: {
+    layout: ({ router }) => ({
         type: "Grid",
         props: {
             components: [
@@ -17,7 +17,7 @@ const config: Page = {
                         body: "Page you are looking for doesn't exists. Click on a button below to go back to homepage."
                     },
                     tile: {
-                        style: "grid"
+                        style: "content"
                     }
                 },
                 {
@@ -25,13 +25,19 @@ const config: Page = {
                     props: {
                         text: "Go back to homepage"
                     },
+                    events: [
+                        {
+                            on: "click",
+                            callback: () => router.push({ path: "/" }),
+                        }
+                    ],
                     tile: {
                         style: "content"
                     }
                 }
             ]
         }
-    }
+    })
 };
 
 export default config;

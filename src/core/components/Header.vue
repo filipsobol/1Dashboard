@@ -14,7 +14,7 @@
                     <div class="hidden md:block">
                         <div class="ml-6 flex items-baseline">
                             <router-link
-                                v-for="page in pages"
+                                v-for="page in contentPages"
                                 :key="page.url"
                                 :to="page.url"
                                 exact-active-class="text-white bg-gray-900 hover:text-white hover:bg-gray-900"
@@ -119,7 +119,7 @@
             class="block md:hidden">
             <div class="px-2 pt-2 pb-3 sm:px-3">
                 <router-link
-                    v-for="page in pages"
+                    v-for="page in contentPages"
                     :key="page.url"
                     :to="page.url"
                     exact-active-class="active"
@@ -176,7 +176,7 @@
 
         computed: {
             ...mapState([
-                "pages",
+                "contentPages",
             ]),
         },
     });
