@@ -1,5 +1,7 @@
 <template>
-    <form @submit.stop.prevent="onFormSubmit">
+    <form
+        @submit.stop.prevent="onFormSubmit"
+        class="w-full">
         <div
             v-for="(component, index) in props.components"
             :key="index"

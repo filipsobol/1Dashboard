@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-12 gap-6 row-gap-6">
+    <div class="grid grid-cols-12 gap-6 row-gap-6 w-full">
         <db-grid-tile
             v-for="(component, index) in props.components"
             :key="index"

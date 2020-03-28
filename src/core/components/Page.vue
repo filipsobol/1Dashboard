@@ -30,8 +30,8 @@
 
 <script lang="ts">
     import { Route } from "vue-router";
-    import axios, { AxiosRequestConfig, Method } from "axios";
     import { defineComponent, computed } from "@vue/composition-api";
+    import { resolvePageContext } from "@/core/PageContext";
     import DbLoading from "@/core/components/Loading.vue";
     import DbBreadcrumbs from "@/core/components/Breadcrumbs.vue";
     import { Page, PageUrl } from "@/interfaces/core/Config";
@@ -81,38 +81,15 @@
         beforeRouteEnter (to: Route, from: Route, next: Function): void {
             next(async (vm: any) => {
                 try {
-                    if (typeof vm.layout !== "function") {
-                        vm.resolvedLayout = vm.layout;
-                        return;
-                    }
-
-                    const request = axios.create(vm.$store.state.resources);
-
-                    const makeRequest = async (method: Method, url: string, config?: AxiosRequestConfig) => {
-                        const { data } = await request({
-                            url,
-                            method,
-                            ...config
-                        });
-
-                        return data;
-                    };
-
-                    vm.resolvedLayout = await vm.layout({
-                        route: vm.$router.history.current,
-                        router: vm.$router,
-                        get: (url: string, config?: AxiosRequestConfig) => makeRequest("get", url, config),
-                        post: (url: string, config?: AxiosRequestConfig) => makeRequest("post", url, config),
-                        put: (url: string, config?: AxiosRequestConfig) => makeRequest("put", url, config),
-                        patch: (url: string, config?: AxiosRequestConfig) => makeRequest("patch", url, config),
-                        delete: (url: string, config?: AxiosRequestConfig) => makeRequest("delete", url, config),
-                    });
+                    // Resolve layout for current page
+                    vm.resolvedLayout = await resolvePageContext(vm, vm.layout);
                 } catch {
-                    const internalErrorPage = vm.$store.state.statusPages.find(({ url }: Page) => url === PageUrl.InternalError);
+                    // Resolve to 500 error page if resolving layout for current page fails (eg. endpoint is down)
+                    const InternalErrorPage = vm.$store.state.statusPages
+                        .find(({ url }: Page) => url === PageUrl.InternalError);
 
-                    if (internalErrorPage) {
-                        // TODO: This page might also have dynamic layout
-                        vm.resolvedLayout = internalErrorPage.layout;
+                    if (InternalErrorPage) {
+                        vm.resolvedLayout = await resolvePageContext(vm, InternalErrorPage.layout);
                     }
                 }
             });

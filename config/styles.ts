@@ -15,7 +15,7 @@ const config: Styles = {
                 padding: 1,
                 shadow: Shadow.NONE,
                 radius: Radius.NEUTRAL,
-            }
+            },
         }
     }
 };

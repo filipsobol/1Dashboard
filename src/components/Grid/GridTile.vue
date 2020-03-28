@@ -4,7 +4,7 @@
         <div
             v-if="component.tile && component.tile.title"
             class="border-b border-gray-200"
-            :class="contentStyles">
+            :class="headerStyles">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
                 {{ component.tile.title }}
             </h3>
@@ -27,10 +27,10 @@
 <script lang="ts">
     import Vue from "vue";
     import { mapState } from "vuex";
-    import { getComponentName, getComponentData } from "@/utils/nestedComponents";
+    import { getComponentData, getComponentName } from "@/utils/nestedComponents";
     import { Component } from "@/interfaces/core/Components";
     import { GridTileStyle } from "@/interfaces/core/Config";
-    import { Shadow, Radius } from "@/interfaces/core/Styles";
+    import { Direction, Justify, Radius, Shadow } from "@/interfaces/core/Styles";
 
     export default Vue.extend({
         name: "GridTile",
@@ -49,6 +49,8 @@
 
             normalizedStyles(): GridTileStyle {
                 const defaultStyles: GridTileStyle = {
+                    direction: Direction.ROW,
+                    justify: Justify.START,
                     background: "transparent",
                     padding: 0,
                     shadow: Shadow.NONE,
@@ -86,8 +88,19 @@
                 ];
             },
 
+            headerStyles(): Array<string> {
+                return [
+                    "flex",
+                    "flex-col",
+                    `p-${this.normalizedStyles.padding ?? 0}`
+                ];
+            },
+
             contentStyles(): Array<string> {
                 return [
+                    "flex",
+                    this.normalizedStyles.direction || "",
+                    this.normalizedStyles.justify || "",
                     `p-${this.normalizedStyles.padding ?? 0}`
                 ];
             },

@@ -1,7 +1,7 @@
 import VueRouter, { Route } from "vue-router";
 import { AxiosRequestConfig } from "axios";
 import { Component } from "@/interfaces/core/Components";
-import { Radius, Shadow } from "@/interfaces/core/Styles";
+import { Direction, Justify, Radius, Shadow } from "@/interfaces/core/Styles";
 
 export interface App {
     debug: boolean;
@@ -25,13 +25,15 @@ export interface Page {
     url: string | PageUrl;
     name: string;
     title?: string;
-    layout: Component | {
-        (context: PageLayoutContext): Component | Promise<Component>;
-    };
+    layout: PageLayout;
     props?: {
         hideBreadcrumbs?: boolean;
     };
 }
+
+export type PageLayout = Component | {
+    (context: PageLayoutContext): Component | Promise<Component>;
+};
 
 export enum PageUrl {
     NotFound = 404,
@@ -57,6 +59,8 @@ export interface Styles {
 }
 
 export interface GridTileStyle {
+    direction?: Direction;
+    justify?: Justify;
     background?: string;
     padding?: number;
     shadow?: Shadow;
