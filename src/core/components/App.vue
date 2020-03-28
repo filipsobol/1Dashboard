@@ -8,18 +8,22 @@
             mode="out-in">
             <RouterView :key="$route.fullPath" />
         </transition>
+
+        <DbFooter />
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "@vue/composition-api";
     import DbHeader from "@/core/components/Header.vue";
+    import DbFooter from "@/core/components/Footer.vue";
 
     export default defineComponent({
         name: "Application",
 
         components: {
             DbHeader,
+            DbFooter
         },
     });
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="container flex-grow flex flex-col mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mt-6 mb-8">
+        <div class="mt-6">
             <DbBreadcrumbs
                 v-if="showBreadcrumbs"
                 :pageName="name"/>
@@ -14,7 +14,7 @@
 
         <div
             v-if="resolvedLayout"
-            class="mb-8 flex-grow">
+            class="my-8 flex-grow">
             <component
                 v-bind="{ ...getComponentData(resolvedLayout) }"
                 :is="getComponentName(resolvedLayout.type)" />
@@ -23,7 +23,7 @@
         <div
             v-else
             class="flex flex-grow justify-center items-center">
-            <DbLoading />
+            <DbLoading size="large" />
         </div>
     </div>
 </template>

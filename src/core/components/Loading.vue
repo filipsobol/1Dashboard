@@ -1,5 +1,7 @@
 <template>
-    <div class="loader">
+    <div
+        class="loader"
+        :class="`loader-${size}`">
         <i class="icon-loader" />
     </div>
 </template>
@@ -9,6 +11,14 @@
 
     export default Vue.extend({
         name: "Loading",
+
+        props: {
+            size: {
+                type: String,
+                required: false,
+                default: "medium",
+            },
+        },
     });
 </script>
 
@@ -20,8 +30,25 @@
         @apply text-gray-500;
 
         i.icon-loader::before {
-            @apply text-4xl;
             animation: spin 4000ms infinite linear;
+        }
+
+        &-small {
+            i.icon-loader::before {
+                @apply text-3xl;
+            }
+        }
+
+        &-medium {
+            i.icon-loader::before {
+                @apply text-4xl;
+            }
+        }
+
+        &-large {
+            i.icon-loader::before {
+                @apply text-6xl;
+            }
         }
     }
 </style>
