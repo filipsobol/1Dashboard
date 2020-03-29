@@ -4,7 +4,7 @@ const page: Page = {
     url: "/form",
     name: "Forms",
     title: "Form inputs",
-    layout: ({ route }) => ({
+    layout: ({ route, post }) => ({
         type: "Grid",
         props: {
             components: [
@@ -146,7 +146,7 @@ const page: Page = {
                                 events: [
                                     {
                                         on: "submit",
-                                        callback: () => console.log(route),
+                                        callback: ({ formData }) => post("https://httpbin.org/post", { data: formData, headers: { "Content-Type": "multipart/form-data" } }),
                                     }
                                 ]
                             }
@@ -196,7 +196,13 @@ const page: Page = {
                                             }
                                         }
                                     ]
-                                }
+                                },
+                                events: [
+                                    {
+                                        on: "submit",
+                                        callback: ({ jsonData }) => post("https://httpbin.org/post", { data: jsonData }),
+                                    }
+                                ]
                             }
                         ]
                     },
