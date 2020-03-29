@@ -26,7 +26,7 @@ const page: Page = {
                         },
                         style: "grid",
                         title: "Component with dynamic data",
-                        description: "This component uses dynamic data coming from"
+                        description: "This component uses dynamic data from URL parameters."
                     }
                 },
                 {

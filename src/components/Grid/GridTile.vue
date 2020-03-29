@@ -10,7 +10,7 @@
             </h3>
             <p
                 v-if="component.tile.description"
-                class="text-sm leading-5 text-gray-500">
+                class="text-sm leading-5 text-gray-600">
                 {{ component.tile.description }}
             </p>
         </div>

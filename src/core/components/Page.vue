@@ -1,16 +1,14 @@
 <template>
-    <div class="container flex-grow flex flex-col mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mt-6">
-            <DbBreadcrumbs
-                v-if="showBreadcrumbs"
-                :pageName="name"/>
+    <div class="container flex-grow flex flex-col mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <DbBreadcrumbs
+            v-if="showBreadcrumbs"
+            :pageName="name"/>
 
-            <h1
-                v-if="title"
-                class="text-4xl mt-2 text-gray-700">
-                {{ title }}
-            </h1>
-        </div>
+        <h1
+            v-if="title"
+            class="text-2xl mt-1 text-gray-800">
+            {{ title }}
+        </h1>
 
         <div
             v-if="resolvedLayout"

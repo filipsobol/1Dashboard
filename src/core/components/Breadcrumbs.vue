@@ -1,16 +1,12 @@
 <template>
-    <ol class="flex inline-flex text-gray-600 content-center">
-        <li class="breadcrumb-item">
+    <ol>
+        <li>
             <RouterLink to="/">
                 {{ app.title }}
             </RouterLink>
         </li>
 
-        <li class="mx-3">
-            <i class="icon-chevron-right" />
-        </li>
-
-        <li class="breadcrumb-item active">
+        <li v-if="$route.path !== '/'">
             {{ pageName }}
         </li>
     </ol>
@@ -39,7 +35,25 @@
 </script>
 
 <style lang="scss" scoped>
-    i::before {
-        @apply text-lg;
+    ol {
+        @apply flex;
+        @apply inline-flex;
+        @apply content-center;
+        @apply text-gray-600;
+        @apply text-sm;
+        @apply font-medium;
+    }
+
+    li {
+        @apply uppercase;
+
+        & + &::before {
+            @apply ml-4;
+            @apply mr-3;
+            @apply text-gray-500;
+            @apply font-bold;
+
+            content: "/";
+        }
     }
 </style>
