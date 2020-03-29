@@ -19,7 +19,7 @@ const config: Page = {
                             {
                                 type: "Article",
                                 props: {
-                                    body: "Page you are looking for doesn't exists. Click on a button below to go back to homepage."
+                                    body: "The page you are looking for does not exist. Click the button below to return to the homepage."
                                 },
                                 tile: {
                                     style: {

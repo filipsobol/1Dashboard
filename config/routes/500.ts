@@ -19,7 +19,7 @@ const config: Page = {
                             {
                                 type: "Article",
                                 props: {
-                                    body: "An error occurred trying to load this page. Please try refreshing this page. If it persists, please report it to your system administrator."
+                                    body: "An error occurred while trying to load this page. If the problem persists after refreshing the page, please report it to your system administrator."
                                 },
                                 tile: {
                                     style: {
