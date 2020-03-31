@@ -1,9 +1,26 @@
-import { Rules } from "@/interfaces/core/Validation";
+import { Rules, Validators } from "@/interfaces/core/Validation";
 
 export function validate(data: any, rules: Rules): boolean {
     return Object
         .entries(rules)
-        .every(([rule, expected]: [string, any]) => validators[rule](data, expected));
+        .every(([rule, argument]: [string, any]) => {
+            const validator = validators[rule];
+
+            if (!validator) {
+                // Validator doesn't exists
+                return false;
+            }
+
+            if (validator.length === 2) {
+                // If validator accepts two parameters it needs the argument to perform the validation
+                return validator(data, argument);
+            }
+
+            // If validator accepts one parameter the argument is used to turn the validation on or off
+            return argument
+                ? validator(data)
+                : true;
+        });
 }
 
 const allowedImageTypes: Array<string> = [
@@ -12,11 +29,11 @@ const allowedImageTypes: Array<string> = [
     "image/png",
 ];
 
-const emailRegex: RegExp = /\S+@\S+\.\S+/;
+const emailRegex = /\S+@\S+\.\S+/;
 
-const ipAddressRegex: RegExp = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
+const ipAddressRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
 
-const validators = {
+const validators: Validators = {
     /**
      * Equality validators
      */
@@ -26,14 +43,16 @@ const validators = {
 
     different: (value: any, target: any): boolean => value !== target,
 
+    truthy: (value: any): boolean => !!value,
+
+    falsy: (value: any): boolean => !value,
+
     /**
      * Type validators
      */
     number: (value: any): boolean => typeof value === "number" && isFinite(value),
 
     integer: (value: any): boolean => typeof value === "number" && Number.isInteger(value),
-
-    numeric: (value: any): boolean => !isNaN(parseFloat(value)) && isFinite(value),
 
     string: (value: any): boolean => typeof value === "string",
 

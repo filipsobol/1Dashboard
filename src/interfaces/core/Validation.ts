@@ -1,3 +1,7 @@
+export interface Validators {
+    [key: string]: (value: any, parameter?: any) => boolean;
+}
+
 export interface Rules {
     /**
      * Equality validators
@@ -8,14 +12,16 @@ export interface Rules {
 
     different?: any,
 
+    truthy?: any;
+
+    falsy?: any;
+
     /**
      * Type validators
      */
     number?: boolean,
 
     integer?: boolean,
-
-    numeric?: boolean,
 
     string?: boolean,
 
