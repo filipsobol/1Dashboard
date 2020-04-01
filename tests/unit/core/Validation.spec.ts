@@ -412,5 +412,31 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
         });
+
+        describe("Date", () => {
+            it("succeeds when value is a date string", () => {
+                const result = validate("Apr 1, 2020", {
+                    date: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is a Date object", () => {
+                const result = validate(new Date("Apr 1, 2020"), {
+                    date: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is not a date", () => {
+                const result = validate([], {
+                    date: true,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
     });
 });

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Rules, Validators } from "@/interfaces/core/Validation";
 
 export function validate(data: any, rules: Rules): boolean {
@@ -16,10 +17,8 @@ export function validate(data: any, rules: Rules): boolean {
                 return validator(data, argument);
             }
 
-            // If validator accepts one parameter the argument is used to turn the validation on or off
-            return argument
-                ? validator(data)
-                : true;
+            // If validator accepts one parameter the argument is used as an expected value
+            return validator(data) === argument;
         });
 }
 
@@ -66,7 +65,7 @@ const validators: Validators = {
 
     object: (value: any): boolean => typeof value === "object",
 
-    date: (value: any): boolean => value instanceof Date || !isNaN(Date.parse(value)),
+    date: (value: any): boolean => dayjs(value).isValid(),
 
     file: (value: any): boolean => value instanceof File,
 
