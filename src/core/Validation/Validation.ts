@@ -97,23 +97,6 @@ const validators: Validators = {
     ipAddress: (value: string): boolean => validators.string(value) && ipAddressRegex.test(value),
 
     /**
-     * Array validators
-     */
-    empty: (value: Array<any>): boolean => validators.array(value) && value.length === 0,
-
-    length: (value: Array<any>, expectedLength: number): boolean => {
-        return validators.array(value) && value.length === expectedLength;
-    },
-
-    minLength: (value: Array<any>, minLength: number): boolean => {
-        return validators.array(value) && value.length >= minLength;
-    },
-
-    maxLength: (value: Array<any>, maxLength: number): boolean => {
-        return validators.array(value) && value.length <= maxLength;
-    },
-
-    /**
      * Number validators
      */
     negative: (value: number): boolean => validators.number(value) && value < 0,
@@ -153,6 +136,26 @@ const validators: Validators = {
     /**
      * Multi-type validators
      */
+    empty: (value: string | Array<any>): boolean => {
+        return (validators.array(value) || validators.string(value))
+            && value.length === 0;
+    },
+
+    length: (value: string | Array<any>, expectedLength: number): boolean => {
+        return (validators.array(value) || validators.string(value))
+            && value.length === expectedLength;
+    },
+
+    minLength: (value: string | Array<any>, minLength: number): boolean => {
+        return (validators.array(value) || validators.string(value))
+            && value.length >= minLength;
+    },
+
+    maxLength: (value: string | Array<any>, maxLength: number): boolean => {
+        return (validators.array(value) || validators.string(value))
+            && value.length <= maxLength;
+    },
+
     includes: (value: string | Array<any>, expected: any): boolean => {
         return (validators.string(value) || validators.array(value))
             && value.includes(expected);

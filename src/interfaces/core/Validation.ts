@@ -6,11 +6,11 @@ export interface Rules {
     /**
      * Equality validators
      */
-    equal?: any,
+    equal?: any;
 
-    exact?: any,
+    exact?: any;
 
-    different?: any,
+    different?: any;
 
     truthy?: any;
 
@@ -19,91 +19,88 @@ export interface Rules {
     /**
      * Type validators
      */
-    number?: boolean,
+    number?: boolean;
 
-    integer?: boolean,
+    integer?: boolean;
 
-    string?: boolean,
+    string?: boolean;
 
-    boolean?: boolean,
+    boolean?: boolean;
 
-    undefined?: boolean,
+    undefined?: boolean;
 
-    null?: boolean,
+    null?: boolean;
 
-    array?: boolean,
+    array?: boolean;
 
-    object?: boolean,
+    object?: boolean;
 
-    date?: boolean,
+    date?: boolean;
 
-    file?: boolean,
+    file?: boolean;
 
-    instanceOf?: any,
+    instanceOf?: any;
 
     /**
      * String validators
      */
-    lowercase?: boolean,
+    lowercase?: boolean;
 
-    uppercase?: boolean,
+    uppercase?: boolean;
 
-    startsWith?: string,
+    startsWith?: string;
 
-    endsWith?: string,
+    endsWith?: string;
 
-    url?: boolean,
+    url?: boolean;
 
-    email?: boolean,
+    email?: boolean;
 
-    ipAddress?: boolean,
-
-    /**
-     * Array validators
-     */
-    empty?: boolean,
-
-    length?: number,
-
-    minLength?: number,
-
-    maxLength?: number,
+    ipAddress?: boolean;
 
     /**
      * Number validators
      */
-    negative?: boolean,
+    negative?: boolean;
 
-    positive?: boolean,
+    positive?: boolean;
 
-    between?: [number, number],
+    between?: [number, number];
 
-    lessThan?: number,
+    lessThan?: number;
 
-    lessThanOrEqual?: number,
+    lessThanOrEqual?: number;
 
-    greaterThan?: number,
+    greaterThan?: number;
 
-    greaterThanOrEqual?: number,
+    greaterThanOrEqual?: number;
 
-    even?: boolean,
+    even?: boolean;
 
-    odd?: boolean,
+    odd?: boolean;
 
     /**
      * Regex validators
      */
-    pattern?: RegExp,
+    pattern?: RegExp;
 
     /**
      * File validators
      */
-    mimeType?: string,
+    mimeType?: string;
 
-    image?: boolean,
+    image?: boolean;
 
     /**
      * Multi-type validators
      */
-    includes?: any,
+    empty?: string | Array<any>;
+
+    length?: string | Array<any>;
+
+    minLength?: string | Array<any>;
+
+    maxLength?: string | Array<any>;
+
+    includes?: string | Array<any>;
 }

@@ -710,5 +710,157 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
         });
+
+        describe("IpAddress", () => {
+            it("succeeds when value is an IP address", () => {
+                const result = validate("1.1.1.1", {
+                    ipAddress: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when IP address is in range 0.0.0.0 - 0.255.255.255", () => {
+                const result = validate("0.0.0.0", {
+                    ipAddress: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is a string, but not an IP address", () => {
+                const result = validate("test", {
+                    ipAddress: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    ipAddress: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Negative", () => {
+            it("succeeds when value is a negative number", () => {
+                const result = validate(-10, {
+                    negative: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is a positive number", () => {
+                const result = validate(10, {
+                    negative: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is 0", () => {
+                const result = validate(0, {
+                    negative: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a number", () => {
+                const result = validate("test", {
+                    negative: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Positive", () => {
+            it("succeeds when value is a positive number", () => {
+                const result = validate(10, {
+                    positive: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is a positive number", () => {
+                const result = validate(-10, {
+                    positive: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is 0", () => {
+                const result = validate(0, {
+                    positive: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a number", () => {
+                const result = validate("test", {
+                    positive: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Between", () => {
+            it("succeeds when value is between two values", () => {
+                const result = validate(5, {
+                    between: [0, 10]
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is equal to highest valid number", () => {
+                const result = validate(10, {
+                    between: [0, 10]
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is equal to lowest valid number", () => {
+                const result = validate(0, {
+                    between: [0, 10]
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when min and max are equal and value is valid number", () => {
+                const result = validate(0, {
+                    between: [0, 0]
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is not between two values", () => {
+                const result = validate(-11, {
+                    between: [-10, 10]
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when min and max values are switched", () => {
+                const result = validate(5, {
+                    between: [10, -10]
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
     });
 });
