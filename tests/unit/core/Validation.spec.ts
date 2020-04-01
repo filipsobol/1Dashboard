@@ -438,5 +438,277 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
         });
+
+        describe("File", () => {
+            it("succeeds when value is a file", () => {
+                const file = new File(["test"], "test.txt", {
+                   type: "text/plain",
+                });
+
+                const result = validate(file, {
+                    file: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is an empty file", () => {
+                const file = new File([], "test.txt", {
+                    type: "text/plain",
+                });
+
+                const result = validate(file, {
+                    file: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is not a file", () => {
+                const result = validate("test", {
+                    file: true,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("InstanceOf", () => {
+            it("succeeds when value instance matches", () => {
+                const result = validate(new Date(), {
+                    instanceOf: Date,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value instance does not match", () => {
+                const result = validate(new Date(), {
+                    instanceOf: Number,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Lowercase", () => {
+            it("succeeds when value is lowercase", () => {
+                const result = validate("test", {
+                    lowercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is lowercase with numbers", () => {
+                const result = validate("test123", {
+                    lowercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is empty", () => {
+                const result = validate("", {
+                    lowercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    lowercase: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Uppercase", () => {
+            it("succeeds when value is uppercase", () => {
+                const result = validate("TEST", {
+                    uppercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is uppercase with numbers", () => {
+                const result = validate("TEST123", {
+                    uppercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is empty", () => {
+                const result = validate("", {
+                    uppercase: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    uppercase: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("StartsWith", () => {
+            it("succeeds when value starts with given value", () => {
+                const result = validate("test", {
+                    startsWith: "te"
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when given value is empty", () => {
+                const result = validate("test", {
+                    startsWith: ""
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value does not start with given value", () => {
+                const result = validate("test", {
+                    startsWith: "st"
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    startsWith: "te"
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("EndsWith", () => {
+            it("succeeds when value ends with given value", () => {
+                const result = validate("test", {
+                    endsWith: "st"
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when given value is empty", () => {
+                const result = validate("test", {
+                    endsWith: ""
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value does not ends with given value", () => {
+                const result = validate("test", {
+                    endsWith: "te"
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    endsWith: "te"
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Url", () => {
+            it("succeeds when value is a HTTP url", () => {
+                const result = validate("http://www.google.com/", {
+                    url: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when value is a HTTPS url", () => {
+                const result = validate("https://www.google.com/", {
+                    url: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when value is a url without protocol", () => {
+                const result = validate("www.google.com/", {
+                    url: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a url", () => {
+                const result = validate("test", {
+                    url: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Email", () => {
+            it("succeeds when value is an email address", () => {
+                const result = validate("user@example.com", {
+                    email: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when there is a dot in first part", () => {
+                const result = validate("first.last@example.com", {
+                    email: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when first part is missing", () => {
+                const result = validate("@example.com", {
+                    email: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when TLD and dot are missing", () => {
+                const result = validate("user@example", {
+                    email: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when TLD is missing", () => {
+                const result = validate("user@example.", {
+                    email: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when value is not a string", () => {
+                const result = validate(123, {
+                    email: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
     });
 });

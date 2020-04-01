@@ -39,7 +39,7 @@ export interface Rules {
 
     file?: boolean,
 
-    instanceOf?: boolean,
+    instanceOf?: any,
 
     /**
      * String validators
@@ -48,9 +48,9 @@ export interface Rules {
 
     uppercase?: boolean,
 
-    startsWith?: boolean,
+    startsWith?: string,
 
-    endsWith?: boolean,
+    endsWith?: string,
 
     url?: boolean,
 
