@@ -44,18 +44,6 @@ const page: Page = {
                         style: "grid",
                         title: "Optional tile title",
                     }
-                },
-                {
-                    type: "Article",
-                    props: {
-                        title: "This is users page",
-                        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh velit, gravida nec lobortis ut, pretium eu libero. Phasellus id leo tempor, tincidunt mauris sed, finibus sem.",
-                        author: "Filip Sobol",
-                        createdAt: "29-02-2020"
-                    },
-                    tile: {
-                        style: "grid",
-                    }
                 }
             ]
         }

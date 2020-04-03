@@ -20,7 +20,7 @@ export type FormEvent = FormSubmitEvent;
 
 export interface FormSubmitEvent {
     on: "submit";
-    callback: (context: FormSubmitEventContext) => Promise<void>;
+    callback: (context: FormSubmitEventContext) => any;
 }
 
 export interface FormSubmitEventContext {

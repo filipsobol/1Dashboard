@@ -1,10 +1,11 @@
 import { Page } from "@/interfaces/core/Config";
+import { Grid } from "@/interfaces/components/Grid";
 
 const page: Page = {
     url: "/form",
     name: "Forms",
     title: "Form inputs",
-    layout: ({ route, post }) => ({
+    layout: ({ post }): Grid => ({
         type: "Grid",
         props: {
             components: [

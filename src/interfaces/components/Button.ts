@@ -1,6 +1,7 @@
 export interface Button {
     type: "Button";
     props: ButtonProps;
+    events?: Array<ButtonEvent>;
 }
 
 export interface ButtonProps {
@@ -8,6 +9,13 @@ export interface ButtonProps {
     disabled?: boolean;
     text?: string;
     icon?: string;
+}
+
+export type ButtonEvent = ButtonClickEvent;
+
+export interface ButtonClickEvent {
+    on: "click";
+    callback: () => any;
 }
 
 export enum ButtonType {

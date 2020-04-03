@@ -4,8 +4,8 @@
         @submit.stop.prevent="onFormSubmit"
         class="w-full">
         <div
-            v-for="(component, index) in props.components"
-            :key="index"
+            v-for="component in props.components"
+            :key="component.props.id"
             class="mb-6">
             <component
                 :is="getComponentName(component.type)"
