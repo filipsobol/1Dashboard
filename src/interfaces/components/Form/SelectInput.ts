@@ -6,9 +6,8 @@ export interface SelectInput {
 }
 
 export interface SelectInputProps extends InputProps {
-    id: string;
-    options: Array<SelectOption>;
     value?: string;
+    options: Array<SelectOption>;
 }
 
 interface SelectOption {

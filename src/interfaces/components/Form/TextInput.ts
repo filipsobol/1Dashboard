@@ -6,6 +6,5 @@ export interface TextInput {
 }
 
 export interface TextInputProps extends InputProps {
-    id: string;
     value?: string;
 }

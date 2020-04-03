@@ -1,3 +1,5 @@
+import { Rules } from "@/interfaces/core/Validation";
+
 export interface RadioInput {
     type: "RadioInput";
     props: RadioInputProps;
@@ -6,10 +8,11 @@ export interface RadioInput {
 export interface RadioInputProps {
     id: string;
     name: string;
-    options: Array<SelectOption>;
-    value?: string;
     required?: boolean;
     readonly?: boolean;
+    options: Array<SelectOption>;
+    rules?: Rules;
+    value?: string;
 }
 
 export interface SelectOption {

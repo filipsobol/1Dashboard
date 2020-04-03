@@ -1,3 +1,5 @@
+import { Rules } from "@/interfaces/core/Validation";
+
 export interface TextareaInput {
     type: "TextareaInput";
     props: TextareaInputProps;
@@ -9,6 +11,7 @@ export interface TextareaInputProps {
     placeholder?: string;
     required?: boolean;
     readonly?: boolean;
-    value?: string;
     rows?: number;
+    rules?: Rules;
+    value?: string;
 }

@@ -1,25 +1,27 @@
 import dayjs from "dayjs";
 import { Rules, Validators } from "@/interfaces/core/Validation";
 
-export function validate(data: any, rules: Rules): boolean {
+export function validate(data: any, rules: Rules): Array<string> {
     return Object
         .entries(rules)
-        .every(([rule, argument]: [string, any]) => {
+        .reduce((carry: any, [rule, argument]: [string, any]) => {
             const validator = validators[rule];
 
             if (!validator) {
                 // Validator doesn't exists
-                return false;
+                return carry;
             }
 
-            if (validator.length === 2) {
-                // If validator accepts two parameters it needs the argument to perform the validation
-                return validator(data, argument);
+            const result = validator.length === 2
+                ? validator(data, argument) // If validator accepts two parameters it needs the argument to perform the validation
+                : validator(data) === argument; // If validator accepts one parameter the argument is used as an expected value
+
+            if (!result) {
+                carry.push([ rule, argument ]);
             }
 
-            // If validator accepts one parameter the argument is used as an expected value
-            return validator(data) === argument;
-        });
+            return carry;
+        }, []);
 }
 
 const allowedImageTypes: Array<string> = [
@@ -33,6 +35,8 @@ const emailRegex = /\S+@\S+\.\S+/;
 const ipAddressRegex = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/;
 
 const validators: Validators = {
+    required: (value: any): boolean => Boolean(value),
+
     /**
      * Equality validators
      */

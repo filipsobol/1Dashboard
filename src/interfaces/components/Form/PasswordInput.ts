@@ -6,7 +6,6 @@ export interface PasswordInput {
 }
 
 export interface PasswordInputProps extends InputProps {
-    id: string;
     value?: string;
     displayRevealButton?: boolean;
 }

@@ -10,7 +10,8 @@
             <component
                 :is="getComponentName(component.type)"
                 v-bind="{ ...getComponentData(component) }"
-                v-model="values[component.props.id]" />
+                v-model="values[component.props.id]"
+                :errors="errors[component.props.id]" />
         </div>
 
         <div
@@ -35,6 +36,7 @@
 <script lang="ts">
     import { computed, defineComponent, reactive, ref } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@/utils/nestedComponents";
+    import { validate } from "@/core/Validation/Validation";
     import { ObjectWithAnyKeys } from '@/interfaces/core/Helpers';
     import { ButtonProps, ButtonType } from "@/interfaces/components/Button";
     import {
@@ -59,7 +61,7 @@
             }
         },
 
-        setup(_: Partial<Form>, { emit }) {
+        setup(_: Form, { emit }) {
             // Static
             const submitButtonProps: ButtonProps = {
                 type: ButtonType.Submit,
@@ -71,10 +73,12 @@
             };
 
             // State
+            const errors = ref<object>({});
             const values = reactive<object>({});
             const submitting = ref<boolean>(false);
 
             // Computed
+            const hasErrors = computed<boolean>(() => Object.values(errors.value).flat().length > 0);
             const showSubmitButton = computed<boolean>(() => _.props?.buttons?.submit ?? true);
             const showResetButton = computed<boolean>(() => _.props?.buttons?.reset ?? true);
             const showButtonsSection = computed<boolean>(() => showSubmitButton.value || showResetButton.value);
@@ -82,8 +86,6 @@
 
             // Methods
             function onFormSubmit(event: Event): void {
-                submitting.value = true;
-
                 const formData = new FormData(event.target as HTMLFormElement);
 
                 const payload: FormSubmitEventContext = {
@@ -91,15 +93,21 @@
                     jsonData: formDataToJson(formData),
                 };
 
-                emit("submit", payload);
+                errors.value = getFormErrors(payload);
 
-                const events: Array<Promise<void>> | undefined = _.events
-                    ?.filter(({ on }: FormEvent) => on === "submit")
-                    .map(({ callback }: FormSubmitEvent) => callback(payload));
+                if (!hasErrors.value) {
+                    submitting.value = true;
 
-                Promise
-                    .all(events || [])
-                    .then(() => submitting.value = false);
+                    emit("submit", payload);
+
+                    const events: Array<Promise<void>> | undefined = _.events
+                        ?.filter(({ on }: FormEvent) => on === "submit")
+                        .map(({ callback }: FormSubmitEvent) => callback(payload));
+
+                    Promise
+                        .all(events || [])
+                        .then(() => submitting.value = false);
+                }
             }
 
             function formDataToJson(formData: FormData): ObjectWithAnyKeys {
@@ -124,6 +132,16 @@
                     }, {});
             }
 
+            function getFormErrors({ jsonData }: FormSubmitEventContext): ObjectWithAnyKeys {
+                const rulesEntries = _.props.components
+                    .map(({ props }) => [
+                        props.id,
+                        validate(jsonData[props.id], props.rules || {})
+                    ]);
+
+                return Object.fromEntries(rulesEntries);
+            }
+
             return {
                 // Static
                 submitButtonProps,
@@ -131,10 +149,12 @@
 
                 // State
                 _,
+                errors,
                 values,
                 submitting,
 
                 // Computed
+                hasErrors,
                 showSubmitButton,
                 showResetButton,
                 showButtonsSection,

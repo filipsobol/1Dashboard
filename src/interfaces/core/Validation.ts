@@ -3,6 +3,8 @@ export interface Validators {
 }
 
 export interface Rules {
+    required?: boolean;
+
     /**
      * Equality validators
      */

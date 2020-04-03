@@ -1,3 +1,5 @@
+import { Rules } from "@/interfaces/core/Validation";
+
 export interface MultiSelectInput  {
     type: "MultiSelectInput";
     props: MultiSelectInputProps;
@@ -9,6 +11,7 @@ export interface MultiSelectInputProps {
     required?: boolean;
     readonly?: boolean;
     options: Array<MultiSelectOption>;
+    rules?: Rules;
     value?: Array<string>;
 }
 

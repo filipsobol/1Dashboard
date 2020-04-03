@@ -6,7 +6,7 @@ describe("Validation", () => {
             string: true,
         });
 
-        expect(result).toBeTruthy();
+        expect(result).toHaveLength(0);
     });
 
     it ("accepts data and multiple rules", () => {
@@ -15,7 +15,7 @@ describe("Validation", () => {
             lowercase: true
         });
 
-        expect(result).toBeTruthy();
+        expect(result).toHaveLength(0);
     });
 
     it ("accepts data with arguments", () => {
@@ -23,7 +23,7 @@ describe("Validation", () => {
             exact: "test",
         });
 
-        expect(result).toBeTruthy();
+        expect(result).toHaveLength(0);
     });
 
     it ("skips disabled rules", () => {
@@ -32,32 +32,50 @@ describe("Validation", () => {
             boolean: false,
         });
 
-        expect(result).toBeTruthy();
+        expect(result).toHaveLength(0);
     });
 
     it ("succeeds when there are no rules", () => {
         const result = validate("test", {});
 
-        expect(result).toBeTruthy();
+        expect(result).toHaveLength(0);
     });
 
-    it ("fails when validator doesn't exists", () => {
+    it ("ignores validator that doesn't exists", () => {
         const result = validate("test", {
             // @ts-ignore
             nonExistentValidator: true,
         });
 
-        expect(result).toBeFalsy();
+        expect(result).toHaveLength(0);
     });
 
     describe("Rules", () => {
+        describe("Required", () => {
+            it ("succeeds when required data is present", () => {
+                const result = validate("test", {
+                    required: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it ("fails when required data is missing", () => {
+                const result = validate("", {
+                    required: true,
+                });
+
+                expect(result).not.toHaveLength(0);
+            });
+        });
+
         describe("Equal", () => {
             it ("succeeds when data and value are equal", () => {
                 const result = validate("test", {
                     equal: "test"
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data and value are not equal", () => {
@@ -65,7 +83,7 @@ describe("Validation", () => {
                     equal: "test123"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it ("succeeds when data and value are equal, but not identical", () => {
@@ -73,7 +91,7 @@ describe("Validation", () => {
                     equal: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data and value are not equal and not identical", () => {
@@ -81,7 +99,7 @@ describe("Validation", () => {
                     equal: false
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -91,7 +109,7 @@ describe("Validation", () => {
                     exact: "test"
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data and value are not equal", () => {
@@ -99,7 +117,7 @@ describe("Validation", () => {
                     exact: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it ("fails when data and value are equal, but not identical", () => {
@@ -107,7 +125,7 @@ describe("Validation", () => {
                     exact: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it ("fails when data and value are not equal and not identical", () => {
@@ -115,7 +133,7 @@ describe("Validation", () => {
                     exact: false
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -125,7 +143,7 @@ describe("Validation", () => {
                     different: "test1"
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data and value are not different, but same type", () => {
@@ -133,7 +151,7 @@ describe("Validation", () => {
                     different: "test"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it ("succeeds when data and value are equal, but different", () => {
@@ -141,7 +159,7 @@ describe("Validation", () => {
                     different: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("succeeds when data and value are not equal and not identical", () => {
@@ -149,7 +167,7 @@ describe("Validation", () => {
                     different: false
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
         });
 
@@ -159,7 +177,7 @@ describe("Validation", () => {
                     truthy: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data is falsy", () => {
@@ -167,7 +185,7 @@ describe("Validation", () => {
                     truthy: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -177,7 +195,7 @@ describe("Validation", () => {
                     falsy: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it ("fails when data is truthy", () => {
@@ -185,7 +203,7 @@ describe("Validation", () => {
                     falsy: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -195,7 +213,7 @@ describe("Validation", () => {
                     number: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is a float", () => {
@@ -203,7 +221,7 @@ describe("Validation", () => {
                     number: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is 0", () => {
@@ -211,7 +229,7 @@ describe("Validation", () => {
                     number: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is a numeric", () => {
@@ -219,7 +237,7 @@ describe("Validation", () => {
                     number: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a number", () => {
@@ -227,7 +245,7 @@ describe("Validation", () => {
                     number: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -237,7 +255,7 @@ describe("Validation", () => {
                     integer: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is a float", () => {
@@ -245,7 +263,7 @@ describe("Validation", () => {
                     integer: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is a numeric", () => {
@@ -253,7 +271,7 @@ describe("Validation", () => {
                     integer: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("succeeds when data is 0", () => {
@@ -261,7 +279,7 @@ describe("Validation", () => {
                     integer: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a number", () => {
@@ -269,7 +287,7 @@ describe("Validation", () => {
                     integer: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -279,7 +297,7 @@ describe("Validation", () => {
                     string: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is am empty string", () => {
@@ -287,7 +305,7 @@ describe("Validation", () => {
                     string: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -295,7 +313,7 @@ describe("Validation", () => {
                     string: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -305,7 +323,7 @@ describe("Validation", () => {
                     boolean: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is false", () => {
@@ -313,7 +331,7 @@ describe("Validation", () => {
                     boolean: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a boolean", () => {
@@ -321,7 +339,7 @@ describe("Validation", () => {
                     boolean: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -331,7 +349,7 @@ describe("Validation", () => {
                     undefined: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not undefined", () => {
@@ -339,7 +357,7 @@ describe("Validation", () => {
                     undefined: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -349,7 +367,7 @@ describe("Validation", () => {
                     null: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not null", () => {
@@ -357,7 +375,7 @@ describe("Validation", () => {
                     null: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -367,7 +385,7 @@ describe("Validation", () => {
                     array: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is an empty array", () => {
@@ -375,7 +393,7 @@ describe("Validation", () => {
                     array: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an array", () => {
@@ -383,7 +401,7 @@ describe("Validation", () => {
                     array: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -393,7 +411,7 @@ describe("Validation", () => {
                     object: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is an empty object", () => {
@@ -401,7 +419,7 @@ describe("Validation", () => {
                     object: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an object", () => {
@@ -409,7 +427,7 @@ describe("Validation", () => {
                     object: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -419,7 +437,7 @@ describe("Validation", () => {
                     date: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is a Date object", () => {
@@ -427,7 +445,7 @@ describe("Validation", () => {
                     date: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a date", () => {
@@ -435,7 +453,7 @@ describe("Validation", () => {
                     date: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -449,7 +467,7 @@ describe("Validation", () => {
                     file: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is an empty file", () => {
@@ -461,7 +479,7 @@ describe("Validation", () => {
                     file: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a file", () => {
@@ -469,7 +487,7 @@ describe("Validation", () => {
                     file: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -479,7 +497,7 @@ describe("Validation", () => {
                     instanceOf: Date,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data instance does not match", () => {
@@ -487,7 +505,7 @@ describe("Validation", () => {
                     instanceOf: Number,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -497,7 +515,7 @@ describe("Validation", () => {
                     lowercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is lowercase with numbers", () => {
@@ -505,7 +523,7 @@ describe("Validation", () => {
                     lowercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is empty", () => {
@@ -513,7 +531,7 @@ describe("Validation", () => {
                     lowercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -521,7 +539,7 @@ describe("Validation", () => {
                     lowercase: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -531,7 +549,7 @@ describe("Validation", () => {
                     uppercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is uppercase with numbers", () => {
@@ -539,7 +557,7 @@ describe("Validation", () => {
                     uppercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is empty", () => {
@@ -547,7 +565,7 @@ describe("Validation", () => {
                     uppercase: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -555,7 +573,7 @@ describe("Validation", () => {
                     uppercase: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -565,7 +583,7 @@ describe("Validation", () => {
                     startsWith: "te"
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is empty", () => {
@@ -573,7 +591,7 @@ describe("Validation", () => {
                     startsWith: ""
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data does not start with value", () => {
@@ -581,7 +599,7 @@ describe("Validation", () => {
                     startsWith: "st"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -589,7 +607,7 @@ describe("Validation", () => {
                     startsWith: "te"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -599,7 +617,7 @@ describe("Validation", () => {
                     endsWith: "st"
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is empty", () => {
@@ -607,7 +625,7 @@ describe("Validation", () => {
                     endsWith: ""
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data does not ends with value", () => {
@@ -615,7 +633,7 @@ describe("Validation", () => {
                     endsWith: "te"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -623,7 +641,7 @@ describe("Validation", () => {
                     endsWith: "te"
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -633,7 +651,7 @@ describe("Validation", () => {
                     url: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is a HTTPS url", () => {
@@ -641,7 +659,7 @@ describe("Validation", () => {
                     url: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is a url without protocol", () => {
@@ -649,7 +667,7 @@ describe("Validation", () => {
                     url: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a url", () => {
@@ -657,7 +675,7 @@ describe("Validation", () => {
                     url: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -667,7 +685,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when there is a dot in first part", () => {
@@ -675,7 +693,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when first part is missing", () => {
@@ -683,7 +701,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when TLD and dot are missing", () => {
@@ -691,7 +709,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when TLD is missing", () => {
@@ -699,7 +717,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -707,7 +725,7 @@ describe("Validation", () => {
                     email: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -717,7 +735,7 @@ describe("Validation", () => {
                     ipAddress: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when IP address is in range 0.0.0.0 - 0.255.255.255", () => {
@@ -725,7 +743,7 @@ describe("Validation", () => {
                     ipAddress: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is a string, but not an IP address", () => {
@@ -733,7 +751,7 @@ describe("Validation", () => {
                     ipAddress: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a string", () => {
@@ -741,7 +759,7 @@ describe("Validation", () => {
                     ipAddress: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -751,7 +769,7 @@ describe("Validation", () => {
                     negative: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is a positive number", () => {
@@ -759,7 +777,7 @@ describe("Validation", () => {
                     negative: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is 0", () => {
@@ -767,7 +785,7 @@ describe("Validation", () => {
                     negative: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a number", () => {
@@ -775,7 +793,7 @@ describe("Validation", () => {
                     negative: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -785,7 +803,7 @@ describe("Validation", () => {
                     positive: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is a positive number", () => {
@@ -793,7 +811,7 @@ describe("Validation", () => {
                     positive: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is 0", () => {
@@ -801,7 +819,7 @@ describe("Validation", () => {
                     positive: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a number", () => {
@@ -809,7 +827,7 @@ describe("Validation", () => {
                     positive: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -819,7 +837,7 @@ describe("Validation", () => {
                     between: [0, 10]
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is equal to highest valid number", () => {
@@ -827,7 +845,7 @@ describe("Validation", () => {
                     between: [0, 10]
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is equal to lowest valid number", () => {
@@ -835,7 +853,7 @@ describe("Validation", () => {
                     between: [0, 10]
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when min and max are equal and data is valid number", () => {
@@ -843,7 +861,7 @@ describe("Validation", () => {
                     between: [0, 0]
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not between two values", () => {
@@ -851,7 +869,7 @@ describe("Validation", () => {
                     between: [-10, 10]
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when min and max values are switched", () => {
@@ -859,7 +877,7 @@ describe("Validation", () => {
                     between: [10, -10]
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -869,7 +887,7 @@ describe("Validation", () => {
                     lessThan: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is equal to value", () => {
@@ -877,7 +895,7 @@ describe("Validation", () => {
                     lessThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is greater than value", () => {
@@ -885,7 +903,7 @@ describe("Validation", () => {
                     lessThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -893,7 +911,7 @@ describe("Validation", () => {
                     lessThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -903,7 +921,7 @@ describe("Validation", () => {
                     lessThanOrEqual: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is equal to value", () => {
@@ -911,7 +929,7 @@ describe("Validation", () => {
                     lessThanOrEqual: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is greater than value", () => {
@@ -919,7 +937,7 @@ describe("Validation", () => {
                     lessThanOrEqual: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -927,7 +945,7 @@ describe("Validation", () => {
                     lessThanOrEqual: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -937,7 +955,7 @@ describe("Validation", () => {
                     greaterThan: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is equal to value", () => {
@@ -945,7 +963,7 @@ describe("Validation", () => {
                     greaterThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is less than value", () => {
@@ -953,7 +971,7 @@ describe("Validation", () => {
                     greaterThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -961,7 +979,7 @@ describe("Validation", () => {
                     greaterThan: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -971,7 +989,7 @@ describe("Validation", () => {
                     greaterThanOrEqual: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is equal to value", () => {
@@ -979,7 +997,7 @@ describe("Validation", () => {
                     greaterThanOrEqual: 10
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is lrdd than value", () => {
@@ -987,7 +1005,7 @@ describe("Validation", () => {
                     greaterThanOrEqual: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -995,7 +1013,7 @@ describe("Validation", () => {
                     greaterThanOrEqual: 10
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1005,7 +1023,7 @@ describe("Validation", () => {
                     even: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not even", () => {
@@ -1013,7 +1031,7 @@ describe("Validation", () => {
                     even: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -1021,7 +1039,7 @@ describe("Validation", () => {
                     even: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1031,7 +1049,7 @@ describe("Validation", () => {
                     odd: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not odd", () => {
@@ -1039,7 +1057,7 @@ describe("Validation", () => {
                     odd: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails data is not a number", () => {
@@ -1047,7 +1065,7 @@ describe("Validation", () => {
                     odd: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1057,7 +1075,7 @@ describe("Validation", () => {
                     pattern: /^\d{1,2}$/
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data does not match the pattern", () => {
@@ -1065,7 +1083,7 @@ describe("Validation", () => {
                     pattern: /^\d{1,2}$/
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1079,7 +1097,7 @@ describe("Validation", () => {
                     mimeType: "text/plain",
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data mime type does not match", () => {
@@ -1091,7 +1109,7 @@ describe("Validation", () => {
                     mimeType: "image/jpeg",
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a file", () => {
@@ -1099,7 +1117,7 @@ describe("Validation", () => {
                     mimeType: "text/plain",
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1113,7 +1131,7 @@ describe("Validation", () => {
                     image: true
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an image", () => {
@@ -1125,7 +1143,7 @@ describe("Validation", () => {
                     image: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not a file", () => {
@@ -1133,7 +1151,7 @@ describe("Validation", () => {
                     image: true
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1143,7 +1161,7 @@ describe("Validation", () => {
                     empty: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data is an empty string", () => {
@@ -1151,7 +1169,7 @@ describe("Validation", () => {
                     empty: true,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is non-empty array", () => {
@@ -1159,7 +1177,7 @@ describe("Validation", () => {
                     empty: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is non-empty empty", () => {
@@ -1167,7 +1185,7 @@ describe("Validation", () => {
                     empty: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
 
             it("fails when data is not an array or string", () => {
@@ -1175,7 +1193,7 @@ describe("Validation", () => {
                     empty: true,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1185,7 +1203,7 @@ describe("Validation", () => {
                     length: 3,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string has expected length", () => {
@@ -1193,7 +1211,7 @@ describe("Validation", () => {
                     length: 3,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data array should be empty", () => {
@@ -1201,7 +1219,7 @@ describe("Validation", () => {
                     length: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string should be empty", () => {
@@ -1209,7 +1227,7 @@ describe("Validation", () => {
                     length: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an array or string", () => {
@@ -1217,7 +1235,7 @@ describe("Validation", () => {
                     length: 1,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1227,7 +1245,7 @@ describe("Validation", () => {
                     minLength: 2,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string has min length", () => {
@@ -1235,7 +1253,7 @@ describe("Validation", () => {
                     minLength: 2,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data array can be empty", () => {
@@ -1243,7 +1261,7 @@ describe("Validation", () => {
                     minLength: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string can be empty", () => {
@@ -1251,7 +1269,7 @@ describe("Validation", () => {
                     minLength: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an array or string", () => {
@@ -1259,7 +1277,7 @@ describe("Validation", () => {
                     minLength: 1,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1269,7 +1287,7 @@ describe("Validation", () => {
                     maxLength: 4,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string has min length", () => {
@@ -1277,7 +1295,7 @@ describe("Validation", () => {
                     maxLength: 4,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data array can be empty", () => {
@@ -1285,7 +1303,7 @@ describe("Validation", () => {
                     maxLength: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string can be empty", () => {
@@ -1293,7 +1311,7 @@ describe("Validation", () => {
                     maxLength: 0,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an array or string", () => {
@@ -1301,7 +1319,7 @@ describe("Validation", () => {
                     maxLength: 1,
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -1311,7 +1329,7 @@ describe("Validation", () => {
                     includes: 2,
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string includes value", () => {
@@ -1319,7 +1337,7 @@ describe("Validation", () => {
                     includes: "2",
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string can be empty", () => {
@@ -1327,7 +1345,7 @@ describe("Validation", () => {
                     includes: "",
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("succeeds when data string matches value", () => {
@@ -1335,7 +1353,7 @@ describe("Validation", () => {
                     includes: "123",
                 });
 
-                expect(result).toBeTruthy();
+                expect(result).toHaveLength(0);
             });
 
             it("fails when data is not an array or string", () => {
@@ -1343,7 +1361,7 @@ describe("Validation", () => {
                     includes: "1",
                 });
 
-                expect(result).toBeFalsy();
+                expect(result).not.toHaveLength(0);
             });
         });
     });

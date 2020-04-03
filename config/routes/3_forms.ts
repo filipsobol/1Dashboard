@@ -174,6 +174,11 @@ const page: Page = {
                                                 name: "Website address",
                                                 placeholder: "Enter your website address",
                                                 prependText: "https://",
+                                                rules: {
+                                                    required: true,
+                                                    string: true,
+                                                    url: true
+                                                }
                                             }
                                         },
                                         {
@@ -184,6 +189,9 @@ const page: Page = {
                                                 placeholder: "Enter your password",
                                                 prependIcon: "lock",
                                                 displayRevealButton: true,
+                                                rules: {
+                                                    required: true,
+                                                }
                                             }
                                         },
                                         {
@@ -194,6 +202,12 @@ const page: Page = {
                                                 placeholder: "Enter your GitHub profie name",
                                                 prependText: "https://github.com/",
                                                 prependIcon: "github",
+                                                rules: {
+                                                    required: true,
+                                                    string: true,
+                                                    url: true,
+                                                    includes: "github.com"
+                                                }
                                             }
                                         }
                                     ]

@@ -38,6 +38,12 @@
                     :class="'icon-' + appendIcon" />
             </div>
         </label>
+
+        <div
+            v-for="(error, index) in errors"
+            :key="index">
+            {{ error }}
+        </div>
     </div>
 </template>
 
@@ -51,6 +57,11 @@
             name: {
                 type: String,
                 required: true,
+            },
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
             },
             prependText: {
                 type: String,

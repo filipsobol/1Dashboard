@@ -1,3 +1,5 @@
+import { Rules } from "@/interfaces/core/Validation";
+
 export interface CheckboxInput {
     type: "CheckboxInput";
     props: CheckboxInputProps;
@@ -6,9 +8,10 @@ export interface CheckboxInput {
 export interface CheckboxInputProps {
     id: string;
     name: string;
-    options: Array<SelectOption>;
-    value?: CheckboxValue;
     readonly?: boolean;
+    options: Array<SelectOption>;
+    rules?: Rules;
+    value?: CheckboxValue;
 }
 
 export type CheckboxValue = Array<string> | boolean;

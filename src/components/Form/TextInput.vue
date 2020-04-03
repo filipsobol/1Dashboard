@@ -1,6 +1,7 @@
 <template>
     <db-input
         :name="props.name"
+        :errors="errors"
         :prepend-text="props.prependText"
         :append-text="props.appendText"
         :prepend-icon="props.prependIcon"
@@ -30,6 +31,11 @@
             value: {
                 type: String,
                 required: false,
+            },
+            errors: {
+                type: Array,
+                required: false,
+                default: [],
             },
         },
 
