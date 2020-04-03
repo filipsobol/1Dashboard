@@ -1,7 +1,7 @@
 import { validate } from "@/core/Validation/Validation";
 
 describe("Validation", () => {
-    it ("accepts value and single rule", () => {
+    it ("accepts data and single rule", () => {
         const result = validate("test", {
             string: true,
         });
@@ -9,7 +9,7 @@ describe("Validation", () => {
         expect(result).toBeTruthy();
     });
 
-    it ("accepts value and multiple rules", () => {
+    it ("accepts data and multiple rules", () => {
         const result = validate("test", {
             string: true,
             lowercase: true
@@ -18,7 +18,7 @@ describe("Validation", () => {
         expect(result).toBeTruthy();
     });
 
-    it ("accepts value with arguments", () => {
+    it ("accepts data with arguments", () => {
         const result = validate("test", {
             exact: "test",
         });
@@ -52,7 +52,7 @@ describe("Validation", () => {
 
     describe("Rules", () => {
         describe("Equal", () => {
-            it ("succeeds when values are equal", () => {
+            it ("succeeds when data and value are equal", () => {
                 const result = validate("test", {
                     equal: "test"
                 });
@@ -60,7 +60,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when values are not equal", () => {
+            it ("fails when data and value are not equal", () => {
                 const result = validate("test", {
                     equal: "test123"
                 });
@@ -68,7 +68,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it ("succeeds when values are equal, but not identical", () => {
+            it ("succeeds when data and value are equal, but not identical", () => {
                 const result = validate("1", {
                     equal: true
                 });
@@ -76,7 +76,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when values are not equal and not identical", () => {
+            it ("fails when data and value are not equal and not identical", () => {
                 const result = validate("1", {
                     equal: false
                 });
@@ -86,7 +86,7 @@ describe("Validation", () => {
         });
 
         describe("Exact", () => {
-            it ("succeeds when values are exact", () => {
+            it ("succeeds when data and value are exact", () => {
                 const result = validate("test", {
                     exact: "test"
                 });
@@ -94,7 +94,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when values are not equal", () => {
+            it ("fails when data and value are not equal", () => {
                 const result = validate("1", {
                     exact: true
                 });
@@ -102,7 +102,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it ("fails when values are equal, but not identical", () => {
+            it ("fails when data and value are equal, but not identical", () => {
                 const result = validate("1", {
                     exact: true
                 });
@@ -110,7 +110,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it ("fails when values are not equal and not identical", () => {
+            it ("fails when data and value are not equal and not identical", () => {
                 const result = validate("1", {
                     exact: false
                 });
@@ -120,7 +120,7 @@ describe("Validation", () => {
         });
 
         describe("Different", () => {
-            it ("succeeds when values are different, but same type", () => {
+            it ("succeeds when data and value are different, but same type", () => {
                 const result = validate("test", {
                     different: "test1"
                 });
@@ -128,7 +128,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when values are not different, but same type", () => {
+            it ("fails when data and value are not different, but same type", () => {
                 const result = validate("test", {
                     different: "test"
                 });
@@ -136,7 +136,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it ("succeeds when values are equal, but different", () => {
+            it ("succeeds when data and value are equal, but different", () => {
                 const result = validate("1", {
                     different: true
                 });
@@ -144,7 +144,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("succeeds when values are not equal and not identical", () => {
+            it ("succeeds when data and value are not equal and not identical", () => {
                 const result = validate("1", {
                     different: false
                 });
@@ -154,7 +154,7 @@ describe("Validation", () => {
         });
 
         describe("Truthy", () => {
-            it ("succeeds when values is truthy", () => {
+            it ("succeeds when data is truthy", () => {
                 const result = validate("test", {
                     truthy: true
                 });
@@ -162,7 +162,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when value is falsy", () => {
+            it ("fails when data is falsy", () => {
                 const result = validate("", {
                     truthy: true
                 });
@@ -172,7 +172,7 @@ describe("Validation", () => {
         });
 
         describe("Falsy", () => {
-            it ("succeeds when value is falsy", () => {
+            it ("succeeds when data is falsy", () => {
                 const result = validate("", {
                     falsy: true,
                 });
@@ -180,7 +180,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it ("fails when value is truthy", () => {
+            it ("fails when data is truthy", () => {
                 const result = validate("test", {
                     falsy: true
                 });
@@ -190,7 +190,7 @@ describe("Validation", () => {
         });
 
         describe("Number", () => {
-            it("succeeds when value is an integer", () => {
+            it("succeeds when data is an integer", () => {
                 const result = validate(123, {
                     number: true,
                 });
@@ -198,7 +198,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is a float", () => {
+            it("succeeds when data is a float", () => {
                 const result = validate(123.45, {
                     number: true,
                 });
@@ -206,7 +206,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is 0", () => {
+            it("succeeds when data is 0", () => {
                 const result = validate(0, {
                     number: true,
                 });
@@ -214,7 +214,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is a numeric", () => {
+            it("fails when data is a numeric", () => {
                 const result = validate("123", {
                     number: true,
                 });
@@ -222,7 +222,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a number", () => {
+            it("fails when data is not a number", () => {
                 const result = validate("123", {
                     number: true,
                 });
@@ -232,7 +232,7 @@ describe("Validation", () => {
         });
 
         describe("Integer", () => {
-            it("succeeds when value is an integer", () => {
+            it("succeeds when data is an integer", () => {
                 const result = validate(123, {
                     integer: true,
                 });
@@ -240,7 +240,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is a float", () => {
+            it("fails when data is a float", () => {
                 const result = validate(123.45, {
                     integer: true,
                 });
@@ -248,7 +248,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is a numeric", () => {
+            it("fails when data is a numeric", () => {
                 const result = validate("123", {
                     integer: true,
                 });
@@ -256,7 +256,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("succeeds when value is 0", () => {
+            it("succeeds when data is 0", () => {
                 const result = validate(0, {
                     integer: true,
                 });
@@ -264,7 +264,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a number", () => {
+            it("fails when data is not a number", () => {
                 const result = validate("123", {
                     integer: true,
                 });
@@ -274,7 +274,7 @@ describe("Validation", () => {
         });
 
         describe("String", () => {
-            it("succeeds when value is a string", () => {
+            it("succeeds when data is a string", () => {
                 const result = validate("test", {
                     string: true,
                 });
@@ -282,7 +282,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is am empty string", () => {
+            it("succeeds when data is am empty string", () => {
                 const result = validate("", {
                     string: true,
                 });
@@ -290,7 +290,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     string: true,
                 });
@@ -300,7 +300,7 @@ describe("Validation", () => {
         });
 
         describe("Boolean", () => {
-            it("succeeds when value is true", () => {
+            it("succeeds when data is true", () => {
                 const result = validate(true, {
                     boolean: true,
                 });
@@ -308,7 +308,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is false", () => {
+            it("succeeds when data is false", () => {
                 const result = validate(false, {
                     boolean: true,
                 });
@@ -316,7 +316,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a boolean", () => {
+            it("fails when data is not a boolean", () => {
                 const result = validate("test", {
                     boolean: true,
                 });
@@ -326,7 +326,7 @@ describe("Validation", () => {
         });
 
         describe("Undefined", () => {
-            it("succeeds when value is undefined", () => {
+            it("succeeds when data is undefined", () => {
                 const result = validate(undefined, {
                     undefined: true,
                 });
@@ -334,7 +334,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not undefined", () => {
+            it("fails when data is not undefined", () => {
                 const result = validate("test", {
                     undefined: true,
                 });
@@ -344,7 +344,7 @@ describe("Validation", () => {
         });
 
         describe("Null", () => {
-            it("succeeds when value is null", () => {
+            it("succeeds when data is null", () => {
                 const result = validate(null, {
                     null: true,
                 });
@@ -352,7 +352,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not null", () => {
+            it("fails when data is not null", () => {
                 const result = validate("test", {
                     null: true,
                 });
@@ -362,7 +362,7 @@ describe("Validation", () => {
         });
 
         describe("Array", () => {
-            it("succeeds when value is an array", () => {
+            it("succeeds when data is an array", () => {
                 const result = validate([1, 2, 3], {
                     array: true,
                 });
@@ -370,7 +370,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is an empty array", () => {
+            it("succeeds when data is an empty array", () => {
                 const result = validate([], {
                     array: true,
                 });
@@ -378,7 +378,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not an array", () => {
+            it("fails when data is not an array", () => {
                 const result = validate("test", {
                     array: true,
                 });
@@ -388,15 +388,15 @@ describe("Validation", () => {
         });
 
         describe("Object", () => {
-            it("succeeds when value is an object", () => {
-                const result = validate({ key: "value" }, {
+            it("succeeds when data is an object", () => {
+                const result = validate({ key: "data" }, {
                     object: true,
                 });
 
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is an empty object", () => {
+            it("succeeds when data is an empty object", () => {
                 const result = validate({}, {
                     object: true,
                 });
@@ -404,7 +404,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not an object", () => {
+            it("fails when data is not an object", () => {
                 const result = validate("test", {
                     object: true,
                 });
@@ -414,7 +414,7 @@ describe("Validation", () => {
         });
 
         describe("Date", () => {
-            it("succeeds when value is a date string", () => {
+            it("succeeds when data is a date string", () => {
                 const result = validate("Apr 1, 2020", {
                     date: true,
                 });
@@ -422,7 +422,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is a Date object", () => {
+            it("succeeds when data is a Date object", () => {
                 const result = validate(new Date("Apr 1, 2020"), {
                     date: true,
                 });
@@ -430,7 +430,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a date", () => {
+            it("fails when data is not a date", () => {
                 const result = validate([], {
                     date: true,
                 });
@@ -440,7 +440,7 @@ describe("Validation", () => {
         });
 
         describe("File", () => {
-            it("succeeds when value is a file", () => {
+            it("succeeds when data is a file", () => {
                 const file = new File(["test"], "test.txt", {
                    type: "text/plain",
                 });
@@ -452,7 +452,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is an empty file", () => {
+            it("succeeds when data is an empty file", () => {
                 const file = new File([], "test.txt", {
                     type: "text/plain",
                 });
@@ -464,7 +464,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a file", () => {
+            it("fails when data is not a file", () => {
                 const result = validate("test", {
                     file: true,
                 });
@@ -474,7 +474,7 @@ describe("Validation", () => {
         });
 
         describe("InstanceOf", () => {
-            it("succeeds when value instance matches", () => {
+            it("succeeds when data instance matches", () => {
                 const result = validate(new Date(), {
                     instanceOf: Date,
                 });
@@ -482,7 +482,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value instance does not match", () => {
+            it("fails when data instance does not match", () => {
                 const result = validate(new Date(), {
                     instanceOf: Number,
                 });
@@ -492,7 +492,7 @@ describe("Validation", () => {
         });
 
         describe("Lowercase", () => {
-            it("succeeds when value is lowercase", () => {
+            it("succeeds when data is lowercase", () => {
                 const result = validate("test", {
                     lowercase: true
                 });
@@ -500,7 +500,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is lowercase with numbers", () => {
+            it("succeeds when data is lowercase with numbers", () => {
                 const result = validate("test123", {
                     lowercase: true
                 });
@@ -508,7 +508,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is empty", () => {
+            it("succeeds when data is empty", () => {
                 const result = validate("", {
                     lowercase: true
                 });
@@ -516,7 +516,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     lowercase: true
                 });
@@ -526,7 +526,7 @@ describe("Validation", () => {
         });
 
         describe("Uppercase", () => {
-            it("succeeds when value is uppercase", () => {
+            it("succeeds when data is uppercase", () => {
                 const result = validate("TEST", {
                     uppercase: true
                 });
@@ -534,7 +534,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is uppercase with numbers", () => {
+            it("succeeds when data is uppercase with numbers", () => {
                 const result = validate("TEST123", {
                     uppercase: true
                 });
@@ -542,7 +542,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is empty", () => {
+            it("succeeds when data is empty", () => {
                 const result = validate("", {
                     uppercase: true
                 });
@@ -550,7 +550,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     uppercase: true
                 });
@@ -560,7 +560,7 @@ describe("Validation", () => {
         });
 
         describe("StartsWith", () => {
-            it("succeeds when value starts with given value", () => {
+            it("succeeds when data starts with value", () => {
                 const result = validate("test", {
                     startsWith: "te"
                 });
@@ -568,7 +568,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when given value is empty", () => {
+            it("succeeds when data is empty", () => {
                 const result = validate("test", {
                     startsWith: ""
                 });
@@ -576,7 +576,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value does not start with given value", () => {
+            it("fails when data does not start with value", () => {
                 const result = validate("test", {
                     startsWith: "st"
                 });
@@ -584,7 +584,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     startsWith: "te"
                 });
@@ -594,7 +594,7 @@ describe("Validation", () => {
         });
 
         describe("EndsWith", () => {
-            it("succeeds when value ends with given value", () => {
+            it("succeeds when data ends with value", () => {
                 const result = validate("test", {
                     endsWith: "st"
                 });
@@ -602,7 +602,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when given value is empty", () => {
+            it("succeeds when data is empty", () => {
                 const result = validate("test", {
                     endsWith: ""
                 });
@@ -610,7 +610,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value does not ends with given value", () => {
+            it("fails when data does not ends with value", () => {
                 const result = validate("test", {
                     endsWith: "te"
                 });
@@ -618,7 +618,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     endsWith: "te"
                 });
@@ -628,7 +628,7 @@ describe("Validation", () => {
         });
 
         describe("Url", () => {
-            it("succeeds when value is a HTTP url", () => {
+            it("succeeds when data is a HTTP url", () => {
                 const result = validate("http://www.google.com/", {
                     url: true
                 });
@@ -636,7 +636,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is a HTTPS url", () => {
+            it("succeeds when data is a HTTPS url", () => {
                 const result = validate("https://www.google.com/", {
                     url: true
                 });
@@ -644,7 +644,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is a url without protocol", () => {
+            it("fails when data is a url without protocol", () => {
                 const result = validate("www.google.com/", {
                     url: true
                 });
@@ -652,7 +652,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a url", () => {
+            it("fails when data is not a url", () => {
                 const result = validate("test", {
                     url: true
                 });
@@ -662,7 +662,7 @@ describe("Validation", () => {
         });
 
         describe("Email", () => {
-            it("succeeds when value is an email address", () => {
+            it("succeeds when data is an email address", () => {
                 const result = validate("user@example.com", {
                     email: true
                 });
@@ -702,7 +702,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     email: true
                 });
@@ -712,7 +712,7 @@ describe("Validation", () => {
         });
 
         describe("IpAddress", () => {
-            it("succeeds when value is an IP address", () => {
+            it("succeeds when data is an IP address", () => {
                 const result = validate("1.1.1.1", {
                     ipAddress: true
                 });
@@ -728,7 +728,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is a string, but not an IP address", () => {
+            it("fails when data is a string, but not an IP address", () => {
                 const result = validate("test", {
                     ipAddress: true
                 });
@@ -736,7 +736,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a string", () => {
+            it("fails when data is not a string", () => {
                 const result = validate(123, {
                     ipAddress: true
                 });
@@ -746,7 +746,7 @@ describe("Validation", () => {
         });
 
         describe("Negative", () => {
-            it("succeeds when value is a negative number", () => {
+            it("succeeds when data is a negative number", () => {
                 const result = validate(-10, {
                     negative: true
                 });
@@ -754,7 +754,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is a positive number", () => {
+            it("fails when data is a positive number", () => {
                 const result = validate(10, {
                     negative: true
                 });
@@ -762,7 +762,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is 0", () => {
+            it("fails when data is 0", () => {
                 const result = validate(0, {
                     negative: true
                 });
@@ -770,7 +770,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a number", () => {
+            it("fails when data is not a number", () => {
                 const result = validate("test", {
                     negative: true
                 });
@@ -780,7 +780,7 @@ describe("Validation", () => {
         });
 
         describe("Positive", () => {
-            it("succeeds when value is a positive number", () => {
+            it("succeeds when data is a positive number", () => {
                 const result = validate(10, {
                     positive: true
                 });
@@ -788,7 +788,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is a positive number", () => {
+            it("fails when data is a positive number", () => {
                 const result = validate(-10, {
                     positive: true
                 });
@@ -796,7 +796,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is 0", () => {
+            it("fails when data is 0", () => {
                 const result = validate(0, {
                     positive: true
                 });
@@ -804,7 +804,7 @@ describe("Validation", () => {
                 expect(result).toBeFalsy();
             });
 
-            it("fails when value is not a number", () => {
+            it("fails when data is not a number", () => {
                 const result = validate("test", {
                     positive: true
                 });
@@ -814,7 +814,7 @@ describe("Validation", () => {
         });
 
         describe("Between", () => {
-            it("succeeds when value is between two values", () => {
+            it("succeeds when data is between two values", () => {
                 const result = validate(5, {
                     between: [0, 10]
                 });
@@ -822,7 +822,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is equal to highest valid number", () => {
+            it("succeeds when data is equal to highest valid number", () => {
                 const result = validate(10, {
                     between: [0, 10]
                 });
@@ -830,7 +830,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when value is equal to lowest valid number", () => {
+            it("succeeds when data is equal to lowest valid number", () => {
                 const result = validate(0, {
                     between: [0, 10]
                 });
@@ -838,7 +838,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("succeeds when min and max are equal and value is valid number", () => {
+            it("succeeds when min and max are equal and data is valid number", () => {
                 const result = validate(0, {
                     between: [0, 0]
                 });
@@ -846,7 +846,7 @@ describe("Validation", () => {
                 expect(result).toBeTruthy();
             });
 
-            it("fails when value is not between two values", () => {
+            it("fails when data is not between two values", () => {
                 const result = validate(-11, {
                     between: [-10, 10]
                 });
@@ -857,6 +857,490 @@ describe("Validation", () => {
             it("fails when min and max values are switched", () => {
                 const result = validate(5, {
                     between: [10, -10]
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("LessThan", () => {
+            it("succeeds when data is less than value", () => {
+                const result = validate(5, {
+                    lessThan: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is equal to value", () => {
+                const result = validate(10, {
+                    lessThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is greater than value", () => {
+                const result = validate(15, {
+                    lessThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("5", {
+                    lessThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("LessThanOrEqual", () => {
+            it("succeeds when data is less than value", () => {
+                const result = validate(5, {
+                    lessThanOrEqual: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data is equal to value", () => {
+                const result = validate(10, {
+                    lessThanOrEqual: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is greater than value", () => {
+                const result = validate(15, {
+                    lessThanOrEqual: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("5", {
+                    lessThanOrEqual: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("GreaterThan", () => {
+            it("succeeds when data is greater than value", () => {
+                const result = validate(15, {
+                    greaterThan: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is equal to value", () => {
+                const result = validate(10, {
+                    greaterThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is less than value", () => {
+                const result = validate(5, {
+                    greaterThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("5", {
+                    greaterThan: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("GreaterThanOrEqual", () => {
+            it("succeeds when data is greater than value", () => {
+                const result = validate(15, {
+                    greaterThanOrEqual: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data is equal to value", () => {
+                const result = validate(10, {
+                    greaterThanOrEqual: 10
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is lrdd than value", () => {
+                const result = validate(5, {
+                    greaterThanOrEqual: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("5", {
+                    greaterThanOrEqual: 10
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Even", () => {
+            it("succeeds when data is even", () => {
+                const result = validate(10, {
+                    even: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not even", () => {
+                const result = validate(11, {
+                    even: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("10", {
+                    even: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Odd", () => {
+            it("succeeds when data is odd", () => {
+                const result = validate(11, {
+                    odd: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not odd", () => {
+                const result = validate(10, {
+                    odd: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails data is not a number", () => {
+                const result = validate("11", {
+                    odd: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Pattern", () => {
+            it("succeeds when data matches the pattern", () => {
+                const result = validate("00", {
+                    pattern: /^\d{1,2}$/
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data does not match the pattern", () => {
+                const result = validate("test", {
+                    pattern: /^\d{1,2}$/
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("MimeType", () => {
+            it("succeeds when data mime type matches", () => {
+                const file = new File(["test"], "test.txt", {
+                    type: "text/plain",
+                });
+
+                const result = validate(file, {
+                    mimeType: "text/plain",
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data mime type does not match", () => {
+                const file = new File([], "test.txt", {
+                    type: "text/plain",
+                });
+
+                const result = validate(file, {
+                    mimeType: "image/jpeg",
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is not a file", () => {
+                const result = validate("test", {
+                    mimeType: "text/plain",
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Image", () => {
+            it("succeeds when data is an image", () => {
+                const file = new File(["test"], "test.jpg", {
+                    type: "image/jpeg",
+                });
+
+                const result = validate(file, {
+                    image: true
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not an image", () => {
+                const file = new File([], "test.txt", {
+                    type: "text/plain",
+                });
+
+                const result = validate(file, {
+                    image: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is not a file", () => {
+                const result = validate("test", {
+                    image: true
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Empty", () => {
+            it("succeeds when data is an empty array", () => {
+                const result = validate([], {
+                    empty: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data is an empty string", () => {
+                const result = validate("", {
+                    empty: true,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is non-empty array", () => {
+                const result = validate([ 1 ], {
+                    empty: true,
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is non-empty empty", () => {
+                const result = validate("1", {
+                    empty: true,
+                });
+
+                expect(result).toBeFalsy();
+            });
+
+            it("fails when data is not an array or string", () => {
+                const result = validate(1, {
+                    empty: true,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Length", () => {
+            it("succeeds when data array has expected length", () => {
+                const result = validate([ 1, 2, 3 ], {
+                    length: 3,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string has expected length", () => {
+                const result = validate("123", {
+                    length: 3,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data array should be empty", () => {
+                const result = validate([], {
+                    length: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string should be empty", () => {
+                const result = validate("", {
+                    length: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not an array or string", () => {
+                const result = validate(1, {
+                    length: 1,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("MinLength", () => {
+            it("succeeds when data array has min length", () => {
+                const result = validate([ 1, 2, 3 ], {
+                    minLength: 2,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string has min length", () => {
+                const result = validate("123", {
+                    minLength: 2,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data array can be empty", () => {
+                const result = validate([], {
+                    minLength: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string can be empty", () => {
+                const result = validate("", {
+                    minLength: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not an array or string", () => {
+                const result = validate(1, {
+                    minLength: 1,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("MaxLength", () => {
+            it("succeeds when data array has min length", () => {
+                const result = validate([ 1, 2, 3 ], {
+                    maxLength: 4,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string has min length", () => {
+                const result = validate("123", {
+                    maxLength: 4,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data array can be empty", () => {
+                const result = validate([], {
+                    maxLength: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string can be empty", () => {
+                const result = validate("", {
+                    maxLength: 0,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not an array or string", () => {
+                const result = validate(1, {
+                    maxLength: 1,
+                });
+
+                expect(result).toBeFalsy();
+            });
+        });
+
+        describe("Includes", () => {
+            it("succeeds when data array includes value", () => {
+                const result = validate([ 1, 2, 3 ], {
+                    includes: 2,
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string includes value", () => {
+                const result = validate("123", {
+                    includes: "2",
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string can be empty", () => {
+                const result = validate("", {
+                    includes: "",
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("succeeds when data string matches value", () => {
+                const result = validate("123", {
+                    includes: "123",
+                });
+
+                expect(result).toBeTruthy();
+            });
+
+            it("fails when data is not an array or string", () => {
+                const result = validate(1, {
+                    includes: "1",
                 });
 
                 expect(result).toBeFalsy();

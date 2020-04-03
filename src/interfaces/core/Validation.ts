@@ -94,13 +94,13 @@ export interface Rules {
     /**
      * Multi-type validators
      */
-    empty?: string | Array<any>;
+    empty?: boolean;
 
-    length?: string | Array<any>;
+    length?: number;
 
-    minLength?: string | Array<any>;
+    minLength?: number;
 
-    maxLength?: string | Array<any>;
+    maxLength?: number;
 
-    includes?: string | Array<any>;
+    includes?: any;
 }

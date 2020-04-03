@@ -129,7 +129,7 @@ const validators: Validators = {
     /**
      * File validators
      */
-    mimeType: (value: File, target: string): boolean => value["type"] === target,
+    mimeType: (value: File, target: string): boolean => validators.file(value) && value["type"] === target,
 
     image: (value: File): boolean => allowedImageTypes.includes(value["type"]),
 
