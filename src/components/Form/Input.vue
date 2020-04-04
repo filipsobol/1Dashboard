@@ -1,6 +1,12 @@
 <template>
     <div class="wrapper">
-        <div class="name">{{ $t(name) }}</div>
+        <div class="name">
+            {{ $t(name) }}
+
+            <span
+                v-if="isRequired"
+                class="required-indicator" />
+        </div>
 
         <label
             v-if="customizable"
@@ -70,28 +76,39 @@
                 type: String,
                 required: true,
             },
+
             customizable: {
                 type: Boolean,
                 required: false,
                 default: true,
             },
+
+            rules: {
+                type: Object,
+                required: false,
+            },
+
             errors: {
                 type: Array,
                 required: false,
                 default: () => [],
             },
+
             prependText: {
                 type: String,
                 required: false,
             },
+
             appendText: {
                 type: String,
                 required: false,
             },
+
             prependIcon: {
                 type: String,
                 required: false,
             },
+
             appendIcon: {
                 type: String,
                 required: false,
@@ -100,6 +117,7 @@
 
         setup(_) {
             // Computed
+            const isRequired = computed<boolean>(() => Boolean(_.rules?.required));
             const hasErrors = computed<boolean>(() => Object.values(_.errors).flat().length > 0);
             const hasLeadingLabel = computed<boolean>(() => Boolean(_.prependText || _.prependIcon));
             const hasTrailingLabel = computed<boolean>(() => Boolean(_.appendText || _.appendIcon));
@@ -109,6 +127,7 @@
                 _,
 
                 // Computed
+                isRequired,
                 hasErrors,
                 hasLeadingLabel,
                 hasTrailingLabel,
@@ -129,6 +148,13 @@
         @apply mb-2;
         @apply font-medium;
         @apply text-gray-700;
+
+        .required-indicator::after {
+            @apply font-bold;
+            @apply text-red-500;
+
+            content: "*";
+        }
     }
 
     .input {

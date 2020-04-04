@@ -35,6 +35,7 @@ const page: Page = {
                                                 name: "Number",
                                                 placeholder: "Input placeholder",
                                                 rules: {
+                                                    required: true,
                                                     numeric: true,
                                                     between: [1, 5]
                                                 }

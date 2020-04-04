@@ -2,6 +2,10 @@ import dayjs from "dayjs";
 import { Rules, Validators } from "@/interfaces/core/Validation";
 
 export function validate(data: any, rules: Rules): Array<string> {
+    if (!rules.required && (validators.undefined(data) || validators.null(data) || validators.empty(data))) {
+        return []; // Skip validation when data is not required and is undefined, null, empty string or array
+    }
+
     return Object
         .entries(rules)
         .reduce((carry: any, [rule, argument]: [string, any]) => {
@@ -45,10 +49,6 @@ const validators: Validators = {
     exact: (value: any, target: any): boolean => value === target,
 
     different: (value: any, target: any): boolean => value !== target,
-
-    truthy: (value: any): boolean => !!value,
-
-    falsy: (value: any): boolean => !value,
 
     /**
      * Type validators

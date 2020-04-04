@@ -24,8 +24,6 @@
     "equal": "Wartość musi być równa {0}.",
     "exact": "Wartość musi być równa {0}.",
     "different": "Wartość musi być różna od {0}.",
-    "truthy": "Wartość nie może być pusta.",
-    "falsy": "Wartość musi być pusta.",
     "string": "Wartość musi być tekstem.",
     "number": "Wartość musi być liczbą.",
     "integer": "Wartość musi być liczbą całkowitą.",

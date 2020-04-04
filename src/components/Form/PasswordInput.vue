@@ -1,6 +1,7 @@
 <template>
     <db-input
         :name="props.name"
+        :rules="props.rules"
         :errors="errors"
         :prepend-text="props.prependText"
         :append-text="props.appendText"

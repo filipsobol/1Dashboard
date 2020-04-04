@@ -4,8 +4,6 @@
         "equal": "Value must be equal to {0}.",
         "exact": "Value must be equal to {0}.",
         "different": "Value must be different than {0}.",
-        "truthy": "Value cannot be empty.",
-        "falsy": "Value must be empty.",
         "string": "Value must be a string.",
         "number": "Value must be a number.",
         "integer": "Value must be an integer.",

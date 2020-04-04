@@ -35,6 +35,15 @@ describe("Validation", () => {
         expect(result).toHaveLength(0);
     });
 
+    it ("skips validation when data is empty and not required", () => {
+        const result = validate("", {
+            number: false,
+            boolean: false,
+        });
+
+        expect(result).toHaveLength(0);
+    });
+
     it ("succeeds when there are no rules", () => {
         const result = validate("test", {});
 
@@ -168,42 +177,6 @@ describe("Validation", () => {
                 });
 
                 expect(result).toHaveLength(0);
-            });
-        });
-
-        describe("Truthy", () => {
-            it ("succeeds when data is truthy", () => {
-                const result = validate("test", {
-                    truthy: true
-                });
-
-                expect(result).toHaveLength(0);
-            });
-
-            it ("fails when data is falsy", () => {
-                const result = validate("", {
-                    truthy: true
-                });
-
-                expect(result).not.toHaveLength(0);
-            });
-        });
-
-        describe("Falsy", () => {
-            it ("succeeds when data is falsy", () => {
-                const result = validate("", {
-                    falsy: true,
-                });
-
-                expect(result).toHaveLength(0);
-            });
-
-            it ("fails when data is truthy", () => {
-                const result = validate("test", {
-                    falsy: true
-                });
-
-                expect(result).not.toHaveLength(0);
             });
         });
 
@@ -352,6 +325,7 @@ describe("Validation", () => {
 
             it("fails when data is empty string", () => {
                 const result = validate("", {
+                    required: true,
                     numeric: true,
                 });
 
@@ -360,6 +334,7 @@ describe("Validation", () => {
 
             it("fails when data is not a number", () => {
                 const result = validate([], {
+                    required: true,
                     numeric: true,
                 });
 
@@ -500,6 +475,7 @@ describe("Validation", () => {
 
             it("fails when data is not a date", () => {
                 const result = validate([], {
+                    required: true,
                     date: true,
                 });
 
@@ -966,6 +942,7 @@ describe("Validation", () => {
 
             it("fails data is not numeric", () => {
                 const result = validate([], {
+                    required: true,
                     lessThan: 10
                 });
 
@@ -1008,6 +985,7 @@ describe("Validation", () => {
 
             it("fails data is not numeric", () => {
                 const result = validate([], {
+                    required: true,
                     lessThanOrEqual: 10
                 });
 
@@ -1110,6 +1088,7 @@ describe("Validation", () => {
 
             it("fails data is numeric", () => {
                 const result = validate([], {
+                    required: true,
                     even: true
                 });
 
@@ -1144,6 +1123,7 @@ describe("Validation", () => {
 
             it("fails data is numeric", () => {
                 const result = validate([], {
+                    required: true,
                     odd: true
                 });
 

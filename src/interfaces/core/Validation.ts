@@ -14,10 +14,6 @@ export interface Rules {
 
     different?: any;
 
-    truthy?: any;
-
-    falsy?: any;
-
     /**
      * Type validators
      */
