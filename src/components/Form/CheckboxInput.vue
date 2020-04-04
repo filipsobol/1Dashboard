@@ -1,7 +1,8 @@
 <template>
-    <div class="wrapper">
-        <div class="name">{{ props.name }}</div>
-
+    <db-input
+        :name="props.name"
+        :errors="errors"
+        :customizable="false">
         <label
             v-for="option in props.options"
             :key="option.value">
@@ -9,17 +10,16 @@
                 :value="option.value"
                 :name="props.id"
                 :checked="optionIsActive(option)"
-                :required="option.required"
                 type="checkbox"
                 @change="onChange($event.target.value)">
 
             <i class="icon-check" />
 
             <span class="ml-2">
-                {{ option.label }}
+                {{ $t(option.label) }}
             </span>
         </label>
-    </div>
+    </db-input>
 </template>
 
 <script lang="ts">
@@ -34,9 +34,16 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: [Array, Boolean],
                 required: false,
+            },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
             },
         },
 
@@ -78,18 +85,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .wrapper {
-        @apply block;
-        @apply relative;
-        @apply text-gray-700;
-        @apply select-none;
-    }
-
-    .name {
-        @apply mb-2;
-        @apply font-medium;
-    }
-
     label {
         @apply relative;
         @apply flex;
@@ -131,7 +126,7 @@
         }
     }
 
-    i {
+    i.icon-check {
         @apply absolute;
         @apply left-0;
         @apply text-transparent;
@@ -145,7 +140,7 @@
         }
     }
 
-    input:checked + i {
+    input:checked + i.icon-check {
         @apply text-gray-100;
     }
 </style>

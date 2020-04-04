@@ -7,19 +7,14 @@ const localization: Localization = {
     timezone: "Europe/Warsaw",
 
     /**
-     * Language code used to format prices and numbers. It can be overridden on user-level.
+     * Language code used to translate text and format prices and numbers.
      */
     locale: "en_US",
 
     /**
-     * Fallback locale used when primary "locale" is missing translation string.
+     * Fallback locale used when primary "locale" is missing translation text.
      */
     fallbackLocale: "en_US",
-
-    /**
-     * Optional URL for the localization files.
-     */
-    locales: undefined,
 };
 
 export default localization;

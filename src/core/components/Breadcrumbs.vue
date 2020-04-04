@@ -7,7 +7,7 @@
         </li>
 
         <li v-if="$route.path !== '/'">
-            {{ pageName }}
+            {{ $t(pageName) }}
         </li>
     </ol>
 </template>

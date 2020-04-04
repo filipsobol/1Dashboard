@@ -1,8 +1,9 @@
 <template>
-    <db-input :name="props.name">
+    <db-input
+        :name="props.name"
+        :errors="errors">
         <select
             :name="props.id"
-            :required="required"
             :disabled="props.readonly"
             multiple>
             <option
@@ -11,14 +12,14 @@
                 :value="option.value"
                 :selected="optionSelected(option)"
                 @mousedown.prevent="toggleOption(option)">
-                {{ option.label || option.value }}
+                {{ $t(option.label || option.value) }}
             </option>
         </select>
     </db-input>
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed } from "@vue/composition-api";
+    import { defineComponent } from "@vue/composition-api";
     import { MultiSelectOption } from '@/interfaces/components/Form/MultiSelectInput';
 
     export default defineComponent({
@@ -34,12 +35,15 @@
                 type: Array,
                 required: false,
             },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
+            },
         },
 
         setup(_, { emit }) {
-            // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
-
             // Functions
             function toggleOption({ value }: MultiSelectOption): void {
                 const values = _.value || [];
@@ -60,9 +64,6 @@
             return {
                 // State
                 _,
-
-                // Computed
-                required,
 
                 // Methods
                 toggleOption,

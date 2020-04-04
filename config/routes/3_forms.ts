@@ -23,6 +23,9 @@ const page: Page = {
                                                 id: "name",
                                                 name: "Text",
                                                 placeholder: "Input placeholder",
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -31,6 +34,10 @@ const page: Page = {
                                                 id: "transferAmount",
                                                 name: "Number",
                                                 placeholder: "Input placeholder",
+                                                rules: {
+                                                    numeric: true,
+                                                    between: [1, 5]
+                                                }
                                             }
                                         },
                                         {
@@ -53,6 +60,9 @@ const page: Page = {
                                                         label: "Polish zloty",
                                                     }
                                                 ],
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -74,6 +84,9 @@ const page: Page = {
                                                         label: "Polish zloty",
                                                     }
                                                 ],
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -95,6 +108,9 @@ const page: Page = {
                                                         label: "Polish zloty",
                                                     }
                                                 ],
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -116,6 +132,9 @@ const page: Page = {
                                                         label: "Polish zloty",
                                                     }
                                                 ],
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -123,7 +142,10 @@ const page: Page = {
                                             props: {
                                                 id: "terms",
                                                 name: "Toggle",
-                                                label: "I agree to the Terms of Service"
+                                                label: "I agree to the Terms of Service",
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -132,6 +154,9 @@ const page: Page = {
                                                 id: "bio",
                                                 name: "Textarea",
                                                 placeholder: "Input placeholder",
+                                                rules: {
+                                                    required: true,
+                                                },
                                             }
                                         },
                                         {
@@ -139,7 +164,11 @@ const page: Page = {
                                             props: {
                                                 id: "profileImage",
                                                 name: "File",
-                                                placeholder: "Click to browse or drag a file"
+                                                placeholder: "Click to browse or drag a file",
+                                                rules: {
+                                                    required: true,
+                                                    image: true,
+                                                },
                                             }
                                         },
                                     ]

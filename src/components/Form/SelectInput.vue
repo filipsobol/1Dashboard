@@ -1,6 +1,7 @@
 <template>
     <db-input
         :name="props.name"
+        :errors="errors"
         :prepend-text="props.prependText"
         :append-text="props.appendText"
         :prepend-icon="props.prependIcon"
@@ -8,18 +9,17 @@
         <select
             :value="value"
             :name="props.id"
-            :required="required"
             :disabled="props.readonly"
             @change="$emit('input', $event.target.value)">
             <option value="">
-                {{ props.placeholder }}
+                {{ $t(props.placeholder) }}
             </option>
 
             <option
                 v-for="option in props.options"
                 :key="option.value"
                 :value="option.value">
-                {{ option.label || option.value }}
+                {{ $t(option.label || option.value) }}
             </option>
         </select>
 
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed } from "@vue/composition-api";
+    import { defineComponent } from "@vue/composition-api";
 
     export default defineComponent({
         name: "SelectInput",
@@ -38,22 +38,23 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: String,
                 required: false,
             },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
+            },
         },
 
         setup(_) {
-            // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
-
             return {
                 // State
                 _,
-
-                // Computed
-                required,
             };
         },
     });

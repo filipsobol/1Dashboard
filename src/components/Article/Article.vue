@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p v-if="props.title">{{ props.title }}</p>
-        <p>{{ props.body }}</p>
-        <p v-if="props.author">{{ props.author }}</p>
+        <p v-if="props.title">{{ $t(props.title) }}</p>
+        <p>{{ $t(props.body) }}</p>
+        <p v-if="props.author">{{ $t(props.author) }}</p>
         <p v-if="props.createdAt">{{ props.createdAt }}</p>
     </div>
 </template>

@@ -1,8 +1,11 @@
 <template>
     <div class="wrapper">
-        <div class="name">{{ name }}</div>
+        <div class="name">{{ $t(name) }}</div>
 
-        <label class="input">
+        <label
+            v-if="customizable"
+            :class="{ 'input-errors': hasErrors }"
+            class="input">
             <div
                 v-if="hasLeadingLabel"
                 class="addon addon-left">
@@ -15,7 +18,7 @@
                     v-if="prependText"
                     :title="prependText"
                     class="addon-text">
-                    {{ prependText }}
+                    {{ $t(prependText) }}
                 </span>
             </div>
 
@@ -30,7 +33,7 @@
                     v-if="appendText"
                     :title="appendText"
                     class="addon-text">
-                    {{ appendText }}
+                    {{ $t(appendText) }}
                 </span>
 
                 <i
@@ -39,24 +42,38 @@
             </div>
         </label>
 
+        <template v-else>
+            <slot />
+        </template>
+
         <div
-            v-for="(error, index) in errors"
-            :key="index">
-            {{ error }}
+            v-if="hasErrors"
+            class="errors-list">
+            <p
+                v-for="[ name, value ] in errors"
+                :key="name"
+                class="error">
+                {{ $t(`validation.${name}`, Array.isArray(value) ? value : [ value ]) }}
+            </p>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
+    import { defineComponent, computed } from "@vue/composition-api";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Input",
 
         props: {
             name: {
                 type: String,
                 required: true,
+            },
+            customizable: {
+                type: Boolean,
+                required: false,
+                default: true,
             },
             errors: {
                 type: Array,
@@ -81,15 +98,22 @@
             }
         },
 
-        computed: {
-            hasLeadingLabel() {
-                return this.prependText || this.prependIcon;
-            },
+        setup(_) {
+            // Computed
+            const hasErrors = computed<boolean>(() => Object.values(_.errors).flat().length > 0);
+            const hasLeadingLabel = computed<boolean>(() => Boolean(_.prependText || _.prependIcon));
+            const hasTrailingLabel = computed<boolean>(() => Boolean(_.appendText || _.appendIcon));
 
-            hasTrailingLabel() {
-                return this.appendText || this.appendIcon;
+            return {
+                // State
+                _,
+
+                // Computed
+                hasErrors,
+                hasLeadingLabel,
+                hasTrailingLabel,
             }
-        }
+        },
     });
 </script>
 
@@ -208,6 +232,21 @@
 
         button:hover > & {
             @apply text-gray-700;
+        }
+    }
+
+    .errors-list {
+        @apply mt-2;
+        @apply border;
+        @apply rounded;
+        @apply px-3;
+        @apply py-2;
+        @apply border-red-300;
+        @apply bg-red-100;
+
+        .error {
+            @apply font-medium;
+            @apply text-red-500;
         }
     }
 </style>

@@ -19,5 +19,4 @@ export type CheckboxValue = Array<string> | boolean;
 export interface SelectOption {
     value?: string;
     label?: string;
-    required?: boolean;
 }

@@ -7,7 +7,7 @@
         <h1
             v-if="title"
             class="text-2xl mt-1 text-gray-800">
-            {{ title }}
+            {{ $t(title) }}
         </h1>
 
         <div

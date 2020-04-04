@@ -8,7 +8,6 @@ export interface MultiSelectInput  {
 export interface MultiSelectInputProps {
     id: string;
     name: string;
-    required?: boolean;
     readonly?: boolean;
     options: Array<MultiSelectOption>;
     rules?: Rules;

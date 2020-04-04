@@ -1,6 +1,7 @@
 <template>
     <db-input
         :name="props.name"
+        :errors="errors"
         :prepend-text="props.prependText"
         :append-text="props.appendText"
         :prepend-icon="props.prependIcon"
@@ -11,7 +12,6 @@
             :name="props.id"
             :value="value"
             :placeholder="props.placeholder"
-            :required="required"
             :readonly="props.readonly"
             @input="$emit('input', $event.target.value)" />
 
@@ -20,7 +20,7 @@
             type="button"
             class="visibility-button"
             tabindex="-1"
-            aria-label="Toggle password visibility"
+            :aria-label="$t(visible ? 'Hide password' : 'Show password')"
             @click="togglePasswordVisibility()">
             <i :class="'icon-' + iconType" />
         </button>
@@ -38,9 +38,16 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: String,
                 required: false,
+            },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
             },
         },
 
@@ -52,7 +59,6 @@
             const visible = ref<boolean>(false);
 
             // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
             const inputType = computed<string>(() => visible.value ? "text" : "password");
             const iconType = computed<string>(() => visible.value ? "eye-off" : "eye");
 
@@ -71,7 +77,6 @@
                 visible,
 
                 // Computed
-                required,
                 inputType,
                 iconType,
 

@@ -18,7 +18,6 @@ export interface Localization {
     timezone: string;
     locale: string;
     fallbackLocale: string;
-    locales?: object;
 }
 
 export interface Page {

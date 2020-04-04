@@ -11,14 +11,13 @@
             :name="props.id"
             :value="value"
             :placeholder="props.placeholder"
-            :required="required"
             :readonly="props.readonly"
             @input="$emit('input', $event.target.value)" />
     </db-input>
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed } from "@vue/composition-api";
+    import { defineComponent } from "@vue/composition-api";
 
     export default defineComponent({
         name: "TextInput",
@@ -28,27 +27,23 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: String,
                 required: false,
             },
+
             errors: {
                 type: Array,
                 required: false,
-                default: [],
+                default: () => [],
             },
         },
 
         setup(_) {
-            // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
-
             return {
                 // State
                 _,
-
-                // Computed
-                required,
             };
         },
     });

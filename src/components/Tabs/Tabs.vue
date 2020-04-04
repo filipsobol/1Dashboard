@@ -10,7 +10,7 @@
                     :class="{ active: tab.id === activeId }"
                     class="nav-link"
                     @click="activeId = tab.id">
-                    {{ tab.title }}
+                    {{ $t(tab.title) }}
                 </a>
             </li>
         </ul>

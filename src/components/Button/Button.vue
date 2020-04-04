@@ -8,7 +8,7 @@
             v-if="props.icon"
             :class="['icon-' + props.icon, 'prop-icon']" />
 
-        <span v-if="props.text">{{ props.text }}</span>
+        <span v-if="props.text">{{ $t(props.text) }}</span>
 
         <div class="loading-overlay">
             <i class="icon-loader" />

@@ -1,5 +1,7 @@
 <template>
-    <db-input :name="props.name">
+    <db-input
+        :name="props.name"
+        :errors="errors">
         <div
             :class="{ active }"
             class="drag-area"
@@ -13,7 +15,6 @@
                 :name="props.id"
                 :value="value"
                 :placeholder="props.placeholder"
-                :required="required"
                 :readonly="props.readonly"
                 @input.prevent="onInput"/>
 
@@ -21,20 +22,20 @@
                 v-if="!active"
                 class="placeholder">
                 <i class="icon-upload" />
-                <span>{{ props.placeholder }}</span>
+                <span>{{ $t(props.placeholder) }}</span>
             </div>
 
             <span
                 v-else
                 class="drop-to-add">
-                Drop to add this file
+                {{ $t("Drop to add this file") }}
             </span>
         </div>
     </db-input>
 </template>
 
 <script lang="ts">
-    import { defineComponent, ref, computed } from "@vue/composition-api";
+    import { defineComponent, ref } from "@vue/composition-api";
 
     export default defineComponent({
         name: "FileInput",
@@ -44,17 +45,21 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: String,
                 required: false,
+            },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
             },
         },
 
         setup(_) {
             const active = ref<boolean>(false);
-
-            // Computed
-            const required = computed(() => _.props.required ?? true);
 
             // Methods
             function onInput(): void {
@@ -69,9 +74,6 @@
                 // State
                 _,
                 active,
-
-                // Computed
-                required,
 
                 // Methods
                 onInput,

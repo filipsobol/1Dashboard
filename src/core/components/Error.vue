@@ -3,8 +3,8 @@
         <i class="icon-alert-triangle" />
 
         <div class="text">
-            <p class="title">{{ title }}</p>
-            <p class="message">{{ message }}</p>
+            <p class="title">{{ $t(title) }}</p>
+            <p class="message">{{ $t(message) }}</p>
         </div>
     </div>
 </template>

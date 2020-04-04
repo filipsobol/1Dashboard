@@ -9,6 +9,7 @@ import { setup as setupStore } from "@/core/Store";
 import { setup as setupRouter } from "@/core/Router";
 import { setup as setupConfiguration } from "@/core/Config";
 import { setup as setupComponents } from "@/core/Components";
+import { setup as setupInternationalization } from "@/core/Internationalization";
 import AppComponent from "@/core/components/App.vue";
 
 // Load styles
@@ -18,14 +19,14 @@ import "@/assets/styles/_core.scss";
 (async () => {
     setupComponents();
 
-    const store = setupStore();                 // Create empty store
-    setupConfiguration(store);                  // Load configuration files into store
-    const router = setupRouter(store);          // Register routes
+    const store = setupStore();
+    setupConfiguration(store);
 
     new Vue({
         el: "#app",
         store,
-        router,
-        render: h => h(AppComponent),
+        router: setupRouter(store),
+        i18n: await setupInternationalization(store),
+        render: h => h(AppComponent)
     });
 })();

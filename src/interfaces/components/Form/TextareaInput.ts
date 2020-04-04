@@ -9,7 +9,6 @@ export interface TextareaInputProps {
     id: string;
     name: string;
     placeholder?: string;
-    required?: boolean;
     readonly?: boolean;
     rows?: number;
     rules?: Rules;

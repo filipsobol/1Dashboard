@@ -6,12 +6,12 @@
             class="border-b border-gray-200"
             :class="headerStyles">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                {{ component.tile.title }}
+                {{ $t(component.tile.title) }}
             </h3>
             <p
                 v-if="component.tile.description"
                 class="text-sm leading-5 text-gray-600">
-                {{ component.tile.description }}
+                {{ $t(component.tile.description) }}
             </p>
         </div>
 

@@ -1,20 +1,21 @@
 <template>
-    <div class="wrapper">
-        <div class="name">{{ props.name }}</div>
-
+    <db-input
+        :name="props.name"
+        :errors="errors"
+        :customizable="false">
         <label>
             <input
                 :value="value"
                 :name="props.id"
                 :checked="active"
-                :required="required"
                 type="checkbox"
                 @click="$emit('input', !value)">
+
             <span class="ml-4">
-                {{ props.label }}
+                {{ $t(props.label) }}
             </span>
         </label>
-    </div>
+    </db-input>
 </template>
 
 <script lang="ts">
@@ -28,16 +29,22 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: Boolean,
                 required: false,
+            },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
             },
         },
 
         setup(_) {
             // Computed
             const active = computed<boolean>(() => _.value ?? false);
-            const required = computed<boolean>(() => _.props.required ?? true);
 
             return {
                 // State
@@ -45,7 +52,6 @@
 
                 // Computed
                 active,
-                required,
             };
         },
     });

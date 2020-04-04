@@ -1,5 +1,5 @@
 <template>
-    <div>{{ props.text }}</div>
+    <div>{{ $t(props.text) }}</div>
 </template>
 
 <script lang="ts">

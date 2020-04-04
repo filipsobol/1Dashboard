@@ -1,26 +1,26 @@
 <template>
-    <div class="wrapper">
-        <div class="name">{{ props.name }}</div>
-
+    <db-input
+        :name="props.name"
+        :errors="errors"
+        :customizable="false">
         <label
             v-for="option in props.options"
             :key="option.value">
             <input
                 :value="option.value"
                 :name="props.id"
-                :required="required"
                 type="radio"
                 @click="$emit('input', $event.target.value)">
 
             <span class="ml-2">
-                {{ option.label }}
+                {{ $t(option.label) }}
             </span>
         </label>
-    </div>
+    </db-input>
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed } from "@vue/composition-api";
+    import { defineComponent } from "@vue/composition-api";
     import { SelectOption } from "@/interfaces/components/Form/RadioInput";
 
     export default defineComponent({
@@ -31,16 +31,20 @@
                 type: [ Object, Function ],
                 required: true,
             },
+
             value: {
                 type: String,
                 required: false,
             },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => []
+            }
         },
 
         setup(_) {
-            // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
-
             // Methods
             function optionIsActive(option: SelectOption): boolean {
                 return _.value === option.value;
@@ -50,9 +54,6 @@
                 // State
                 _,
 
-                // Computed
-                required,
-
                 // Methods
                 optionIsActive,
             };
@@ -61,18 +62,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .wrapper {
-        @apply block;
-        @apply relative;
-        @apply text-gray-700;
-        @apply select-none;
-    }
-
-    .name {
-        @apply mb-2;
-        @apply font-medium;
-    }
-
     label {
         @apply flex;
         @apply items-center;

@@ -8,7 +8,6 @@ export interface RadioInput {
 export interface RadioInputProps {
     id: string;
     name: string;
-    required?: boolean;
     readonly?: boolean;
     options: Array<SelectOption>;
     rules?: Rules;

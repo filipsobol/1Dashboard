@@ -207,6 +207,32 @@ describe("Validation", () => {
             });
         });
 
+        describe("String", () => {
+            it("succeeds when data is a string", () => {
+                const result = validate("test", {
+                    string: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("succeeds when data is am empty string", () => {
+                const result = validate("", {
+                    string: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails when data is not a string", () => {
+                const result = validate(123, {
+                    string: true,
+                });
+
+                expect(result).not.toHaveLength(0);
+            });
+        });
+
         describe("Number", () => {
             it("succeeds when data is an integer", () => {
                 const result = validate(123, {
@@ -291,26 +317,50 @@ describe("Validation", () => {
             });
         });
 
-        describe("String", () => {
-            it("succeeds when data is a string", () => {
-                const result = validate("test", {
-                    string: true,
-                });
-
-                expect(result).toHaveLength(0);
-            });
-
-            it("succeeds when data is am empty string", () => {
-                const result = validate("", {
-                    string: true,
-                });
-
-                expect(result).toHaveLength(0);
-            });
-
-            it("fails when data is not a string", () => {
+        describe("Numeric", () => {
+            it("succeeds when data is an integer", () => {
                 const result = validate(123, {
-                    string: true,
+                    numeric: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("succeeds when data is a float", () => {
+                const result = validate(123.45, {
+                    numeric: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("succeeds when data is a numeric", () => {
+                const result = validate("123", {
+                    numeric: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("succeeds when data is 0", () => {
+                const result = validate(0, {
+                    numeric: true,
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails when data is empty string", () => {
+                const result = validate("", {
+                    numeric: true,
+                });
+
+                expect(result).not.toHaveLength(0);
+            });
+
+            it("fails when data is not a number", () => {
+                const result = validate([], {
+                    numeric: true,
                 });
 
                 expect(result).not.toHaveLength(0);
@@ -906,8 +956,16 @@ describe("Validation", () => {
                 expect(result).not.toHaveLength(0);
             });
 
-            it("fails data is not a number", () => {
+            it("succeeds data is numeric", () => {
                 const result = validate("5", {
+                    lessThan: 10
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails data is not numeric", () => {
+                const result = validate([], {
                     lessThan: 10
                 });
 
@@ -940,8 +998,16 @@ describe("Validation", () => {
                 expect(result).not.toHaveLength(0);
             });
 
-            it("fails data is not a number", () => {
+            it("fails data is numeric", () => {
                 const result = validate("5", {
+                    lessThanOrEqual: 10
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails data is not numeric", () => {
+                const result = validate([], {
                     lessThanOrEqual: 10
                 });
 
@@ -1034,8 +1100,16 @@ describe("Validation", () => {
                 expect(result).not.toHaveLength(0);
             });
 
-            it("fails data is not a number", () => {
+            it("succeeds data is numeric", () => {
                 const result = validate("10", {
+                    even: true
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails data is numeric", () => {
+                const result = validate([], {
                     even: true
                 });
 
@@ -1060,8 +1134,16 @@ describe("Validation", () => {
                 expect(result).not.toHaveLength(0);
             });
 
-            it("fails data is not a number", () => {
+            it("succeeds data is numeric", () => {
                 const result = validate("11", {
+                    odd: true
+                });
+
+                expect(result).toHaveLength(0);
+            });
+
+            it("fails data is numeric", () => {
+                const result = validate([], {
                     odd: true
                 });
 

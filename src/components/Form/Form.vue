@@ -1,6 +1,6 @@
 <template>
     <form
-        ref="form"
+        ref="formElement"
         @submit.stop.prevent="onFormSubmit"
         class="w-full">
         <div
@@ -22,19 +22,19 @@
                 v-if="showSubmitButton"
                 :props="submitButtonProps"
                 :loading="submitting"
-                aria-label="Submit form" />
+                :aria-label="$t('Submit the form')" />
 
             <db-button
                 v-if="showResetButton"
                 :props="resetButtonProps"
                 :loading="submitting"
-                aria-label="Reset form" />
+                :aria-label="$t('Reset the form')" />
         </div>
     </form>
 </template>
 
 <script lang="ts">
-    import { computed, defineComponent, reactive, ref } from "@vue/composition-api";
+    import { computed, defineComponent, reactive, ref, watch } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@/utils/nestedComponents";
     import { validate } from "@/core/Validation/Validation";
     import { ObjectWithAnyKeys } from '@/interfaces/core/Helpers';
@@ -55,10 +55,11 @@
                 type: [Object, Function],
                 required: true,
             },
+
             events: {
                 type: Array,
-                required: false
-            }
+                required: false,
+            },
         },
 
         setup(_: Form, { emit }) {
@@ -73,6 +74,7 @@
             };
 
             // State
+            const formElement = ref<HTMLElement>(null);
             const errors = ref<object>({});
             const values = reactive<object>({});
             const submitting = ref<boolean>(false);
@@ -83,6 +85,17 @@
             const showResetButton = computed<boolean>(() => _.props?.buttons?.reset ?? true);
             const showButtonsSection = computed<boolean>(() => showSubmitButton.value || showResetButton.value);
             const buttonsPosition = computed<FormButtonPosition>(() => _.props?.buttons?.position ?? FormButtonPosition.Start);
+
+            // Watchers
+            watch(hasErrors, (value) => {
+                if (!value) {
+                    return;
+                }
+
+                formElement.value?.querySelector(".errors-list")?.scrollIntoView({
+                    block: "center",
+                })
+            });
 
             // Methods
             function onFormSubmit(event: Event): void {
@@ -95,19 +108,21 @@
 
                 errors.value = getFormErrors(payload);
 
-                if (!hasErrors.value) {
-                    submitting.value = true;
-
-                    emit("submit", payload);
-
-                    const events: Array<Promise<void>> | undefined = _.events
-                        ?.filter(({ on }: FormEvent) => on === "submit")
-                        .map(({ callback }: FormSubmitEvent) => callback(payload));
-
-                    Promise
-                        .all(events || [])
-                        .then(() => submitting.value = false);
+                if (hasErrors.value) {
+                    return;
                 }
+
+                submitting.value = true;
+
+                emit("submit", payload);
+
+                const events: Array<Promise<void>> | undefined = _.events
+                    ?.filter(({ on }: FormEvent) => on === "submit")
+                    .map(({ callback }: FormSubmitEvent) => callback(payload));
+
+                Promise
+                    .all(events || [])
+                    .then(() => submitting.value = false);
             }
 
             function formDataToJson(formData: FormData): ObjectWithAnyKeys {
@@ -149,6 +164,7 @@
 
                 // State
                 _,
+                formElement,
                 errors,
                 values,
                 submitting,

@@ -21,11 +21,14 @@ export interface Rules {
     /**
      * Type validators
      */
+
+    string?: boolean;
+
     number?: boolean;
 
     integer?: boolean;
 
-    string?: boolean;
+    numeric?: boolean;
 
     boolean?: boolean;
 

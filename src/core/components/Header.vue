@@ -20,7 +20,7 @@
                                 exact-active-class="text-white bg-gray-900 hover:text-white hover:bg-gray-900"
                                 class="ml-4 mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-300 hover:text-white hover:bg-gray-700"
                                 tag="a">
-                                {{ page.name }}
+                                {{ $t(page.name) }}
                             </router-link>
                         </div>
                     </div>
@@ -68,17 +68,17 @@
                                         <a
                                             href="#"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                            Your Profile
+                                            {{ $t("Your Profile") }}
                                         </a>
                                         <a
                                             href="#"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                            Settings
+                                            {{ $t("Settings") }}
                                         </a>
                                         <a
                                             href="#"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                            Sign out
+                                            {{ $t("Sign out") }}
                                         </a>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                     exact-active-class="active"
                     class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     tag="a">
-                    {{ page.name }}
+                    {{ $t(page.name) }}
                 </router-link>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-700">
@@ -145,17 +145,17 @@
                     <a
                         href="#"
                         class="block px-3 py-2 rounded-md text-base font-small text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                        Your Profile
+                        {{ $t("Your Profile") }}
                     </a>
                     <a
                         href="#"
                         class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                        Settings
+                        {{ $t("Settings") }}
                     </a>
                     <a
                         href="#"
                         class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                        Sign out
+                        {{ $t("Sign out") }}
                     </a>
                 </div>
             </div>

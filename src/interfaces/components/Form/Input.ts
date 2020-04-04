@@ -4,7 +4,6 @@ export interface InputProps {
     id: string;
     name: string;
     placeholder: string;
-    required?: boolean;
     readonly?: boolean;
     rules?: Rules;
     prependText?: string;

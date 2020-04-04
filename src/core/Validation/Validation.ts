@@ -53,11 +53,17 @@ const validators: Validators = {
     /**
      * Type validators
      */
+
+    string: (value: any): boolean => typeof value === "string",
+
     number: (value: any): boolean => typeof value === "number" && isFinite(value),
 
     integer: (value: any): boolean => typeof value === "number" && Number.isInteger(value),
 
-    string: (value: any): boolean => typeof value === "string",
+    numeric: (value: any): boolean => {
+        return ((validators.string(value) && !validators.empty(value)) || validators.number(value))
+            && !isNaN(Number(value));
+    },
 
     boolean: (value: any): boolean => typeof value === "boolean",
 
@@ -103,27 +109,39 @@ const validators: Validators = {
     /**
      * Number validators
      */
-    negative: (value: number): boolean => validators.number(value) && value < 0,
+    negative: (value: number): boolean => validators.numeric(value) && Number(value) < 0,
 
-    positive: (value: number): boolean => validators.number(value) && value > 0,
+    positive: (value: number): boolean => validators.numeric(value) && Number(value) > 0,
 
     between: (value: number, [min, max]: [number, number]): boolean => {
-        return validators.number(value)
-            && value >= min
-            && value <= max;
+        return validators.numeric(value)
+            && Number(value) >= Number(min)
+            && Number(value) <= Number(max);
     },
 
-    lessThan: (value: number, maxValue: number): boolean => validators.number(value) && value < maxValue,
+    lessThan: (value: number, maxValue: number): boolean => {
+        return validators.numeric(value)
+            && Number(value) < Number(maxValue);
+    },
 
-    lessThanOrEqual: (value: number, maxValue: number): boolean => validators.number(value) && value <= maxValue,
+    lessThanOrEqual: (value: number, maxValue: number): boolean => {
+        return validators.numeric(value)
+            && Number(value) <= Number(maxValue);
+    },
 
-    greaterThan: (value: number, minValue: number): boolean => validators.number(value) && value > minValue,
+    greaterThan: (value: number, minValue: number): boolean => {
+        return validators.numeric(value)
+            && Number(value) > Number(minValue);
+    },
 
-    greaterThanOrEqual: (value: number, minValue: number): boolean => validators.number(value) && value >= minValue,
+    greaterThanOrEqual: (value: number, minValue: number): boolean => {
+        return validators.numeric(value)
+            && Number(value) >= Number(minValue);
+    },
 
-    even: (value: number): boolean => validators.number(value) && value % 2 === 0,
+    even: (value: number): boolean => validators.numeric(value) && Number(value) % 2 === 0,
 
-    odd: (value: number): boolean => validators.number(value) && value % 2 !== 0,
+    odd: (value: number): boolean => validators.numeric(value) && Number(value) % 2 !== 0,
 
     /**
      * Regex validators

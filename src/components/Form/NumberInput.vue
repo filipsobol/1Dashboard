@@ -1,6 +1,7 @@
 <template>
     <db-input
         :name="props.name"
+        :errors="errors"
         :prepend-text="props.prependText"
         :append-text="props.appendText"
         :prepend-icon="props.prependIcon"
@@ -14,7 +15,6 @@
             :min="props.min"
             :max="props.max"
             :placeholder="props.placeholder"
-            :required="required"
             :readonly="props.readonly"
             @input="$emit('input', Number($event.target.value))" />
 
@@ -22,7 +22,7 @@
             type="button"
             class="increment-button"
             tabindex="-1"
-            aria-label="Increment"
+            :aria-label="$t('Increment')"
             @click="increment()">
             <i class="icon-plus" />
         </button>
@@ -31,7 +31,7 @@
             type="button"
             class="decrement-button"
             tabindex="-1"
-            aria-label="Decrement"
+            :aria-label="$t('Decrement')"
             @click="decrement()">
             <i class="icon-minus" />
         </button>
@@ -53,7 +53,13 @@
             value: {
                 type: Number,
                 required: false
-            }
+            },
+
+            errors: {
+                type: Array,
+                required: false,
+                default: () => [],
+            },
         },
 
         setup(_, { emit }) {
@@ -61,8 +67,6 @@
             const input = ref<HTMLElement>(null);
 
             // Computed
-            const required = computed<boolean>(() => _.props.required ?? true);
-
             const step = computed<number>(() => _.props.step ?? 1);
 
             const precision = computed(() => {
@@ -96,7 +100,6 @@
                 _,
 
                 // Computed
-                required,
                 step,
                 precision,
 
