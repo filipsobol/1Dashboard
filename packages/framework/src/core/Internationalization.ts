@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
+import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
 
 Vue.use(VueI18n);
 
-export async function setup(store: any): Promise<VueI18n> {
-    const { locale, fallbackLocale } = store.state.localization;
+export async function setupInternationalization(config: ObjectWithAnyKeys): Promise<VueI18n> {
+    const { locale, fallbackLocale } = config.localization;
 
     const primaryLocales = await import(/* webpackChunkName: "locale-[request]" */ `@framework/assets/locales/${locale}.json`);
     const fallbackLocales = await import(/* webpackChunkName: "locale-[request]" */ `@framework/assets/locales/${fallbackLocale}.json`);

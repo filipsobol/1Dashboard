@@ -1,28 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
 
 Vue.use(Vuex);
 
-export function setup(): any {
+export function setupStore(state: ObjectWithAnyKeys): any {
     return new Vuex.Store({
         strict: true,
 
-        state: {
-            app: null,
-            localization: null,
-            styles: null,
-            contentPages: null,
-            statusPages: null,
-            resources: null,
-        },
+        state,
 
         getters: {},
 
-        mutations: {
-            update(state: any, { name, value }: any) {
-                state[name] = value;
-            }
-        },
+        mutations: {},
 
         actions: {},
     });

@@ -3,7 +3,7 @@ import ErrorComponent from "@framework/core/components/Error.vue";
 import LoadingComponent from "@framework/core/components/Loading.vue";
 import { getComponentName } from "@framework/utils/nestedComponents";
 
-export function setup() {
+export function setupComponents() {
     const paths: string[] = require
         .context("@framework/components/", true, /\.vue$/, "lazy")
         .keys()

@@ -2,13 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 import PageComponent from "@framework/core/components/Page.vue";
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
+import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
 
 Vue.use(Router);
 
 /**
  * Registers all routes defined in the template and redirect for "/" if it's not already defined.
  */
-export function setup(store: any): Router {
+export function setupRouter(config: ObjectWithAnyKeys): Router {
     // Get all route configuration files
     const context = require.context("@framework/../config/routes", true, /\.ts$/);
 
@@ -16,26 +17,18 @@ export function setup(store: any): Router {
         .keys()
         .map((key: string) => context(key).default);
 
-    // Save content and status routes to store
-    store.commit("update", {
-        name: "contentPages",
-        value: pages.filter((page: Page) => !isStatusPage(page)),
-    });
-
-    store.commit("update", {
-        name: "statusPages",
-        value: pages.filter((page: Page) => isStatusPage(page)),
-    });
+    config.contentPages = pages.filter((page: Page) => !isStatusPage(page));
+    config.statusPages = pages.filter((page: Page) => isStatusPage(page));
 
     // Group all content routes
-    const routes = store.state.contentPages.map((page: Page) => ({
+    const routes = config.contentPages.map((page: Page) => ({
         path: page.url as string,
         component: PageComponent,
         props: page
     }));
 
     // Register 404 route if it exists
-    const notFoundRoute = store.state.statusPages.find(({ url }: Page) => url === PageUrl.NotFound);
+    const notFoundRoute = config.statusPages.find(({ url }: Page) => url === PageUrl.NotFound);
 
     if (notFoundRoute) {
         routes.push({
