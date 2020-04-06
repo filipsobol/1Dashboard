@@ -81,158 +81,51 @@ const page: Page = {
                                 type: "Button",
                                 props: {
                                     icon: "facebook",
+                                    text: "Sign in with Facebook"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "twitter",
+                                    text: "Sign in with Twitter"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "instagram",
+                                    text: "Sign in with Instagram"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "linkedin",
+                                    text: "Sign in with LinkedIn"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "twitch",
+                                    text: "Sign in with Twitch"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "github",
+                                    text: "Sign in with GitHub"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
                             },
                             {
                                 type: "Button",
                                 props: {
                                     icon: "gitlab",
+                                    text: "Sign in with GitLab"
                                 },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                type: "Button",
-                                props: {
-                                    icon: "codepen",
-                                },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                type: "Button",
-                                props: {
-                                    icon: "codesandbox",
-                                },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                type: "Button",
-                                props: {
-                                    icon: "trello",
-                                },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                type: "Button",
-                                props: {
-                                    icon: "slack",
-                                },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                type: "Button",
-                                props: {
-                                    icon: "figma",
-                                },
-                                tile: {
-                                    layout: {
-                                        xl: {
-                                            width: 1
-                                        }
-                                    }
-                                }
-                            },
+                            }
                         ]
                     },
                     tile: {
