@@ -1,5 +1,5 @@
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
-import { Grid } from "@framework/interfaces/components/Grid";
+import { Grid } from "@/components/src/interfaces/Grid";
 import { Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
 
 const config: Page = {

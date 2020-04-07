@@ -1,7 +1,7 @@
 import Vue from "vue";
 import ErrorComponent from "@framework/core/components/Error.vue";
 import LoadingComponent from "@framework/core/components/Loading.vue";
-import { getComponentName } from "@framework/utils/nestedComponents";
+import { getComponentName } from "@components/utils/nestedComponents";
 
 export function setupComponents() {
     const paths: string[] = require

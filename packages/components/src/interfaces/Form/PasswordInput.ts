@@ -1,4 +1,4 @@
-import { InputProps } from "@framework/interfaces/components/Form/Input";
+import { InputProps } from "@/components/src/interfaces/Form/Input";
 
 export interface PasswordInput {
     type: "PasswordInput";

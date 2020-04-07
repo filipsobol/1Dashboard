@@ -1,19 +1,19 @@
-import { Article } from "@framework/interfaces/components/Article";
-import { Button } from "@framework/interfaces/components/Button";
-import { Grid } from "@framework/interfaces/components/Grid";
-import { Tabs } from "@framework/interfaces/components/Tabs";
-import { Text } from "@framework/interfaces/components/Text";
-import { Form } from "@framework/interfaces/components/Form";
-import { CheckboxInput } from "@framework/interfaces/components/Form/CheckboxInput";
-import { FileInput } from "@framework/interfaces/components/Form/FileInput";
-import { NumberInput } from "@framework/interfaces/components/Form/NumberInput";
-import { MultiSelectInput } from "@framework/interfaces/components/Form/MultiSelectInput";
-import { PasswordInput } from "@framework/interfaces/components/Form/PasswordInput";
-import { RadioInput } from "@framework/interfaces/components/Form/RadioInput";
-import { SelectInput } from "@framework/interfaces/components/Form/SelectInput";
-import { TextareaInput } from "@framework/interfaces/components/Form/TextareaInput";
-import { TextInput } from "@framework/interfaces/components/Form/TextInput";
-import { ToggleInput } from "@framework/interfaces/components/Form/ToggleInput";
+import { Article } from "@components/interfaces/Article";
+import { Button } from "@components/interfaces/Button";
+import { Grid } from "@components/interfaces/Grid";
+import { Tabs } from "@components/interfaces/Tabs";
+import { Text } from "@components/interfaces/Text";
+import { Form } from "@components/interfaces/Form";
+import { CheckboxInput } from "@components/interfaces/Form/CheckboxInput";
+import { FileInput } from "@components/interfaces/Form/FileInput";
+import { NumberInput } from "@components/interfaces/Form/NumberInput";
+import { MultiSelectInput } from "@components/interfaces/Form/MultiSelectInput";
+import { PasswordInput } from "@components/interfaces/Form/PasswordInput";
+import { RadioInput } from "@components/interfaces/Form/RadioInput";
+import { SelectInput } from "@components/interfaces/Form/SelectInput";
+import { TextareaInput } from "@components/interfaces/Form/TextareaInput";
+import { TextInput } from "@components/interfaces/Form/TextInput";
+import { ToggleInput } from "@components/interfaces/Form/ToggleInput";
 
 export type Component = Article
     | Button

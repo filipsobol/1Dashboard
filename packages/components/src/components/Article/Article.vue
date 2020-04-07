@@ -9,7 +9,7 @@
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { ArticleProps } from "@framework/interfaces/components/Article";
+    import { ArticleProps } from "@/components/src/interfaces/Article";
 
     export default Vue.extend({
         name: "Article",

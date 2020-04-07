@@ -25,7 +25,7 @@
 
 <script lang="ts">
     import { defineComponent } from "@vue/composition-api";
-    import { SelectOption } from '@framework/interfaces/components/Form/CheckboxInput';
+    import { SelectOption } from '@framework/../../interfaces/Form/CheckboxInput';
 
     export default defineComponent({
         name: "CheckboxInput",

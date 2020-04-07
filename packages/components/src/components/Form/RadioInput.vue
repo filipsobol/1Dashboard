@@ -22,7 +22,7 @@
 
 <script lang="ts">
     import { defineComponent } from "@vue/composition-api";
-    import { SelectOption } from "@framework/interfaces/components/Form/RadioInput";
+    import { SelectOption } from "@framework/../../interfaces/Form/RadioInput";
 
     export default defineComponent({
         name: "RadioInput",

@@ -15,6 +15,7 @@ module.exports = {
         resolve: {
             alias: {
                 "@": path.resolve(__dirname, "packages"),
+                "@components": path.resolve(__dirname, "packages/components/src"),
                 "@framework": path.resolve(__dirname, "packages/framework/src"),
             }
         }

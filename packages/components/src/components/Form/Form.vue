@@ -38,14 +38,14 @@
     import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
     import { validate } from "@framework/core/Validation/Validation";
     import { ObjectWithAnyKeys } from '@framework/interfaces/core/Helpers';
-    import { ButtonProps, ButtonType } from "@framework/interfaces/components/Button";
+    import { ButtonProps, ButtonType } from "@/components/src/interfaces/Button";
     import {
         Form,
         FormButtonPosition,
         FormEvent,
         FormSubmitEventContext,
         FormSubmitEvent
-    } from "@framework/interfaces/components/Form";
+    } from "@/components/src/interfaces/Form";
 
     export default defineComponent({
         name: "Form",

@@ -8,7 +8,7 @@ export function getComponentName(text: string): string {
 }
 
 export function getComponentData(component: any) {
-    const { type, tile, ...rest } = component;
+    const { tile, ...rest } = component;
 
     return rest;
 }

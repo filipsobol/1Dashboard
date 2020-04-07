@@ -21,6 +21,9 @@
             "@/*": [
                 "packages/*"
             ],
+            "@components/*": [
+                "packages/components/src/*"
+            ],
             "@framework/*": [
                 "packages/framework/src/*"
             ]
