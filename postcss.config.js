@@ -15,7 +15,8 @@ module.exports = {
                 /^bg-/,
                 /^shadow/,
                 /^rounded/,
-                /^p-/
+                /^p-/,
+                /^text-/
             ]
         },
         autoprefixer: {},
