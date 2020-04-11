@@ -1,5 +1,5 @@
 module.exports = {
-    prefix: '',
+    prefix: "",
     important: false,
     separator: ":",
     theme: {
@@ -691,4 +691,4 @@ module.exports = {
     },
     corePlugins: {},
     plugins: [],
-}
+};
