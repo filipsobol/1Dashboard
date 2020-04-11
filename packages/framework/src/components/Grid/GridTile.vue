@@ -28,7 +28,6 @@
     import Vue from "vue";
     import { mapState } from "vuex";
     import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
-    import { Component } from "@framework/interfaces/core/Components";
     import { GridTileStyle } from "@framework/interfaces/core/Config";
     import { Direction, Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
 
@@ -109,7 +108,7 @@
                 return getComponentName(this.component.type);
             },
 
-            componentData(): Partial<Component> {
+            componentData(): any {
                 return getComponentData(this.component);
             },
         }

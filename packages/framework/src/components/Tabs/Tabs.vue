@@ -33,7 +33,7 @@
 <script lang="ts">
     import Vue, { PropType } from "vue";
     import { getComponentName, getComponentData } from "@framework/utils/nestedComponents";
-    import { TabsProps } from "@/components/src/interfaces/Tabs";
+    import { TabsProps } from "@framework/interfaces/components/Tabs";
 
     export default Vue.extend({
         name: "Tabs",

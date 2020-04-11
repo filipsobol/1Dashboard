@@ -18,7 +18,7 @@
 
 <script lang="ts">
     import { defineComponent, computed } from "@vue/composition-api";
-    import { ButtonType } from "@/components/src/interfaces/Button";
+    import { ButtonType } from "@framework/interfaces/components/Button";
 
     export default defineComponent({
         name: "Button",

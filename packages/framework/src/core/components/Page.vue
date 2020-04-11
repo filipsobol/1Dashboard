@@ -33,7 +33,7 @@
     import DbLoading from "@framework/core/components/Loading.vue";
     import DbBreadcrumbs from "@framework/core/components/Breadcrumbs.vue";
     import { Page, PageUrl } from "@framework/interfaces/core/Config";
-    import { getComponentName, getComponentData } from "@components/utils/nestedComponents";
+    import { getComponentName, getComponentData } from "@framework/utils/nestedComponents";
 
     export default defineComponent({
         name: "Page",

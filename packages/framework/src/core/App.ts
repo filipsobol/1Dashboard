@@ -4,17 +4,15 @@ import Vue from "vue";
 import CompositionApi from "@vue/composition-api";
 Vue.use(CompositionApi);
 
-// Load core services
 import { setupStore } from "@framework/core/Store";
 import { setupRouter } from "@framework/core/Router";
 import { loadConfiguration } from "@framework/core/Config";
-import { setupComponents } from "@framework/core/Components";
 import { setupInternationalization } from "@framework/core/Internationalization";
+import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
 import AppComponent from "@framework/core/components/App.vue";
 
 // Load styles
 import "@framework/assets/styles/_core.scss";
-import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
 
 function updatePageHead(config: ObjectWithAnyKeys) {
     const {
@@ -54,7 +52,6 @@ async function renderApp(config: ObjectWithAnyKeys) {
 }
 
 export function startApplication(config: ObjectWithAnyKeys) {
-    setupComponents();
     updatePageHead(config);
     renderApp(config);
 }

@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { TextProps } from "@/components/src/interfaces/Text";
+    import { TextProps } from "@framework/interfaces/components/Text";
 
     export default Vue.extend({
         name: "Text",

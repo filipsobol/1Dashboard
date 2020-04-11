@@ -10,11 +10,8 @@
             <input
                 :value="option.value"
                 :name="props.id"
-                :checked="optionIsActive(option)"
-                type="checkbox"
-                @change="onChange($event.target.value)">
-
-            <i class="icon-check" />
+                type="radio"
+                @click="$emit('input', $event.target.value)">
 
             <span class="ml-2">
                 {{ $t(option.label) }}
@@ -25,10 +22,10 @@
 
 <script lang="ts">
     import { defineComponent } from "@vue/composition-api";
-    import { SelectOption } from '@framework/../../interfaces/Form/CheckboxInput';
+    import { SelectOption } from "@framework/interfaces/components/Form/RadioInput";
 
     export default defineComponent({
-        name: "CheckboxInput",
+        name: "RadioInput",
 
         props: {
             props: {
@@ -37,40 +34,21 @@
             },
 
             value: {
-                type: [Array, Boolean],
+                type: String,
                 required: false,
             },
 
             errors: {
                 type: Array,
                 required: false,
-                default: () => [],
-            },
+                default: () => []
+            }
         },
 
-        setup(_: any, { emit }) {
+        setup(_) {
+            // Methods
             function optionIsActive(option: SelectOption): boolean {
-                if (Array.isArray(_.value)) {
-                    return _.value.includes(option.value ?? "");
-                }
-
-                return _.value ?? false;
-            }
-
-            function onChange(value: string): void {
-                if (_.props.options.length === 1) {
-                    return emit("input", !_.value);
-                }
-
-                if (!Array.isArray(_.value)) {
-                    return emit("input", [value]);
-                }
-
-                if (_.value.includes(value)) {
-                    return emit("input", _.value.filter((element: string) => element !== value));
-                }
-
-                emit("input", _.value.concat(value));
+                return _.value === option.value;
             }
 
             return {
@@ -79,7 +57,6 @@
 
                 // Methods
                 optionIsActive,
-                onChange,
             };
         },
     });
@@ -87,7 +64,6 @@
 
 <style lang="scss" scoped>
     label {
-        @apply relative;
         @apply flex;
         @apply items-center;
         @apply py-1;
@@ -101,12 +77,11 @@
         @apply w-6;
         @apply h-6;
         @apply border;
-        @apply rounded;
+        @apply rounded-full;
         @apply border-gray-500;
-        @apply bg-white;
 
-        // Transition background color on toggle
-        @apply transition-colors;
+        // Transition border on toggle
+        @apply transition-all;
         @apply duration-200;
         @apply ease-in-out;
 
@@ -118,30 +93,12 @@
             @apply border-gray-600;
         }
         &:checked {
-            @apply bg-gray-600;
+            @apply border-8;
             @apply border-gray-600;
+            @apply bg-gray-100;
         }
         &:focus-within {
-            @apply border-0;
             @apply shadow-outline;
         }
-    }
-
-    i.icon-check {
-        @apply absolute;
-        @apply left-0;
-        @apply text-transparent;
-        @apply leading-none;
-
-        margin-left: 2px;
-
-        &::before {
-            @apply text-lg;
-            @apply font-bold;
-        }
-    }
-
-    input:checked + i.icon-check {
-        @apply text-gray-100;
     }
 </style>

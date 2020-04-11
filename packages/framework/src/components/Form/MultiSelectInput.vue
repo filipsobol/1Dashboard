@@ -21,7 +21,7 @@
 
 <script lang="ts">
     import { defineComponent } from "@vue/composition-api";
-    import { MultiSelectOption } from '@framework/../../interfaces/Form/MultiSelectInput';
+    import { MultiSelectOption } from "@framework/interfaces/components//Form/MultiSelectInput";
 
     export default defineComponent({
         name: "MultiSelectInput",

@@ -9,7 +9,7 @@
 
 <script lang="ts">
     import Vue, { PropType } from "vue";
-    import { GridProps } from '@/components/src/interfaces/Grid';
+    import { GridProps } from "@framework/interfaces/components/Grid";
 
     export default Vue.extend({
         name: "Grid",

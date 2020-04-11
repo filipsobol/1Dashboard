@@ -1,27 +1,40 @@
 /* eslint-disable */
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     chainWebpack: config => {
-        // Remove the prefetch plugin
         config.plugins.delete("prefetch");
         config.plugins.delete("preload");
     },
 
+    outputDir: "packages/framework/dist",
+
     configureWebpack: {
         entry: {
-            app: "./packages/framework/src/main.ts"
+            app: "./packages/framework/src/main.ts",
         },
+
         resolve: {
             alias: {
                 "@": path.resolve(__dirname, "packages"),
-                "@components": path.resolve(__dirname, "packages/components/src"),
+                "@firebase": path.resolve(__dirname, "packages/firebase/src"),
                 "@framework": path.resolve(__dirname, "packages/framework/src"),
-            }
-        }
+            },
+        },
+
+        plugins: [
+            new CopyWebpackPlugin([
+                {
+                    context: "packages/framework",
+                    from: "public",
+                    flatten: true,
+                },
+            ]),
+        ],
     },
 
     pluginOptions: {
-      i18n: {}
-    }
+      i18n: {},
+    },
 };

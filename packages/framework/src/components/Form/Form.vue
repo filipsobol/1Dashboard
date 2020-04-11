@@ -37,15 +37,15 @@
     import { computed, defineComponent, reactive, ref, watch } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
     import { validate } from "@framework/core/Validation/Validation";
-    import { ObjectWithAnyKeys } from '@framework/interfaces/core/Helpers';
-    import { ButtonProps, ButtonType } from "@/components/src/interfaces/Button";
+    import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
+    import { ButtonProps, ButtonType } from "@framework/interfaces/components/Button";
     import {
         Form,
         FormButtonPosition,
         FormEvent,
         FormSubmitEventContext,
         FormSubmitEvent
-    } from "@/components/src/interfaces/Form";
+    } from "@framework/interfaces/components/Form";
 
     export default defineComponent({
         name: "Form",

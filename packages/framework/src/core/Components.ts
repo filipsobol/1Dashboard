@@ -1,11 +1,11 @@
 import Vue from "vue";
 import ErrorComponent from "@framework/core/components/Error.vue";
 import LoadingComponent from "@framework/core/components/Loading.vue";
-import { getComponentName } from "@components/utils/nestedComponents";
+import { getComponentName } from "@framework/utils/nestedComponents";
 
-export function setupComponents() {
+export function registerComponentsGlobally() {
     const paths: string[] = require
-        .context("@framework/components/", true, /\.vue$/, "lazy")
+        .context("@framework/components", true, /\.vue$/, "lazy")
         .keys()
         .map((path: string) => path.replace("./", ""))
         .map((path: string) => path.replace(".vue", ""));

@@ -1,5 +1,5 @@
 import { Page } from "@framework/interfaces/core/Config";
-import { Grid } from "@/components/src/interfaces/Grid";
+import { Grid } from "@framework/interfaces/components/Grid";
 
 const page: Page = {
     url: "/form",
