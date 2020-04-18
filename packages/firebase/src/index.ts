@@ -14,8 +14,12 @@ export default function(context: any) {
         appId: "1:669540400072:web:95e632e7e2481f04e39efd"
     });
 
+    // Redirect to login page if user is not logged in
     context.configuration.routing.beforeEach.push(async (to: any, from: any, next: Function) => {
-        if (to.path.startsWith("/auth") || await getCurrentUser()) {
+        const user = await getCurrentUser();
+
+        if (to.path.startsWith("/auth") || user) {
+            context.user = user;
             return true;
         }
 
@@ -27,6 +31,7 @@ export default function(context: any) {
         });
     });
 
+    // Add firebase to page context
     context.firebase = firebase;
 }
 
