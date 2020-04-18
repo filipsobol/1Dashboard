@@ -56,8 +56,8 @@ export interface Page {
     props?: {
         hideBreadcrumbs?: boolean;
     };
-    beforeEnter?: Function;
-    beforeLeave?: Function;
+    beforeEnter?: (context: Context) => any;
+    beforeLeave?: (context: Context) => any;
 }
 
 export type PageLayout = Component | {

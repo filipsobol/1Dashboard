@@ -5,6 +5,11 @@ const page: Page = {
     url: PageUrl.Register,
     name: "Register",
     title: "Register",
+    beforeEnter: (context): any => {
+        if (context.user) {
+            context.router.push({ path: "/" });
+        }
+    },
     layout: async (context): Promise<Component> => ({
         type: "Grid",
         props: {
