@@ -14,7 +14,7 @@
                     <div class="hidden md:block">
                         <div class="ml-6 flex items-baseline">
                             <router-link
-                                v-for="page in contentPages"
+                                v-for="page in menuPages"
                                 :key="page.url"
                                 :to="page.url"
                                 exact-active-class="text-white bg-gray-900 hover:text-white hover:bg-gray-900"
@@ -119,7 +119,7 @@
             class="block md:hidden">
             <div class="px-2 pt-2 pb-3 sm:px-3">
                 <router-link
-                    v-for="page in contentPages"
+                    v-for="page in menuPages"
                     :key="page.url"
                     :to="page.url"
                     exact-active-class="active"
@@ -164,20 +164,24 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
-    import { mapState } from "vuex";
+    import { defineComponent, ref, computed, inject } from "@vue/composition-api";
+    import { Page, PageUrl } from "@framework/interfaces/core/Config";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Header",
 
-        data: () => ({
-            open: false
-        }),
+        setup(_) {
+            const open = ref<boolean>(false);
+            const pages = inject<any>(Symbol.for("context")).configuration.pages;
+            const menuPages = computed<Page>(() => pages.filter(({ url }: Page) => !Object.values(PageUrl).includes(url as PageUrl)));
 
-        computed: {
-            ...mapState([
-                "contentPages",
-            ]),
+            return {
+                // State
+                _,
+                open,
+                pages,
+                menuPages
+            };
         },
     });
 </script>

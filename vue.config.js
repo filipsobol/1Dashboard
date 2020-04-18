@@ -17,8 +17,6 @@ module.exports = {
 
         resolve: {
             alias: {
-                "@": path.resolve(__dirname, "packages"),
-                "@firebase": path.resolve(__dirname, "packages/firebase/src"),
                 "@framework": path.resolve(__dirname, "packages/framework/src"),
             },
         },

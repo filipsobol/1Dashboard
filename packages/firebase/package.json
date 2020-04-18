@@ -1,0 +1,8 @@
+{
+    "name": "@1dashboard/firebase-integration",
+    "version": "0.1.0",
+    "main": "src/index.ts",
+    "dependencies": {
+        "firebase": "^7.14.0"
+    }
+}

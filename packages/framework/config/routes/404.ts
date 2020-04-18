@@ -9,7 +9,7 @@ const config: Page = {
     props: {
         hideBreadcrumbs: true
     },
-    layout: ({ router }): Grid => ({
+    layout: (context): Grid => ({
         type: "Grid",
         props: {
             components: [
@@ -37,7 +37,7 @@ const config: Page = {
                     events: [
                         {
                             on: "click",
-                            callback: () => router.push({ path: "/" }),
+                            callback: () => context.router.push({ path: "/" }),
                         }
                     ],
                     tile: {

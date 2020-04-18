@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
-    import { mapState } from "vuex";
+    import { defineComponent, inject } from "@vue/composition-api";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "Breadcrumbs",
 
         props: {
@@ -26,11 +25,15 @@
             }
         },
 
-        computed: {
-            ...mapState([
-                "app",
-            ]),
-        }
+        setup(_) {
+            const app = inject<any>(Symbol.for("context")).configuration.app;
+
+            return {
+                // State
+                _,
+                app,
+            };
+        },
     });
 </script>
 

@@ -4,57 +4,38 @@ import Vue from "vue";
 import CompositionApi from "@vue/composition-api";
 Vue.use(CompositionApi);
 
-import { setupStore } from "@framework/core/Store";
+// Load core services
 import { setupRouter } from "@framework/core/Router";
-import { loadConfiguration } from "@framework/core/Config";
+import { setupResources } from "@framework/core/Resources";
+import { registerComponentsGlobally } from "@framework/core/Components";
 import { setupInternationalization } from "@framework/core/Internationalization";
-import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
+import { Context } from "@framework/interfaces/core/Config";
 import AppComponent from "@framework/core/components/App.vue";
 
 // Load styles
 import "@framework/assets/styles/_core.scss";
 
-function updatePageHead(config: ObjectWithAnyKeys) {
-    const {
-        title,
-        description,
-        keywords,
-        faviconUrl,
-        faviconType,
-    } = config.app;
-    document.title = title;
-
-    document
-        .querySelector("meta[name='description']")
-        ?.setAttribute("content", description);
-
-    document
-        .querySelector("meta[name='keywords']")
-        ?.setAttribute("content", keywords);
-
-    document
-        .querySelector("link[rel='icon']")
-        ?.setAttribute("href", faviconUrl);
-
-    document
-        .querySelector("link[rel='icon']")
-        ?.setAttribute("type", faviconType);
+/**
+ * Sets up application based on provided configuration and renders it.
+ */
+export async function startApplication(context: Context): Promise<void> {
+    registerComponentsGlobally();
+    setupResources(context);
+    await renderApp(context);
 }
 
-async function renderApp(config: ObjectWithAnyKeys) {
+/**
+ * Creates Vue root instance, routing etc. and renders application.
+ */
+async function renderApp(context: Context): Promise<void> {
     new Vue({
         el: "#app",
-        i18n: await setupInternationalization(config),
-        router: setupRouter(config),
-        store: setupStore(config),
-        render: h => h(AppComponent)
+        i18n: await setupInternationalization(context),
+        router: setupRouter(context),
+        render: h => h(AppComponent, {
+            props: {
+                context
+            }
+        }),
     });
 }
-
-export function startApplication(config: ObjectWithAnyKeys) {
-    updatePageHead(config);
-    renderApp(config);
-}
-
-export { loadConfiguration };
-

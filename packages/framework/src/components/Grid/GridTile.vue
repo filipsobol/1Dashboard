@@ -25,13 +25,12 @@
 </template>
 
 <script lang="ts">
-    import Vue from "vue";
-    import { mapState } from "vuex";
+    import { defineComponent, inject, computed } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
     import { GridTileStyle } from "@framework/interfaces/core/Config";
     import { Direction, Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
 
-    export default Vue.extend({
+    export default defineComponent({
         name: "GridTile",
 
         props: {
@@ -41,12 +40,10 @@
             },
         },
 
-        computed: {
-            ...mapState([
-                "styles",
-            ]),
+        setup(_: any) {
+            const styles = inject<any>(Symbol.for("context")).configuration.styles;
 
-            normalizedStyles(): GridTileStyle {
+            const normalizedStyles = computed<GridTileStyle>(() => {
                 const defaultStyles: GridTileStyle = {
                     direction: Direction.ROW,
                     justify: Justify.START,
@@ -56,17 +53,17 @@
                     radius: Radius.NONE,
                 };
 
-                const tileStyles = this.component?.tile?.style || defaultStyles;
+                const tileStyles = _.component?.tile?.style || defaultStyles;
 
                 if (typeof tileStyles === "object") {
                     return tileStyles;
                 }
 
-                return this.styles.tile.predefinedStyles[tileStyles];
-            },
+                return styles.tile.predefinedStyles[tileStyles];
+            });
 
-            tileStyles(): Array<string> {
-                const tile = this.component?.tile;
+            const tileStyles = computed<Array<string>>(() => {
+                const tile = _.component?.tile;
 
                 const classes = Object
                     .entries(tile?.layout || {})
@@ -81,36 +78,40 @@
                 return [
                     ...classes,
                     "col-span-12",
-                    `bg-${ this.normalizedStyles.background || "transparent" }`,
-                    this.normalizedStyles.shadow || Shadow.NONE,
-                    this.normalizedStyles.radius || Radius.NONE
+                    `bg-${ normalizedStyles.value.background || "transparent" }`,
+                    normalizedStyles.value.shadow || Shadow.NONE,
+                    normalizedStyles.value.radius || Radius.NONE
                 ];
-            },
+            });
 
-            headerStyles(): Array<string> {
-                return [
-                    "flex",
-                    "flex-col",
-                    `p-${this.normalizedStyles.padding ?? 0}`
-                ];
-            },
+            const headerStyles = computed<Array<string>>(() => [
+                "flex",
+                "flex-col",
+                `p-${normalizedStyles.value.padding ?? 0}`
+            ]);
 
-            contentStyles(): Array<string> {
-                return [
-                    "flex",
-                    this.normalizedStyles.direction || "",
-                    this.normalizedStyles.justify || "",
-                    `p-${this.normalizedStyles.padding ?? 0}`
-                ];
-            },
+            const contentStyles = computed<Array<string>>(() => [
+                "flex",
+                normalizedStyles.value.direction || "",
+                normalizedStyles.value.justify || "",
+                `p-${normalizedStyles.value.padding ?? 0}`
+            ]);
 
-            componentName(): string {
-                return getComponentName(this.component.type);
-            },
+            const componentName = computed<string>(() => getComponentName(_.component.type));
+            const componentData = computed<any>(() => getComponentData(_.component));
 
-            componentData(): any {
-                return getComponentData(this.component);
-            },
-        }
+            return {
+                // State
+                _,
+
+                // Computed
+                normalizedStyles,
+                tileStyles,
+                headerStyles,
+                contentStyles,
+                componentName,
+                componentData,
+            }
+        },
     });
 </script>

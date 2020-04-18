@@ -16,9 +16,6 @@
             "jest"
         ],
         "paths": {
-            "@firebase/*": [
-                "packages/firebase/src/*"
-            ],
             "@framework/*": [
                 "packages/framework/src/*"
             ]

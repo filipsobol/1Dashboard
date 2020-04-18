@@ -15,6 +15,11 @@ const localization: Localization = {
      * Fallback locale used when primary "locale" is missing translation text.
      */
     fallbackLocale: "en_US",
+
+    /**
+     * When enabled, warnings about missing translations will not be logged into the console.
+     */
+    silentTranslationWarn: true,
 };
 
 export default localization;

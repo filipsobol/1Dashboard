@@ -5,7 +5,7 @@ const page: Page = {
     url: "/",
     name: "Homepage",
     title: "Welcome to 1Dashboard",
-    layout: async ({ route, get }): Promise<Component> => ({
+    layout: async (context): Promise<Component> => ({
         type: "Grid",
         props: {
             components: [
@@ -13,7 +13,7 @@ const page: Page = {
                     type: "Article",
                     props: {
                         body: "To change author of this article you can add following query to the end of the URL: ?author=Your Name",
-                        author: route.query?.author as string || "Default author",
+                        author: context.route.query?.author as string || "Default author",
                     },
                     tile: {
                         layout: {
@@ -31,7 +31,7 @@ const page: Page = {
                 },
                 {
                     type: "Article",
-                    props: await get("https://www.mocky.io/v2/5e7cf1643500002a9806a02d?mocky-delay=1500ms"),
+                    props: await context.resource("get", "https://www.mocky.io/v2/5e7cf1643500002a9806a02d?mocky-delay=1500ms"),
                     tile: {
                         layout: {
                             sm: {

@@ -14,9 +14,10 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent } from "@vue/composition-api";
+    import { defineComponent, provide, watchEffect } from "@vue/composition-api";
     import DbHeader from "@framework/core/components/Header.vue";
     import DbFooter from "@framework/core/components/Footer.vue";
+    import { Context } from '@framework/interfaces/core/Config';
 
     export default defineComponent({
         name: "Application",
@@ -25,6 +26,43 @@
             DbHeader,
             DbFooter
         },
+
+        props: {
+            context: {
+                type: Object,
+                required: true,
+            },
+        },
+
+        setup(_: { context: Context }) {
+            const ContextSymbol = Symbol.for("context");
+            provide(ContextSymbol, _.context);
+
+            watchEffect(() => {
+                document.title = _.context.configuration.app.title;
+
+                document
+                    .querySelector("meta[name='description']")
+                    ?.setAttribute("content", _.context.configuration.app.description);
+
+                document
+                    .querySelector("meta[name='keywords']")
+                    ?.setAttribute("content", _.context.configuration.app.keywords);
+
+                document
+                    .querySelector("link[rel='icon']")
+                    ?.setAttribute("href", _.context.configuration.app.faviconUrl);
+
+                document
+                    .querySelector("link[rel='icon']")
+                    ?.setAttribute("type", _.context.configuration.app.faviconType);
+            });
+
+            return {
+                // state
+                _,
+            }
+        }
     });
 </script>
 
