@@ -1,45 +1,45 @@
 <template>
     <div class="bg-gray-100 min-h-screen flex flex-col">
-       <template v-if="pageIsReady">
-           <DbHeader />
+        <template v-if="pageIsReady">
+            <DbHeader/>
 
-           <div class="container flex flex-col flex-grow mx-auto py-6 px-4 sm:px-6 lg:px-8">
-               <transition-group
-                   :duration="80"
-                   name="fade"
-                   mode="out-in">
-                   <DbBreadcrumbs
-                       v-if="showBreadcrumbs"
-                       :pageName="currentPage.name"
-                       :key="'breadcrumbs-' + currentPage.name" />
+            <div class="container flex flex-col flex-grow mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <transition-group
+                    :duration="80"
+                    name="fade"
+                    mode="out-in">
+                    <DbBreadcrumbs
+                        v-if="showBreadcrumbs"
+                        :pageName="currentPage.name"
+                        :key="'breadcrumbs-' + currentPage.name"/>
 
-                   <h1
-                       v-if="currentPage.title"
-                       class="text-2xl mt-1 text-gray-800"
-                       :key="'title-' + currentPage.title">
-                       {{ $t(currentPage.title) }}
-                   </h1>
+                    <h1
+                        v-if="currentPage.title"
+                        class="text-2xl mt-1 text-gray-800"
+                        :key="'title-' + currentPage.title">
+                        {{ $t(currentPage.title) }}
+                    </h1>
 
-                   <RouterView
-                       v-if="pageIsReady && layoutIsReady"
-                       :key="'router-view-' + $route.fullPath" />
-               </transition-group>
+                    <RouterView
+                        v-if="layoutIsReady"
+                        :key="'router-view-' + $route.fullPath"/>
+                </transition-group>
 
-               <div
-                   v-if="!layoutIsReady"
-                   :key="'loading-' + $route.fullPath"
-                   class="flex flex-grow justify-center items-center">
-                   <DbLoading size="large" />
-               </div>
-           </div>
+                <div
+                    v-if="!layoutIsReady"
+                    :key="'loading-' + $route.fullPath"
+                    class="flex flex-grow justify-center items-center">
+                    <DbLoading size="large"/>
+                </div>
+            </div>
 
-           <DbFooter />
-       </template>
+            <DbFooter/>
+        </template>
 
         <div
             v-else
             class="flex flex-grow justify-center items-center">
-            <DbLoading size="large" />
+            <DbLoading size="large"/>
         </div>
     </div>
 </template>
@@ -120,6 +120,7 @@
     .fade-leave-active {
         transition: opacity .5s;
     }
+
     .fade-enter,
     .fade-leave-to {
         opacity: 0;
