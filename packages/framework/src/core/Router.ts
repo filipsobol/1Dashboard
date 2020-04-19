@@ -32,7 +32,7 @@ export function setupRouter(context: Context): Router {
         routes,
     });
 
-    router.onReady(async () => await onReady(context));
+    router.onReady(() => onReady(context));
     router.beforeEach(async (...params) => await beforeEach(context, ...params));
     router.afterEach(async (...params) => await afterEach(context, ...params));
 
