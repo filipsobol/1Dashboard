@@ -34,7 +34,7 @@ export function setupRouter(context: Context): Router {
 
     router.onReady(() => onReady(context));
     router.beforeEach(async (...params) => await beforeEach(context, ...params));
-    router.afterEach(async (...params) => await afterEach(context, ...params));
+    router.afterEach((...params) => afterEach(context, ...params));
 
     context.router = router;
 
@@ -53,7 +53,6 @@ async function onReady(context: Context): Promise<void> {
  */
 async function beforeEach(context: Context, to: Route, from: Route, next: () => void): Promise<void> {
     await context.currentPage?.beforeLeave?.(context);
-    context.currentPage = undefined;
     const callbacks = await Promise.all(context.configuration.routing.beforeEach.map((callback: Function) => callback(to, from, next)));
 
     if (callbacks.every((result) => result)) {
