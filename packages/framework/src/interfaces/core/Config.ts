@@ -52,7 +52,7 @@ export interface Page {
     url: string | PageUrl;
     name: string;
     title?: string;
-    layout: PageLayout;
+    component: PageComponent;
     props?: {
         hideBreadcrumbs?: boolean;
     };
@@ -60,7 +60,7 @@ export interface Page {
     beforeLeave?: (context: Context) => any;
 }
 
-export type PageLayout = Component | {
+export type PageComponent = Component | {
     (context: Context): Component | Promise<Component>;
 };
 

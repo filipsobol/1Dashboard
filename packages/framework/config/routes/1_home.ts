@@ -5,7 +5,7 @@ const page: Page = {
     url: "/",
     name: "Homepage",
     title: "Welcome to 1Dashboard",
-    layout: async (context): Promise<Component> => ({
+    component: async (context): Promise<Component> => ({
         type: "Grid",
         props: {
             components: [

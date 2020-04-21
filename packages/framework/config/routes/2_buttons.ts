@@ -4,7 +4,7 @@ const page: Page = {
     url: "/buttons",
     name: "Buttons",
     title: "Buttons",
-    layout: {
+    component: {
         type: "Grid",
         props: {
             components: [

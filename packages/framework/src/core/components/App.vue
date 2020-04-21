@@ -1,35 +1,22 @@
 <template>
-    <div class="bg-gray-100 min-h-screen flex flex-col">
-        <DbHeader/>
-
-        <div class="container flex flex-col flex-grow mx-auto">
-            <transition
-                v-if="pageIsReady"
-                :duration="80"
-                name="fade"
-                mode="out-in"
-                class="flex flex-col flex-grow">
-                <RouterView :key="'router-view-' + $route.fullPath" />
-            </transition>
-        </div>
-
-        <DbFooter/>
-    </div>
+    <db-dashboard-layout
+        v-if="currentPage"
+        :current-page="currentPage"
+        :component-is-ready="componentIsReady">
+        <component
+            v-if="componentIsReady"
+            v-bind="{ ...getComponentData(currentPage.component) }"
+            :is="getComponentName(currentPage.component.type)" />
+    </db-dashboard-layout>
 </template>
 
 <script lang="ts">
     import { computed, defineComponent, provide, watchEffect } from "@vue/composition-api";
-    import DbHeader from "@framework/core/components/Header.vue";
-    import DbFooter from "@framework/core/components/Footer.vue";
+    import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
     import { Context, Page } from '@framework/interfaces/core/Config';
 
     export default defineComponent({
         name: "Application",
-
-        components: {
-            DbHeader,
-            DbFooter,
-        },
 
         props: {
             context: {
@@ -43,8 +30,10 @@
             provide(Symbol.for("context"), _.context);
 
             // Computed
-            const currentPage = computed<Page | undefined>(() => _.context.currentPage);
-            const pageIsReady = computed<boolean>(() => Boolean(currentPage.value));
+            const currentPage = computed<Page | undefined>(() => _.context?.currentPage);
+            const componentIsReady = computed<boolean>(() => {
+                return Boolean(currentPage) && typeof currentPage.value?.component !== "function";
+            });
 
             // Watchers
             watchEffect(() => {
@@ -69,25 +58,17 @@
             });
 
             return {
-                // state
+                // State
                 _,
-                currentPage,
 
                 // Computed
-                pageIsReady,
-            }
+                currentPage,
+                componentIsReady,
+
+                // Methods
+                getComponentName,
+                getComponentData,
+            };
         }
     });
 </script>
-
-<style lang="scss">
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity .5s;
-    }
-
-    .fade-enter,
-    .fade-leave-to {
-        opacity: 0;
-    }
-</style>

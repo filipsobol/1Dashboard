@@ -1,6 +1,4 @@
 import Vue from "vue";
-import ErrorComponent from "@framework/core/components/Error.vue";
-import LoadingComponent from "@framework/core/components/Loading.vue";
 import { getComponentName } from "@framework/utils/nestedComponents";
 
 export function registerComponentsGlobally() {
@@ -15,8 +13,8 @@ export function registerComponentsGlobally() {
 
         Vue.component(componentName, () => ({
             component: import(/* webpackChunkName: "[request]" */ `@framework/components/${path}.vue`),
-            loading: LoadingComponent,
-            error: ErrorComponent,
+            // loading: Vue.component("db-loading"),
+            // error: Vue.component("db-error"),
             delay: 0,
             timeout: 60000, // 1 minute
         }));

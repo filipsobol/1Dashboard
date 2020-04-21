@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import { Route } from "vue-router/types/router";
-import PageComponent from "@framework/core/components/Page.vue";
 import { Context, Page, PageUrl } from "@framework/interfaces/core/Config";
 
 Vue.use(Router);
@@ -15,16 +14,10 @@ export function setupRouter(context: Context): Router {
     context.configuration.pages = files.keys().map(key => files(key).default);
 
     // Group all content routes
-    const routes = context.configuration.pages.map((page: Page) => ({
-        path: page.url as string,
-        component: PageComponent,
-    }));
+    const routes = context.configuration.pages.map((page: Page) => ({ path: page.url as string }));
 
     // Register catch-all route
-    routes.push({
-        path: "*",
-        component: PageComponent,
-    });
+    routes.push({ path: "*" });
 
     // Register Vue Router
     const router = new Router({
@@ -32,6 +25,7 @@ export function setupRouter(context: Context): Router {
         routes,
     });
 
+    // Add lifecycle hooks
     router.onReady(() => onReady(context));
     router.beforeEach(async (...params) => await beforeEach(context, ...params));
     router.afterEach((...params) => afterEach(context, ...params));
@@ -84,7 +78,7 @@ function findPageByUrl(context: Context, url: string): Page | undefined {
 }
 
 /**
- * Loads current page and resolves layout data.
+ * Loads current page and resolves component data.
  */
 async function loadCurrentPage(context: Context, url: string): Promise<void> {
     try {
@@ -97,8 +91,8 @@ async function loadCurrentPage(context: Context, url: string): Promise<void> {
         // This is required to remove reactivity
         context.currentPage = { ...page };
 
-        if (typeof context.currentPage.layout === "function") {
-            context.currentPage.layout = await context.currentPage.layout(context);
+        if (typeof context.currentPage.component === "function") {
+            context.currentPage.component = await context.currentPage.component(context);
         }
 
         await context.currentPage.beforeEnter?.(context);
@@ -106,4 +100,3 @@ async function loadCurrentPage(context: Context, url: string): Promise<void> {
         return loadCurrentPage(context, PageUrl.InternalError);
     }
 }
-
