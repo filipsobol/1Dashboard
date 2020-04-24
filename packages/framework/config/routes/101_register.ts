@@ -1,5 +1,6 @@
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
 import { Component } from "@framework/interfaces/core/Components";
+import { Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
 
 const page: Page = {
     url: PageUrl.Register,
@@ -10,7 +11,8 @@ const page: Page = {
             context.router.push({ path: "/" });
         }
     },
-    component: async (context): Promise<Component> => ({
+    layout: "AuthLayout",
+    content: async (context): Promise<Component> => ({
         type: "Grid",
         props: {
             components: [
@@ -83,7 +85,29 @@ const page: Page = {
                         ]
                     },
                     tile: {
-                        style: "grid",
+                        style: {
+                            background: "white",
+                            padding: 8,
+                            shadow: Shadow.LG,
+                            radius: Radius.NEUTRAL,
+                        },
+                    }
+                },
+                {
+                    type: "Button",
+                    props: {
+                        text: "Already have an account?"
+                    },
+                    events: [
+                        {
+                            on: "click",
+                            callback: async () => await context.router.push({ path: "/auth/login" })
+                        }
+                    ],
+                    tile: {
+                        style: {
+                            justify: Justify.CENTER
+                        },
                     }
                 },
             ]

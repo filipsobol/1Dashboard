@@ -40,6 +40,11 @@ const app: App = {
      * URL of the page to be displayed when user visits "/".
      */
     defaultPageUrl: "/",
+
+    /**
+     * Name of the layout component used for pages that don't have it overridden.
+     */
+    defaultLayout: "DashboardLayout",
 };
 
 export default app;

@@ -91,8 +91,8 @@ async function loadCurrentPage(context: Context, url: string): Promise<void> {
         // This is required to remove reactivity
         context.currentPage = { ...page };
 
-        if (typeof context.currentPage.component === "function") {
-            context.currentPage.component = await context.currentPage.component(context);
+        if (typeof context.currentPage.content === "function") {
+            context.currentPage.content = await context.currentPage.content(context);
         }
 
         await context.currentPage.beforeEnter?.(context);

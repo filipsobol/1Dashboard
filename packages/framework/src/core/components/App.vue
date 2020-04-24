@@ -1,13 +1,19 @@
 <template>
-    <db-dashboard-layout
-        v-if="currentPage"
-        :current-page="currentPage"
-        :component-is-ready="componentIsReady">
+    <transition
+        :duration="200"
+        name="fade"
+        mode="out-in">
         <component
-            v-if="componentIsReady"
-            v-bind="{ ...getComponentData(currentPage.component) }"
-            :is="getComponentName(currentPage.component.type)" />
-    </db-dashboard-layout>
+            v-if="currentPage"
+            :is="layoutComponent"
+            :current-page="currentPage"
+            :component-is-ready="componentIsReady">
+            <component
+                v-if="componentIsReady"
+                v-bind="{ ...getComponentData(currentPage.content) }"
+                :is="getComponentName(currentPage.content.type)" />
+        </component>
+    </transition>
 </template>
 
 <script lang="ts">
@@ -31,8 +37,11 @@
 
             // Computed
             const currentPage = computed<Page | undefined>(() => _.context?.currentPage);
+            const layoutComponent = computed<string | null>(() => {
+                return getComponentName(_.context?.currentPage?.layout || _.context?.configuration.app.defaultLayout);
+            });
             const componentIsReady = computed<boolean>(() => {
-                return Boolean(currentPage) && typeof currentPage.value?.component !== "function";
+                return Boolean(currentPage) && typeof currentPage.value?.content !== "function";
             });
 
             // Watchers
@@ -63,6 +72,7 @@
 
                 // Computed
                 currentPage,
+                layoutComponent,
                 componentIsReady,
 
                 // Methods

@@ -30,6 +30,7 @@ export interface App extends ObjectWithAnyKeys {
     faviconUrl: string;
     faviconType: string;
     defaultPageUrl: string;
+    defaultLayout: string;
 }
 
 export interface Localization extends ObjectWithAnyKeys {
@@ -52,7 +53,8 @@ export interface Page {
     url: string | PageUrl;
     name: string;
     title?: string;
-    component: PageComponent;
+    layout?: string;
+    content: PageComponent;
     props?: {
         hideBreadcrumbs?: boolean;
     };

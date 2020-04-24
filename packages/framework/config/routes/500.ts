@@ -9,7 +9,7 @@ const config: Page = {
     props: {
         hideBreadcrumbs: true
     },
-    component: (context): Grid => ({
+    content: (context): Grid => ({
         type: "Grid",
         props: {
             components: [

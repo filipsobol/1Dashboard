@@ -1,5 +1,6 @@
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
 import { Component } from "@framework/interfaces/core/Components";
+import { Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
 
 const page: Page = {
     url: PageUrl.Login,
@@ -10,7 +11,8 @@ const page: Page = {
             context.router.push({ path: "/" });
         }
     },
-    component: async (context): Promise<Component> => ({
+    layout: "AuthLayout",
+    content: async (context): Promise<Component> => ({
         type: "Grid",
         props: {
             components: [
@@ -62,7 +64,7 @@ const page: Page = {
                                                 jsonData.password
                                             );
 
-                                            await context.router.push({ path: context.route.query?.route.toString() || "/" });
+                                            await context.router.push({ path: context.route.query?.route?.toString() || "/" });
                                         },
                                     }
                                 ]
@@ -70,7 +72,29 @@ const page: Page = {
                         ]
                     },
                     tile: {
-                        style: "grid",
+                        style: {
+                            background: "white",
+                            padding: 8,
+                            shadow: Shadow.LG,
+                            radius: Radius.NEUTRAL,
+                        },
+                    }
+                },
+                {
+                    type: "Button",
+                    props: {
+                       text: "Register new account"
+                    },
+                    events: [
+                        {
+                            on: "click",
+                            callback: async () => await context.router.push({ path: "/auth/register" })
+                        }
+                    ],
+                    tile: {
+                        style: {
+                            justify: Justify.CENTER
+                        },
                     }
                 },
             ]

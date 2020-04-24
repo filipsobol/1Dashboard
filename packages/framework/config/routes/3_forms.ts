@@ -5,7 +5,7 @@ const page: Page = {
     url: "/form",
     name: "Forms",
     title: "Form inputs",
-    component: (context): Grid => ({
+    content: (context): Grid => ({
         type: "Grid",
         props: {
             components: [
