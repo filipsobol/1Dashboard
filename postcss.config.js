@@ -1,6 +1,7 @@
 module.exports = {
     plugins: {
         tailwindcss: {},
+
         "vue-cli-plugin-tailwind/purgecss": {
             content: [
                 "./packages/framework/public/**/*.html",
@@ -17,9 +18,11 @@ module.exports = {
                 /^rounded/,
                 /^p-/,
                 /^text-/,
+                /^fade-/,
                 /^variable-/,
             ]
         },
+
         autoprefixer: {},
     },
 };
