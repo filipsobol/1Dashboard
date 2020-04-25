@@ -1,6 +1,6 @@
 <template>
     <div
-        class="loader"
+        class="variable-loader"
         :class="`variable-loader-${size}`">
         <i class="icon-loader" />
     </div>
