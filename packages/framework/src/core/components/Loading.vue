@@ -1,7 +1,7 @@
 <template>
     <div
         class="loader"
-        :class="`loader-${size}`">
+        :class="`variable-loader-${size}`">
         <i class="icon-loader" />
     </div>
 </template>
@@ -23,7 +23,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .loader {
+    .variable-loader {
         @apply flex;
         @apply content-center;
         @apply justify-center;

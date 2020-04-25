@@ -1,7 +1,12 @@
 import Vue from "vue";
 import { getComponentName } from "@framework/utils/nestedComponents";
+import ErrorComponent from "@framework/core/components/Error.vue";
+import LoadingComponent from "@framework/core/components/Loading.vue";
 
 export function registerComponentsGlobally() {
+    Vue.component(getComponentName("error"), ErrorComponent);
+    Vue.component(getComponentName("loading"), LoadingComponent);
+
     const paths: string[] = require
         .context("@framework/components", true, /\.vue$/, "lazy")
         .keys()
@@ -13,8 +18,8 @@ export function registerComponentsGlobally() {
 
         Vue.component(componentName, () => ({
             component: import(/* webpackChunkName: "[request]" */ `@framework/components/${path}.vue`),
-            // loading: Vue.component("db-loading"),
-            // error: Vue.component("db-error"),
+            loading: LoadingComponent,
+            error: ErrorComponent,
             delay: 0,
             timeout: 60000, // 1 minute
         }));
