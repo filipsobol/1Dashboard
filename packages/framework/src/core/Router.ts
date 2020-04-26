@@ -94,7 +94,12 @@ async function loadCurrentPage(context: Context, url: string): Promise<void> {
         context.currentPage = { ...page };
 
         if (typeof context.currentPage.content === "function") {
-            context.currentPage.content = await context.currentPage.content(context);
+            const content = await context.currentPage.content(context);
+
+            if (context.route.path === url) {
+                // This check is required, because page could've changed before the content of the previous one was resolved
+                context.currentPage.content = content;
+            }
         }
 
         await context.currentPage.beforeEnter?.(context);
