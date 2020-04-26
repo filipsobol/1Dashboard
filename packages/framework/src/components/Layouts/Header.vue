@@ -164,22 +164,31 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, ref, computed, inject } from "@vue/composition-api";
+    import { defineComponent, ref, computed, inject, watch } from "@vue/composition-api";
     import { Page, PageUrl } from "@framework/interfaces/core/Config";
 
     export default defineComponent({
         name: "Header",
 
         setup(_) {
+            // State
             const open = ref<boolean>(false);
-            const pages = inject<any>(Symbol.for("context")).configuration.pages;
-            const menuPages = computed<Page>(() => pages.filter(({ url }: Page) => !Object.values(PageUrl).includes(url as PageUrl)));
+            const context = inject<any>(Symbol.for("context"));
+
+            // Computed
+            const pages = computed<any>(() => context.configuration.pages);
+            const currentRoute = computed<any>(() => context.route);
+            const menuPages = computed<Page>(() =>
+                pages.value.filter(({ url }: Page) => !Object.values(PageUrl).includes(url as PageUrl))
+            );
+
+            // Watchers
+            watch(currentRoute, () => open.value = false);
 
             return {
                 // State
                 _,
                 open,
-                pages,
                 menuPages
             };
         },
