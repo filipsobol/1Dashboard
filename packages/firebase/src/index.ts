@@ -16,7 +16,7 @@ export default function(context: any) {
 
     // Redirect to login page if user is not logged in
     context.configuration.routing.beforeEach.push(async (to: any, from: any, next: Function) => {
-        context.user = context.user || await getCurrentUser();
+        context.user = await getCurrentUser();
 
         if (to.path.startsWith("/auth") || context.user) {
             return true;

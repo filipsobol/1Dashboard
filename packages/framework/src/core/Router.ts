@@ -47,7 +47,9 @@ async function onReady(context: Context): Promise<void> {
  */
 async function beforeEach(context: Context, to: Route, from: Route, next: () => void): Promise<void> {
     await context.currentPage?.beforeLeave?.(context);
-    const callbacks = await Promise.all(context.configuration.routing.beforeEach.map((callback: Function) => callback(to, from, next)));
+    const callbacks = await Promise.all(
+        context.configuration.routing.beforeEach.map((callback: Function) => callback(to, from, next))
+    );
 
     if (callbacks.every((result) => result)) {
         next();

@@ -75,11 +75,11 @@
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             {{ $t("Settings") }}
                                         </a>
-                                        <a
-                                            href="#"
+                                        <router-link
+                                            to="/auth/logout"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             {{ $t("Sign out") }}
-                                        </a>
+                                        </router-link>
                                     </div>
                                 </div>
                             </transition>
@@ -152,11 +152,11 @@
                         class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
                         {{ $t("Settings") }}
                     </a>
-                    <a
-                        href="#"
+                    <router-link
+                        to="/auth/logout"
                         class="mt-1 block px-3 py-2 rounded-md text-base font-small text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
                         {{ $t("Sign out") }}
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>

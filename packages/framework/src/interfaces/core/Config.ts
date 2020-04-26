@@ -69,6 +69,7 @@ export type PageComponent = Component | {
 export enum PageUrl {
     Login = "/auth/login",
     Register = "/auth/register",
+    Logout = "/auth/logout",
     NotFound = "/error/404",
     InternalError = "/error/500",
 }
