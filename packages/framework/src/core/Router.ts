@@ -93,16 +93,18 @@ async function loadCurrentPage(context: Context, url: string): Promise<void> {
         // This is required to remove reactivity
         context.currentPage = { ...page };
 
-        if (typeof context.currentPage.content === "function") {
-            const content = await context.currentPage.content(context);
+        await context.currentPage.beforeEnter?.(context);
 
-            if (context.route.path === url) {
-                // This check is required, because page could've changed before the content of the previous one was resolved
-                context.currentPage.content = content;
-            }
+        if (typeof context.currentPage.content !== "function") {
+            return;
         }
 
-        await context.currentPage.beforeEnter?.(context);
+        const content = await context.currentPage.content(context);
+
+        if (context.route.path === url) {
+            // This check is required, because page could've changed before the content of the previous one was resolved
+            context.currentPage.content = content;
+        }
     } catch (error) {
         return loadCurrentPage(context, PageUrl.InternalError);
     }
