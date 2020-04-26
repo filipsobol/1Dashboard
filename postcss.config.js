@@ -15,6 +15,7 @@ module.exports = {
                 /^icon-/,
                 /^bg-/,
                 /^shadow/,
+                /^border/,
                 /^rounded/,
                 /^p-/,
                 /^text-/,

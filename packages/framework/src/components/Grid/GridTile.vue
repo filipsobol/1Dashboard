@@ -25,10 +25,17 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, inject, computed } from "@vue/composition-api";
+    import { computed, defineComponent, inject } from "@vue/composition-api";
     import { getComponentData, getComponentName } from "@framework/utils/nestedComponents";
     import { GridTileStyle } from "@framework/interfaces/core/Config";
-    import { Direction, Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
+    import {
+        BorderRadius,
+        BorderStyle,
+        BorderWidth,
+        Direction,
+        Justify,
+        Shadow
+    } from "@framework/interfaces/core/Styles";
 
     export default defineComponent({
         name: "GridTile",
@@ -50,7 +57,11 @@
                     background: "transparent",
                     padding: 0,
                     shadow: Shadow.NONE,
-                    radius: Radius.NONE,
+                    border: {
+                        style: BorderStyle.NONE,
+                        radius: BorderRadius.NONE,
+                        width: BorderWidth.NONE
+                    }
                 };
 
                 const tileStyles = _.component?.tile?.style || defaultStyles;
@@ -80,7 +91,10 @@
                     "col-span-12",
                     `bg-${ normalizedStyles.value.background || "transparent" }`,
                     normalizedStyles.value.shadow || Shadow.NONE,
-                    normalizedStyles.value.radius || Radius.NONE
+                    normalizedStyles.value.border?.style || BorderStyle.NONE,
+                    normalizedStyles.value.border?.radius || BorderRadius.NONE,
+                    normalizedStyles.value.border?.width || BorderWidth.NONE,
+                    `border-${ normalizedStyles.value.border?.color || "transparent" }`,
                 ];
             });
 

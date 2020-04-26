@@ -2,7 +2,7 @@ import VueRouter, { Route, RouterMode } from "vue-router";
 import { AxiosRequestConfig, Method } from "axios";
 import { Component } from "@framework/interfaces/core/Components";
 import { ObjectWithAnyKeys } from "@framework/interfaces/core/Helpers";
-import { Direction, Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
+import { BorderRadius, BorderStyle, BorderWidth, Direction, Justify, Shadow } from "@framework/interfaces/core/Styles";
 
 export interface Context extends ObjectWithAnyKeys {
     configuration: AppConfiguration;
@@ -88,5 +88,10 @@ export interface GridTileStyle {
     background?: string;
     padding?: number;
     shadow?: Shadow;
-    radius?: Radius;
+    border?: {
+        style?: BorderStyle;
+        radius?: BorderRadius;
+        width?: BorderWidth;
+        color?: string;
+    };
 }

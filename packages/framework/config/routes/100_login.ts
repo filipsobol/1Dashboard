@@ -1,6 +1,6 @@
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
 import { Component } from "@framework/interfaces/core/Components";
-import { Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
+import { BorderRadius, Justify, Shadow } from "@framework/interfaces/core/Styles";
 
 const page: Page = {
     url: PageUrl.Login,
@@ -58,7 +58,7 @@ const page: Page = {
                                 events: [
                                     {
                                         on: "submit",
-                                        callback: async ({ jsonData }) => {
+                                        callback: async ({ jsonData }: any) => {
                                             await context.firebase.auth().signInWithEmailAndPassword(
                                                 jsonData.email,
                                                 jsonData.password
@@ -76,7 +76,9 @@ const page: Page = {
                             background: "white",
                             padding: 8,
                             shadow: Shadow.LG,
-                            radius: Radius.NEUTRAL,
+                            border: {
+                                radius: BorderRadius.NEUTRAL,
+                            }
                         },
                     }
                 },

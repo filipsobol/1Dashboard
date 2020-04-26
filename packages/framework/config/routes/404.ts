@@ -1,6 +1,6 @@
 import { Page, PageUrl } from "@framework/interfaces/core/Config";
 import { Grid } from "@framework/interfaces/components/Grid";
-import { Justify, Radius, Shadow } from "@framework/interfaces/core/Styles";
+import { BorderRadius, Justify, Shadow } from "@framework/interfaces/core/Styles";
 
 const config: Page = {
     url: PageUrl.NotFound,
@@ -24,7 +24,9 @@ const config: Page = {
                             background: "transparent",
                             padding: 4,
                             shadow: Shadow.NONE,
-                            radius: Radius.NEUTRAL,
+                            border: {
+                                radius: BorderRadius.NEUTRAL,
+                            }
                         }
                     }
                 },
@@ -46,7 +48,9 @@ const config: Page = {
                             background: "transparent",
                             padding: 0,
                             shadow: Shadow.NONE,
-                            radius: Radius.NEUTRAL,
+                            border: {
+                                radius: BorderRadius.NEUTRAL,
+                            }
                         }
                     }
                 }
