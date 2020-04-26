@@ -90,11 +90,7 @@
         @apply relative;
         @apply flex;
         @apply items-center;
-        @apply py-1;
-
-        & + & {
-            @apply mt-1;
-        }
+        @apply py-2;
     }
 
     input {
@@ -129,11 +125,12 @@
 
     i.icon-check {
         @apply absolute;
+        @apply top-0;
         @apply left-0;
         @apply text-transparent;
         @apply leading-none;
 
-        margin-left: 2px;
+        margin: 6px 2.5px;
 
         &::before {
             @apply text-lg;

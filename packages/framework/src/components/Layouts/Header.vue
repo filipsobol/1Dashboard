@@ -2,7 +2,7 @@
     <nav
         @keydown.esc="open = false"
         class="bg-gray-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-0">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
