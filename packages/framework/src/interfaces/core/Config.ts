@@ -53,6 +53,8 @@ export interface Page {
     url: string | PageUrl;
     name: string;
     title?: string;
+    description?: string;
+    icon?: string;
     layout?: string;
     content: PageComponent;
     props?: {

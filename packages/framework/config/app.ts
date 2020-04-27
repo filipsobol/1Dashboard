@@ -44,7 +44,7 @@ const app: App = {
     /**
      * Name of the layout component used for pages that don't have it overridden.
      */
-    defaultLayout: "DashboardLayout",
+    defaultLayout: "AdminLayout",
 };
 
 export default app;

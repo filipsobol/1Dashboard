@@ -4,6 +4,7 @@ import { Component } from "@framework/interfaces/core/Components";
 const page: Page = {
     url: "/",
     name: "Homepage",
+    icon: "home",
     title: "Welcome to 1Dashboard",
     content: async (context): Promise<Component> => ({
         type: "Grid",

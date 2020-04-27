@@ -4,6 +4,8 @@ import { Grid } from "@framework/interfaces/components/Grid";
 const page: Page = {
     url: "/form",
     name: "Forms",
+    description: "Form component examples",
+    icon: "clipboard",
     title: "Form inputs",
     content: (context): Grid => ({
         type: "Grid",
@@ -188,6 +190,16 @@ const page: Page = {
                         ]
                     },
                     tile: {
+                        layout: {
+                            md: {
+                                width: 12,
+                                height: 1,
+                            },
+                            lg: {
+                                width: 4,
+                                height: 1,
+                            }
+                        },
                         style: "grid",
                         title: "Basic input types",
                         description: "These are simple inputs with minimal configuration.",
@@ -260,6 +272,16 @@ const page: Page = {
                         ]
                     },
                     tile: {
+                        layout: {
+                            md: {
+                                width: 12,
+                                height: 1,
+                            },
+                            lg: {
+                                width: 4,
+                                height: 1,
+                            }
+                        },
                         style: "grid",
                         title: "Inputs with text and icon label",
                         description: "Inputs can have labels on both sides to hint what user is expected to enter. It's possible to combine text and icon labels."

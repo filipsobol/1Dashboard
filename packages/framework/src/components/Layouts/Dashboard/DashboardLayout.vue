@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="lex flex-col min-h-screen bg-gray-100">
         <db-header />
 
         <div class="bg-white border-b">
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed } from "@vue/composition-api";
+    import { defineComponent } from "@vue/composition-api";
 
     export default defineComponent({
         name: "DashboardLayout",
@@ -53,19 +53,15 @@
                 required: true,
             },
 
+            showBreadcrumbs: {
+                type: Boolean,
+                required: true,
+            },
+
             componentIsReady: {
                 type: Boolean,
                 required: true,
             }
         },
-
-        setup(_) {
-            const showBreadcrumbs = computed<boolean>(() => Boolean(_.currentPage) && (_.currentPage?.hideBreadcrumbs ?? true));
-
-            return {
-                // Computed
-                showBreadcrumbs,
-            };
-        }
     });
 </script>

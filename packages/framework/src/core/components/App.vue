@@ -7,6 +7,7 @@
             v-if="currentPage"
             :is="layoutComponent"
             :current-page="currentPage"
+            :show-breadcrumbs="showBreadcrumbs"
             :component-is-ready="componentIsReady">
             <component
                 v-if="componentIsReady"
@@ -36,10 +37,18 @@
             provide(Symbol.for("context"), _.context);
 
             // Computed
-            const currentPage = computed<Page | undefined>(() => _.context?.currentPage);
+            const currentPage = computed<Page | undefined>(() => {
+                return _.context?.currentPage;
+            });
+
             const layoutComponent = computed<string | null>(() => {
                 return getComponentName(_.context?.currentPage?.layout || _.context?.configuration.app.defaultLayout);
             });
+
+            const showBreadcrumbs = computed<boolean>(() => {
+                return Boolean(currentPage) && (currentPage.value?.props?.hideBreadcrumbs ?? true);
+            });
+
             const componentIsReady = computed<boolean>(() => {
                 return Boolean(currentPage) && typeof currentPage.value?.content !== "function";
             });
@@ -73,6 +82,7 @@
                 // Computed
                 currentPage,
                 layoutComponent,
+                showBreadcrumbs,
                 componentIsReady,
 
                 // Methods
