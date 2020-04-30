@@ -80,7 +80,7 @@
                     .entries(tile?.layout || {})
                     .map(([ resolution, { width, height, offsetStart, offsetEnd } ]: any) => [
                         `${resolution}:col-span-${width || 12}`,
-                        `${resolution}:rows-span-${height || 1}`,
+                        `${resolution}:row-span-${height || 1}`,
                         offsetStart && `${resolution}:col-start-${offsetStart}`,
                         offsetEnd && `${resolution}:col-end-${offsetEnd}`,
                     ])

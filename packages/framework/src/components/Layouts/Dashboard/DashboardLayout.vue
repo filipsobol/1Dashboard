@@ -1,6 +1,6 @@
 <template>
     <div class="lex flex-col min-h-screen bg-gray-100">
-        <db-header />
+        <db-dashboard-header />
 
         <div class="bg-white border-b">
             <div class="container mx-auto p-4 sm:px-0">
@@ -37,7 +37,7 @@
             </transition>
         </div>
 
-        <db-footer />
+        <db-dashboard-footer />
     </div>
 </template>
 

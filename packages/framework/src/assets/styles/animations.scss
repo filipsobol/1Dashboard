@@ -1,13 +1,4 @@
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-}
-
+/******************************************************** SPIN ********************************************************/
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -18,4 +9,15 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+/******************************************************* FADE *********************************************************/
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }

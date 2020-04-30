@@ -1,5 +1,5 @@
 import { Styles } from "@framework/interfaces/core/Config";
-import { BorderRadius, BorderStyle, BorderWidth, Shadow } from "@framework/interfaces/core/Styles";
+import { BorderRadius, Shadow } from "@framework/interfaces/core/Styles";
 
 const config: Styles = {
     tile: {
@@ -7,12 +7,9 @@ const config: Styles = {
             grid: {
                 background: "white",
                 padding: 4,
-                shadow: Shadow.NONE,
+                shadow: Shadow.MD,
                 border: {
-                    style: BorderStyle.SOLID,
-                    radius: BorderRadius.NEUTRAL,
-                    width: BorderWidth.BASE,
-                    color: "gray-300",
+                    radius: BorderRadius.MD,
                 }
             },
             content: {
@@ -20,7 +17,7 @@ const config: Styles = {
                 padding: 1,
                 shadow: Shadow.NONE,
                 border: {
-                    radius: BorderRadius.NEUTRAL,
+                    radius: BorderRadius.NONE,
                 }
             },
         }
