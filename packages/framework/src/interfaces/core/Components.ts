@@ -1,5 +1,6 @@
 import { Article } from "@framework/interfaces/components/Article";
 import { Button } from "@framework/interfaces/components/Button";
+import { Dropdown } from "@framework/interfaces/components/Dropdown";
 import { Grid } from "@framework/interfaces/components/Grid";
 import { Tabs } from "@framework/interfaces/components/Tabs";
 import { Text } from "@framework/interfaces/components/Text";
@@ -17,6 +18,7 @@ import { ToggleInput } from "@framework/interfaces/components/Form/ToggleInput";
 
 export type Component = Article
     | Button
+    | Dropdown
     | Grid
     | Tabs
     | Text

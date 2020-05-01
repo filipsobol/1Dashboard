@@ -1,5 +1,7 @@
 <template>
-    <div class="flex flex-row min-h-screen bg-gray-100">
+    <div
+        :class="{ 'sidebar-open': sidebarOpen }"
+        class="page-wrapper">
         <!-- Sidebar -->
         <db-admin-sidebar
             :open="sidebarOpen"
@@ -102,3 +104,17 @@
         }
     });
 </script>
+
+<style lang="scss" scoped>
+    .page-wrapper {
+        @apply flex;
+        @apply flex-row;
+        @apply min-h-screen;
+        @apply bg-gray-100;
+
+        &.sidebar-open {
+            @apply h-screen;
+            @apply overflow-y-hidden;
+        }
+    }
+</style>

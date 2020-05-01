@@ -196,7 +196,7 @@ const page: Page = {
                                 height: 1,
                             },
                             lg: {
-                                width: 4,
+                                width: 6,
                                 height: 1,
                             }
                         },
@@ -278,7 +278,7 @@ const page: Page = {
                                 height: 1,
                             },
                             lg: {
-                                width: 4,
+                                width: 6,
                                 height: 1,
                             }
                         },

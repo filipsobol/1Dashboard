@@ -6,18 +6,35 @@
 @import "./icons.scss";
 @import "./animations.scss";
 
+$scrollbarColor: theme("colors.gray.600");
+
 html {
+  @apply overflow-x-hidden;
+  @apply overflow-y-scroll;
+
   font-size: 14px;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 body {
-  background-color: #FFFFFF;
+  @apply text-gray-900;
+  @apply bg-white;
+
   font-family: "Roboto", sans-serif;
-  color: #2D3748;
 }
 
 *:invalid {
   @apply shadow-none;
+}
+
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $scrollbarColor transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbarColor;
+  }
 }

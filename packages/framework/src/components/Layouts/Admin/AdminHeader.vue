@@ -1,41 +1,28 @@
 <template>
     <div class="header">
+        <div class="mobile-logo">
+
+        </div>
+
         <div class="mobile-menu">
             <button @click="$emit('toggleMenu')">
                 <i class="icon-menu" />
             </button>
         </div>
-
-        <div class="user-menu">
-            <div>
-                <i class="icon-search" />
-            </div>
-
-            <div>
-                <i class="icon-message-square" />
-            </div>
-
-            <div>
-                <i class="icon-bell" />
-            </div>
-
-            <div>
-                <i class="icon-settings" />
-            </div>
-
-            <router-link to="/auth/logout">
-                <i class="icon-log-out" />
-            </router-link>
-
-            <div>
-                <i class="icon-user" />
-            </div>
-        </div>
     </div>
 </template>
 
+<script lang="ts">
+    import { defineComponent } from "@vue/composition-api";
+
+    export default defineComponent({
+        name: "AdminHeader",
+    });
+</script>
+
 <style lang="scss" scoped>
     .header {
+        @apply flex-shrink-0;
         @apply flex;
         @apply w-full;
         @apply h-20;
@@ -46,34 +33,9 @@
         @apply bg-white;
     }
 
-    .mobile-menu button {
+    .mobile-menu button,
+    .mobile-logo img {
         @apply hidden;
-    }
-
-    .user-menu {
-        @apply flex;
-        @apply flex-row;
-    }
-
-    .mobile-menu,
-    .user-menu {
-        & > * {
-            @apply flex;
-            @apply w-12;
-            @apply h-12;
-            @apply items-center;
-            @apply justify-center;
-            @apply rounded-full;
-            @apply cursor-pointer;
-
-            &:hover {
-                @apply bg-gray-300;
-            }
-        }
-
-        & > * + * {
-            @apply ml-2;
-        }
     }
 
     @media (max-width: theme("screens.md.max")) {
@@ -81,8 +43,23 @@
             @apply px-4;
         }
 
-        .mobile-menu button {
-            @apply block;
+        .mobile-menu {
+            @apply flex;
+            @apply flex-row;
+
+            button {
+                @apply flex;
+                @apply w-12;
+                @apply h-12;
+                @apply items-center;
+                @apply justify-center;
+                @apply rounded-full;
+                @apply cursor-pointer;
+
+                &:hover {
+                    @apply bg-gray-300;
+                }
+            }
         }
     }
 </style>
