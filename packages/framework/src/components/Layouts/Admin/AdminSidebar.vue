@@ -48,9 +48,9 @@
                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
                         alt="" />
                 </div>
-                <div>
+                <div class="user-information">
                     <p class="user-name">
-                        First Last
+                        John Doe
                     </p>
 
                     <p class="user-description">
@@ -68,6 +68,7 @@
     import { computed, defineComponent, inject } from "@vue/composition-api";
     import { Page, PageUrl } from "@framework/interfaces/core/Config";
     import { DropdownXPosition, DropdownYPosition } from "@framework/interfaces/components/Dropdown";
+    import { ButtonStyle } from "@framework/interfaces/components/Button";
 
     export default defineComponent({
         name: "AdminSidebar",
@@ -85,6 +86,7 @@
             const dropdownProps = {
                 button: {
                     icon: "settings",
+                    style: ButtonStyle.Light,
                 },
                 items: [
                     {
@@ -223,7 +225,7 @@
     .user {
         @apply flex;
         @apply flex-row;
-        @apply px-4;
+        @apply px-2;
         @apply justify-between;
         @apply items-center;
         @apply border-t;
@@ -235,20 +237,29 @@
             @apply flex-row;
             @apply items-center;
             @apply py-4;
-            @apply pr-4;
+            @apply px-2;
         }
 
         &-image {
+            @apply flex-shrink-0;
             @apply mr-4;
         }
 
+        &-information {
+            @apply flex-grow;
+            @apply block;
+            @apply overflow-hidden;
+        }
+
         &-name {
+            @apply truncate;
             @apply font-medium;
 
             color: $primaryTextColor;
         }
 
         &-description {
+            @apply truncate;
             @apply font-medium;
             @apply text-sm;
 

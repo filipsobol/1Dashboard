@@ -1,8 +1,6 @@
 <template>
     <div class="header">
-        <div class="mobile-logo">
-
-        </div>
+        <div class="mobile-logo" />
 
         <div class="mobile-menu">
             <button @click="$emit('toggleMenu')">
