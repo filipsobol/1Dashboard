@@ -292,6 +292,7 @@
             @apply right-0;
             @apply w-screen;
             @apply min-h-screen;
+            @apply border-0;
             @apply z-40;
             @apply transition;
             @apply transition-all;
