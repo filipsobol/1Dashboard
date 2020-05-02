@@ -29,12 +29,12 @@ const app: App = {
     /**
      * URL of the light company logo.
      */
-    lightLogoUrl: "/light_logo.svg",
+    lightLogoUrl: "/static/images/light_logo.svg",
 
     /**
      * URL of the dark company logo.
      */
-    darkLogoUrl: "/dark_logo.svg",
+    darkLogoUrl: "/static/images/dark_logo.svg",
 
     /**
      * Optional URL of the favicon, useful when it's not hosted with the application.

@@ -26,7 +26,6 @@ module.exports = {
                 {
                     context: "packages/framework",
                     from: "public",
-                    flatten: true,
                 },
             ]),
         ],

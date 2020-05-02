@@ -116,8 +116,7 @@
 
             // Computed
             const lightLogo = computed<any>(() => {
-                const { url, lightLogoUrl } = context.configuration.app;
-                return url + lightLogoUrl;
+                return context.configuration.app.lightLogoUrl;
             });
 
             const pages = computed<any>(() => {

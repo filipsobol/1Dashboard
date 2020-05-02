@@ -26,8 +26,7 @@
 
             // Computed
             const darkLogo = computed<any>(() => {
-                const { url, darkLogoUrl } = context.configuration.app;
-                return url + darkLogoUrl;
+                return context.configuration.app.darkLogoUrl;
             });
 
 
