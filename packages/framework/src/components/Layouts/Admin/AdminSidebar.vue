@@ -12,8 +12,8 @@
         <!-- Logo -->
         <div class="logo-wrapper">
             <img
-                class="logo-image"
-                src="https://via.placeholder.com/280x50" />
+                :src="lightLogo"
+                class="logo-image" />
         </div>
 
         <!-- Menu items -->
@@ -115,6 +115,11 @@
             };
 
             // Computed
+            const lightLogo = computed<any>(() => {
+                const { url, lightLogoUrl } = context.configuration.app;
+                return url + lightLogoUrl;
+            });
+
             const pages = computed<any>(() => {
                 return context.configuration.pages;
             });
@@ -129,6 +134,7 @@
                 dropdownProps,
 
                 // Computed
+                lightLogo,
                 pages,
                 menuPages,
             };
@@ -160,13 +166,16 @@
     }
 
     .logo-wrapper {
+        @apply flex;
         @apply h-20;
-        @apply p-3;
+        @apply p-4;
+        @apply items-center;
+        @apply justify-center;
     }
 
     .logo-image {
-        @apply w-full;
-        @apply h-full;
+        @apply max-w-full;
+        @apply max-h-full;
         @apply bg-contain;
         @apply bg-center;
         @apply bg-no-repeat;

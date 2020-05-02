@@ -27,7 +27,17 @@ const app: App = {
     keywords: "",
 
     /**
-     * Optional URL for the favicon, useful when it's not hosted with the application.
+     * URL of the light company logo.
+     */
+    lightLogoUrl: "/light_logo.svg",
+
+    /**
+     * URL of the dark company logo.
+     */
+    darkLogoUrl: "/dark_logo.svg",
+
+    /**
+     * Optional URL of the favicon, useful when it's not hosted with the application.
      */
     faviconUrl: "/favicon.ico",
 

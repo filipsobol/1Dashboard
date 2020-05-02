@@ -1,6 +1,10 @@
 <template>
     <div class="header">
-        <div class="mobile-logo" />
+        <div class="mobile-logo">
+            <img
+                :src="darkLogo"
+                class="logo-image" />
+        </div>
 
         <div class="mobile-menu">
             <button @click="$emit('toggleMenu')">
@@ -11,10 +15,27 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent } from "@vue/composition-api";
+    import { computed, defineComponent, inject } from "@vue/composition-api";
 
     export default defineComponent({
         name: "AdminHeader",
+
+        setup(_) {
+            // State
+            const context = inject<any>(Symbol.for("context"));
+
+            // Computed
+            const darkLogo = computed<any>(() => {
+                const { url, darkLogoUrl } = context.configuration.app;
+                return url + darkLogoUrl;
+            });
+
+
+            return {
+                // Computed
+                darkLogo,
+            };
+        },
     });
 </script>
 
@@ -39,6 +60,22 @@
     @media (max-width: theme("screens.md.max")) {
         .header {
             @apply px-4;
+        }
+
+        .mobile-logo {
+            @apply h-full;
+            @apply py-4;
+
+            width: 200px;
+
+            img {
+                @apply block;
+                @apply max-w-full;
+                @apply max-h-full;
+                @apply bg-contain;
+                @apply bg-center;
+                @apply bg-no-repeat;
+            }
         }
 
         .mobile-menu {

@@ -27,6 +27,8 @@ export interface App extends ObjectWithAnyKeys {
     title: string;
     description: string;
     keywords: string;
+    lightLogoUrl: string;
+    darkLogoUrl: string;
     faviconUrl: string;
     faviconType: string;
     defaultPageUrl: string;
