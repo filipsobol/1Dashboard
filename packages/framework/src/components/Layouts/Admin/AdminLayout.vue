@@ -12,9 +12,9 @@
             <db-admin-header @toggleMenu="toggleMenu()" />
 
             <!-- Content -->
-            <div class="flex flex-col flex-grow m-8">
+            <div class="page">
                 <!-- Title -->
-                <div>
+                <div class="heading">
                     <db-breadcrumbs
                         v-if="showBreadcrumbs"
                         :pageName="currentPage.name"
@@ -28,7 +28,7 @@
                     </h1>
                 </div>
 
-                <div class="flex flex-grow mt-8">
+                <div class="content">
                     <transition
                         :duration="200"
                         name="fade"
@@ -115,6 +115,29 @@
         &.sidebar-open {
             @apply h-screen;
             @apply overflow-y-hidden;
+        }
+    }
+
+    .page {
+        @apply flex-grow;
+        @apply flex;
+        @apply flex-col;
+        @apply m-8;
+    }
+
+    .content {
+        @apply flex-grow;
+        @apply flex;
+        @apply mt-8;
+    }
+
+    @media (max-width: theme("screens.md.max")) {
+        .page {
+            @apply m-4;
+        }
+
+        .content {
+            @apply mt-4;
         }
     }
 </style>

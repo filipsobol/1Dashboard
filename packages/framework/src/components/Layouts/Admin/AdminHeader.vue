@@ -44,7 +44,7 @@
         @apply flex;
         @apply w-full;
         @apply h-20;
-        @apply px-8;
+        @apply p-4;
         @apply justify-between;
         @apply items-center;
         @apply border-b;
@@ -62,8 +62,8 @@
         }
 
         .mobile-logo {
+            @apply flex;
             @apply h-full;
-            @apply py-4;
 
             width: 200px;
 

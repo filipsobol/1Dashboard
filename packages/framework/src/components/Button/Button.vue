@@ -28,7 +28,7 @@
 
         props: {
             props: {
-                type: [ Object, Function ],
+                type: Object,
                 required: true,
             },
             events: {

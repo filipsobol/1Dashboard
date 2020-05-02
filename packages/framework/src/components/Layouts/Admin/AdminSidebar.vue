@@ -184,14 +184,14 @@
         @apply flex-grow;
         @apply my-2;
         @apply mr-1; // Make some space between scrollbar and edge of sidebar
-        @apply overflow-y-scroll;
+        @apply overflow-y-auto;
 
         a {
             @apply flex;
             @apply flex-row;
             @apply h-16;
             @apply mx-4;
-            @apply my-3;
+            @apply my-1;
             @apply px-4;
             @apply items-center;
             @apply rounded-md;
@@ -331,21 +331,19 @@
 
         .mobile-close {
             @apply flex;
+            @apply p-4;
             @apply justify-end;
 
             color: $primaryTextColor;
 
             button {
                 @apply flex;
-                @apply px-6;
-                @apply py-6;
-                @apply content-center;
+                @apply w-12;
+                @apply h-12;
+                @apply items-center;
                 @apply justify-center;
-            }
-
-            i {
-                @apply flex;
-                @apply justify-center;
+                @apply rounded-full;
+                @apply cursor-pointer;
             }
 
             i:before {
