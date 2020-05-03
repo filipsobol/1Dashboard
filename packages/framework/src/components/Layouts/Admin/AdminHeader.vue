@@ -40,15 +40,7 @@
 
 <style lang="scss" scoped>
     .header {
-        @apply flex-shrink-0;
-        @apply flex;
-        @apply w-full;
-        @apply h-20;
-        @apply p-4;
-        @apply justify-between;
-        @apply items-center;
-        @apply border-b;
-        @apply bg-white;
+        @apply hidden;
     }
 
     .mobile-menu button,
@@ -58,7 +50,15 @@
 
     @media (max-width: theme("screens.md.max")) {
         .header {
-            @apply px-4;
+            @apply flex-shrink-0;
+            @apply flex;
+            @apply w-full;
+            @apply h-20;
+            @apply p-4;
+            @apply justify-between;
+            @apply items-center;
+            @apply border-b;
+            @apply bg-white;
         }
 
         .mobile-logo {

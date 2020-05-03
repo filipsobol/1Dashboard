@@ -91,7 +91,7 @@
                     "col-span-12",
                     `bg-${ normalizedStyles.value.background || "transparent" }`,
                     normalizedStyles.value.shadow || Shadow.NONE,
-                    normalizedStyles.value.border?.style || BorderStyle.NONE,
+                    normalizedStyles.value.border?.style || BorderStyle.SOLID,
                     normalizedStyles.value.border?.radius || BorderRadius.NONE,
                     normalizedStyles.value.border?.width || BorderWidth.NONE,
                     `border-${ normalizedStyles.value.border?.color || "transparent" }`,
