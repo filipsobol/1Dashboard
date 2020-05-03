@@ -11,8 +11,10 @@ export async function setupInternationalization(context: Context): Promise<VueI1
     const fallbackLocales = await import(/* webpackChunkName: "locale-[request]" */ `@framework/assets/locales/${fallbackLocale}.json`);
 
     return new VueI18n({
-        [locale]: primaryLocales.default,
-        [fallbackLocale]: fallbackLocales.default,
         ...context.configuration.localization,
+        messages: {
+            [locale]: primaryLocales.default,
+            [fallbackLocale]: fallbackLocales.default,
+        },
     });
 }
