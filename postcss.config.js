@@ -10,15 +10,13 @@ module.exports = {
             whitelistPatterns: [
                 /col-/,
                 /rows-/,
-                /col-start/,
-                /col-end/,
                 /^icon-/,
+                /^text-/,
                 /^bg-/,
                 /^shadow/,
                 /^border/,
                 /^rounded/,
                 /^p-/,
-                /^text-/,
                 /^fade-/,
                 /^variable-/,
             ]
