@@ -49,30 +49,7 @@ const page: Page = {
                                                 id: "currencySelect",
                                                 name: "Select",
                                                 placeholder: "Select a currency",
-                                                options: [
-                                                    {
-                                                        value: "eur",
-                                                        label: "Euro",
-                                                    },
-                                                    {
-                                                        value: "usd",
-                                                        label: "US Dollar",
-                                                    },
-                                                    {
-                                                        value: "pln",
-                                                        label: "Polish zloty",
-                                                    }
-                                                ],
-                                                rules: {
-                                                    required: true,
-                                                },
-                                            }
-                                        },
-                                        {
-                                            type: "MultiSelectInput",
-                                            props: {
-                                                id: "currencyMultiSelect",
-                                                name: "Select",
+                                                searchable: true,
                                                 options: [
                                                     {
                                                         value: "eur",

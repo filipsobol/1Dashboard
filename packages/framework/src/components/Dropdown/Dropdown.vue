@@ -1,7 +1,8 @@
 <template>
     <div
         class="dropdown"
-        @focusout="close()">
+        v-click-outside="close"
+        @keyup.esc="close">
         <db-button
             :props="button"
             @click="toggle()" />
@@ -16,7 +17,8 @@
             <div
                 v-if="open"
                 :class="[ xPosition, yPosition ]"
-                class="menu">
+                class="menu"
+                @keyup.enter="close">
                 <div>
                     <router-link
                         v-for="(item, index) in _.props.items"

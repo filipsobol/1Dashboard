@@ -163,7 +163,6 @@
         @apply mt-1;
         @apply border;
         @apply rounded;
-        @apply overflow-hidden;
 
         border-color: $borderColor;
 

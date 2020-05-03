@@ -7,10 +7,11 @@ export interface SelectInput {
 
 export interface SelectInputProps extends InputProps {
     value?: string;
+    searchable?: boolean;
     options: Array<SelectOption>;
 }
 
-interface SelectOption {
+export interface SelectOption {
     value: string;
-    label?: string;
+    label: string;
 }

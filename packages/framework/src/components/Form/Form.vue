@@ -1,6 +1,7 @@
 <template>
     <form
         ref="formElement"
+        @keydown.enter.stop.prevent
         @submit.stop.prevent="onFormSubmit"
         class="w-full">
         <div

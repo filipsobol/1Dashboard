@@ -4,6 +4,8 @@ import Vue from "vue";
 import CompositionApi from "@vue/composition-api";
 Vue.use(CompositionApi);
 
+import "@framework/core/directives/ClickOutside";
+
 // Load core services
 import { setupRouter } from "@framework/core/Router";
 import { setupResources } from "@framework/core/Resources";
