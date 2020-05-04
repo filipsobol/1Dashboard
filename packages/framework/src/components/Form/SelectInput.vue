@@ -29,17 +29,12 @@
 
             <i class="icon-chevron-down" />
 
-            <transition
-                enter-class="transform opacity-0 scale-95"
-                enter-active-class="transition ease-out duration-100"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-class="transform opacity-100 scale-100"
-                leave-active-class="transition ease-in duration-100"
-                leave-to-class="transform opacity-0 scale-95">
-                <div
-                    v-show="optionsAreVisible"
-                    class="options">
+            <div
+                v-show="optionsAreVisible"
+                class="options">
+                <template v-if="filteredOptions.length">
                     <div
+
                         v-for="option in filteredOptions"
                         :key="option.value"
                         :class="{ selected: selectedOption === option, highlighted: highlightedOption === option }"
@@ -47,8 +42,12 @@
                         @mousedown.stop.prevent="selectOption(option)">
                         {{ $t(option.label || option.value) }}
                     </div>
-                </div>
-            </transition>
+                </template>
+
+                <template v-else>
+                    <div class="no-results">{{ $t("No matching result") }}</div>
+                </template>
+            </div>
         </div>
     </db-input>
 </template>
@@ -91,9 +90,9 @@
             const filteredOptions = computed<Array<SelectOption>>(() => {
                 const options = _.props.options;
                 const term = searchTerm.value.trim().toLowerCase();
-                const fullMatchSearch = options.find(({ label }: SelectOption) => label.toLowerCase() === term);
+                const selectedOptionLabel = selectedOption.value?.label.trim().toLowerCase();
 
-                return fullMatchSearch
+                return selectedOptionLabel === term
                     ? options
                     : options.filter(({  label }: SelectOption) => label.toLowerCase().includes(term));
             });
@@ -186,6 +185,7 @@
         .search[readonly] {
             @apply w-full;
             @apply bg-white;
+            @apply cursor-pointer;
         }
     }
 
@@ -201,10 +201,13 @@
         @apply shadow-md;
         @apply z-50;
 
-        .option {
+        .option,
+        .no-results {
             @apply px-4;
             @apply py-2;
+        }
 
+        .option {
             &:hover,
             &.highlighted {
                 @apply bg-gray-100;
@@ -213,6 +216,10 @@
             &.selected {
                 @apply bg-gray-200;
             }
+        }
+
+        .no-results {
+            @apply font-medium;
         }
     }
 
