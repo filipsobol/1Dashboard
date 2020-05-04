@@ -12,15 +12,16 @@
             v-click-outside="close"
             @keyup.esc="close()">
             <input
-                v-model="searchTerm"
+                :value="searchTerm"
                 :name="props.id"
                 :readonly="isReadonly"
                 :placeholder="props.placeholder"
                 type="text"
                 class="search"
                 autocomplete="off"
+                @input="searchTerm = $event.target.value"
                 @mousedown="open()"
-                @keyup="open()"
+                @keypress="open()"
                 @focus="open()"
                 @blur="close()"
                 @keyup.enter="selectOption(highlightedOption)"
