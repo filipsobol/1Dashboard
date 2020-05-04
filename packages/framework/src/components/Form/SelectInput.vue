@@ -19,9 +19,8 @@
                 type="text"
                 class="search"
                 autocomplete="off"
-                @input="searchTerm = $event.target.value"
+                @input="onInput($event.target.value)"
                 @mousedown="open()"
-                @keypress="open()"
                 @focus="open()"
                 @blur="close()"
                 @keyup.enter="selectOption(highlightedOption)"
@@ -99,6 +98,11 @@
             });
 
             // Methods
+            function onInput(value: string): void {
+                open();
+                searchTerm.value = value;
+            }
+
             function open(): void {
                 if (optionsAreVisible.value) {
                     return;
@@ -168,6 +172,7 @@
                 filteredOptions,
 
                 // Methods
+                onInput,
                 open,
                 close,
                 selectOption,
