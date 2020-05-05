@@ -12,14 +12,14 @@
             v-click-outside="close"
             @keyup.esc="close()">
             <input
-                :value="searchTerm"
+                v-model="searchTerm"
                 :name="props.id"
                 :readonly="isReadonly"
                 :placeholder="props.placeholder"
                 type="text"
                 class="search"
                 autocomplete="off"
-                @input="onInput($event.target.value)"
+                @input="open()"
                 @mousedown="open()"
                 @focus="open()"
                 @blur="close()"
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-    import { computed, defineComponent, ref } from "@vue/composition-api";
+    import { computed, defineComponent, ref, watch } from "@vue/composition-api";
     import { SelectOption } from '@framework/interfaces/components/Form/SelectInput';
 
     export default defineComponent({
@@ -98,11 +98,6 @@
             });
 
             // Methods
-            function onInput(value: string): void {
-                open();
-                searchTerm.value = value;
-            }
-
             function open(): void {
                 if (optionsAreVisible.value) {
                     return;
@@ -121,11 +116,12 @@
             }
 
             function selectOption(option?: SelectOption): void {
-                if (option) {
-                    selectedOption.value = option;
-                    emit("input", option.value);
+                if (!option) {
+                    return;
                 }
 
+                selectedOption.value = option;
+                emit("input", option.value);
                 close();
             }
 
@@ -159,6 +155,12 @@
                     : options[options.length - 1];
             }
 
+            // Watchers
+            watch(searchTerm, () => {
+                selectedOption.value = null;
+                highlightedOption.value = null;
+            });
+
             return {
                 // State
                 _,
@@ -172,7 +174,6 @@
                 filteredOptions,
 
                 // Methods
-                onInput,
                 open,
                 close,
                 selectOption,

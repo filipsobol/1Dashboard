@@ -174,7 +174,7 @@ const page: Page = {
                             },
                             lg: {
                                 width: 6,
-                                height: 1,
+                                height: 2,
                             }
                         },
                         style: "grid",
