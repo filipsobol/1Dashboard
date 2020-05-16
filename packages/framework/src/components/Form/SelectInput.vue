@@ -54,7 +54,7 @@
 
 <script lang="ts">
     import { computed, defineComponent, ref, watch } from "@vue/composition-api";
-    import { SelectOption } from '@framework/interfaces/components/Form/SelectInput';
+    import { SelectOption, SelectInputEvent } from '@framework/interfaces/components/Form/SelectInput';
 
     export default defineComponent({
         name: "SelectInput",
@@ -63,6 +63,11 @@
             props: {
                 type: Object,
                 required: true,
+            },
+
+            events: {
+                type: Array,
+                required: false,
             },
 
             value: {
@@ -123,6 +128,10 @@
                 selectedOption.value = option;
                 emit("input", option.value);
                 close();
+
+                (_.events as Array<SelectInputEvent>)
+                    ?.filter((event: SelectInputEvent) => event.on === "select")
+                    .forEach((event: SelectInputEvent) => event.callback(option));
             }
 
             function highlightNextOption(): void {
@@ -157,7 +166,10 @@
 
             // Watchers
             watch(searchTerm, () => {
-                selectedOption.value = null;
+                if (searchTerm.value !== selectedOption.value?.label) {
+                    selectedOption.value = null;
+                }
+
                 highlightedOption.value = null;
             });
 
