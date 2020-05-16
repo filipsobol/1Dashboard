@@ -24,7 +24,7 @@
                         v-for="(item, index) in _.props.items"
                         :key="index"
                         :to="item.url"
-                        href="#">
+                        :href="item.url">
                         <i
                             v-if="item.icon"
                             :class="'icon-' + item.icon" />
