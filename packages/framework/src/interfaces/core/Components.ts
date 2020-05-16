@@ -22,7 +22,8 @@ export type Component = Article
     | Grid
     | Tabs
     | Text
-    | Form;
+    | Form
+    | FormComponent;
 
 export type FormComponent = CheckboxInput
     | FileInput
