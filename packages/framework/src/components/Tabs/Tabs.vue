@@ -40,7 +40,7 @@
 
         props: {
             props: {
-                type: [ Object, Function ] as PropType<TabsProps>,
+                type: Object as PropType<TabsProps>,
                 required: true,
             },
         },

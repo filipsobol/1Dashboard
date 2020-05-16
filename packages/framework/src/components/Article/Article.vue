@@ -16,7 +16,7 @@
 
         props: {
             props: {
-                type: [ Object, Function ] as PropType<ArticleProps>,
+                type: Object as PropType<ArticleProps>,
                 required: true,
             }
         }

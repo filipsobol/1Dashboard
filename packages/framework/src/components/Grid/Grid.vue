@@ -16,7 +16,7 @@
 
         props: {
             props: {
-                type: [ Object, Function ] as PropType<GridProps>,
+                type: Object as PropType<GridProps>,
                 required: true,
             }
         },
