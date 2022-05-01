@@ -11,7 +11,7 @@ export default function(context: any) {
         projectId: "dashboard-9740c",
         storageBucket: "dashboard-9740c.appspot.com",
         messagingSenderId: "669540400072",
-        appId: "1:669540400072:web:95e632e7e2481f04e39efd"
+        appId: "1:669540400072:web:dda434468dcd0f60e39efd"
     });
 
     // Redirect to login page if user is not logged in
